@@ -41,6 +41,9 @@ namespace LastKey.Core
         public readonly bool Bot;
         public int Correct, Errors, Combo, BestCombo, RoundScore, TotalScore, Cursor, Completed;
         public float Danger, ActiveSeconds;
+        public string Prompt="";
+        public float MemoryRevealUntil;
+        public int Bonus;
         public bool Eliminated { get { return Danger >= 100; } }
         public float Accuracy { get { return Correct + Errors == 0 ? 100 : 100f * Correct / (Correct + Errors); } }
         public float Wpm { get { return ActiveSeconds <= 0 ? 0 : Correct / 5f * 60f / ActiveSeconds; } }
@@ -54,6 +57,7 @@ namespace LastKey.Core
         internal void Reset()
         {
             Correct = Errors = Combo = BestCombo = RoundScore = Cursor = Completed = 0;
+            Bonus=0;
             Danger = ActiveSeconds = BotCredit = 0; WordCorrect = 0;
             DirectiveAwarded = EchoAccepted = EchoResolved = false;
             DirectiveStreak = EchoCursor = 0; EchoRemaining = 0;
@@ -64,10 +68,9 @@ namespace LastKey.Core
     {
         public readonly Rules Rules;
         public readonly ContentBank Content;
-        public readonly Competitor[] Players = {
-            new Competitor("CIPHER", false), new Competitor("UPLINK", true),
-            new Competitor("RELAY", true), new Competitor("VECTOR", true)
-        };
+        public readonly Competitor[] Players;
+        public readonly int HumanIndex;
+        readonly PromptManager[] prompts=new PromptManager[4];
         public Phase Phase { get; private set; } = Phase.Ready;
         public int Round { get; private set; }
         public RoundMode Mode { get; private set; }
@@ -76,14 +79,20 @@ namespace LastKey.Core
         public Directive ActiveDirective { get; private set; }
         public float DirectiveRemaining { get; private set; }
         public bool EchoOffered { get; private set; }
+        public float EchoOfferRemaining { get; private set; }
         public const string EchoText = "NODE-07-RECOVERY";
-        public string Text { get; private set; } = "";
+        public string Text { get {return Players[HumanIndex].Prompt;} }
+        public string Target(int index){return Players[index].Prompt;}
         public string LastEvent { get; private set; } = "Preparado para la competencia.";
         readonly Random random;
         bool directiveIssued, echoIssued;
 
-        public Competition(Rules rules = null, ContentBank content = null, int seed = 4207)
+        public Competition(Rules rules = null, ContentBank content = null, int seed = 4207, int humanIndex=0)
         {
+            if(humanIndex<0||humanIndex>3)throw new ArgumentException("Invalid human selection");
+            HumanIndex=humanIndex;var names=new[]{"CIPHER","UPLINK","RELAY","VECTOR"};
+            Players=names.Select((n,i)=>new Competitor(n,i!=humanIndex)).ToArray();
+            for(int i=0;i<4;i++)prompts[i]=new PromptManager(seed+i*101);
             Rules = rules ?? new Rules(); Content = content ?? new ContentBank(); random = new Random(seed);
             if (Rules.rounds < 1 || Rules.roundSeconds <= 0 || Rules.directiveSeconds <= 0 ||
                 Rules.streakStep < 1 || Rules.maxMultiplier < 1 || Rules.botWpm == null ||
@@ -99,9 +108,10 @@ namespace LastKey.Core
             foreach (var p in Players) p.Reset();
             ActiveDirective = Directive.None; DirectiveRemaining = 0;
             directiveIssued = echoIssued = EchoOffered = false;
+            EchoOfferRemaining=0;
             var bank = mode == RoundMode.Code ? Content.code : mode == RoundMode.Numbers ? Content.numbers : Content.classic;
             if (bank == null || bank.Length == 0 || bank.Any(string.IsNullOrEmpty)) throw new ArgumentException("Empty content bank");
-            Text = bank[(Round - 1) % bank.Length];
+            for(int i=0;i<4;i++){prompts[i].BeginRound(bank);Players[i].Prompt=prompts[i].Next();Players[i].MemoryRevealUntil=Rules.memoryRevealSeconds;}
             Phase = Phase.Running; LastEvent = "RONDA " + Round + " — " + mode;
         }
 
@@ -124,8 +134,9 @@ namespace LastKey.Core
             }
             if (!echoIssued && Elapsed >= Rules.roundSeconds * .55f)
             {
-                echoIssued = EchoOffered = true; LastEvent = "ECHO: reto opcional disponible";
+                echoIssued = EchoOffered = true; EchoOfferRemaining=8;LastEvent = "ECHO: reto opcional disponible";
             }
+            if(EchoOffered){EchoOfferRemaining=Math.Max(0,EchoOfferRemaining-dt);if(EchoOfferRemaining<=0){EchoOffered=false;foreach(var q in Players)if(!q.EchoAccepted)q.EchoResolved=true;}}
             for (int i = 0; i < Players.Length; i++)
             {
                 var p = Players[i]; if (p.Eliminated) continue;
@@ -136,16 +147,17 @@ namespace LastKey.Core
                     if (p.EchoRemaining <= 0) ResolveEcho(p, false);
                 }
                 if (!p.Bot) continue;
-                if (EchoOffered && !p.EchoAccepted && !p.EchoResolved && p.Danger < 50 && i != 1) AcceptEcho(i);
-                if (Mode == RoundMode.Memory && Elapsed < Rules.memoryRevealSeconds) continue;
-                p.BotCredit += dt * Rules.botWpm[i - 1] * 5 / 60;
+                int botSlot=i<HumanIndex?i:i-1;
+                if (EchoOffered && !p.EchoAccepted && !p.EchoResolved && p.Danger < 50 && botSlot!=0) AcceptEcho(i);
+                if (Mode == RoundMode.Memory && Elapsed < p.MemoryRevealUntil) continue;
+                p.BotCredit += dt * Rules.botWpm[botSlot] * 5 / 60;
                 while (p.BotCredit >= 1 && !p.Eliminated)
                 {
                     p.BotCredit--;
-                    string target = p.EchoAccepted && !p.EchoResolved ? EchoText : Text;
+                    string target = p.EchoAccepted && !p.EchoResolved ? EchoText : p.Prompt;
                     int cursor = p.EchoAccepted && !p.EchoResolved ? p.EchoCursor : p.Cursor;
                     char expected = target[cursor];
-                    Input(i, random.NextDouble() < Rules.botAccuracy[i - 1] ? expected : (expected == 'x' ? 'z' : 'x'));
+                    Input(i, random.NextDouble() < Rules.botAccuracy[botSlot] ? expected : (expected == 'x' ? 'z' : 'x'));
                 }
             }
             if (ActiveDirective != Directive.None)
@@ -176,9 +188,9 @@ namespace LastKey.Core
         public bool Input(int index, char typed)
         {
             if (Phase != Phase.Running || index < 0 || index >= Players.Length) return false;
-            var p = Players[index]; if (p.Eliminated || (Mode == RoundMode.Memory && Elapsed < Rules.memoryRevealSeconds)) return false;
+            var p = Players[index]; if (p.Eliminated || (Mode == RoundMode.Memory && Elapsed < p.MemoryRevealUntil)) return false;
             bool echo = p.EchoAccepted && !p.EchoResolved;
-            string target = echo ? EchoText : Text; int cursor = echo ? p.EchoCursor : p.Cursor;
+            string target = echo ? EchoText : p.Prompt; int cursor = echo ? p.EchoCursor : p.Cursor;
             if (typed != target[cursor])
             {
                 p.Errors++; p.Combo = p.DirectiveStreak = 0; p.WordCorrect = 0;
@@ -200,7 +212,7 @@ namespace LastKey.Core
                 p.WordCorrect++;
                 if (typed == ' ' || cursor == target.Length - 1)
                 { if (p.WordCorrect > 0) p.RoundScore += Rules.wordBonus; p.WordCorrect = 0; }
-                p.Cursor++; if (p.Cursor >= target.Length) { p.Cursor = 0; p.Completed++; }
+                p.Cursor++; if (p.Cursor >= target.Length) { p.Cursor = 0; p.Completed++;p.Prompt=prompts[index].Next();p.MemoryRevealUntil=Elapsed+Rules.memoryRevealSeconds; }
             }
             return true;
         }
@@ -208,7 +220,7 @@ namespace LastKey.Core
         void AwardDirective(Competitor p)
         {
             if (p.DirectiveAwarded) return;
-            p.DirectiveAwarded = true; p.RoundScore += Rules.directiveBonus;
+            p.DirectiveAwarded = true; p.RoundScore += Rules.directiveBonus;p.Bonus+=Rules.directiveBonus;
             LastEvent = p.Name + ": Directiva NULL cumplida +" + Rules.directiveBonus;
         }
         public bool AcceptEcho(int index)
@@ -225,7 +237,7 @@ namespace LastKey.Core
         void ResolveEcho(Competitor p, bool success)
         {
             p.EchoResolved = true;
-            if (success) { p.RoundScore += Rules.echoReward; p.Danger = Math.Max(0, p.Danger - Rules.echoRecovery); }
+            if (success) { p.RoundScore += Rules.echoReward;p.Bonus+=Rules.echoReward; p.Danger = Math.Max(0, p.Danger - Rules.echoRecovery); }
             else p.Danger = Math.Min(100, p.Danger + Rules.echoPenalty);
             LastEvent = p.Name + (success ? " ECHO completado +" + Rules.echoReward : " ECHO fallido +" + Rules.echoPenalty + " Danger");
         }

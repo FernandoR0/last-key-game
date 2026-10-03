@@ -14,7 +14,9 @@ namespace LastKey.Editor
         [MenuItem("LAST KEY/Prepare Project")]
         public static void Prepare()
         {
-            CoreQa.Run();
+            PolishQa.Run();
+            string electricPath="Assets/Resources/LastKeyElectric.mat";
+            if(!File.Exists(electricPath))AssetDatabase.CreateAsset(new Material(Shader.Find("Universal Render Pipeline/Unlit")),electricPath);
             if(!File.Exists("Assets/TextMesh Pro/Resources/TMP Settings.asset"))
             {
                 var essential=Path.Combine(EditorApplication.applicationContentsPath,"Resources/PackageManager/BuiltInPackages/com.unity.ugui/Package Resources/TMP Essential Resources.unitypackage");
@@ -27,6 +29,7 @@ namespace LastKey.Editor
             var pipeline=AssetDatabase.LoadAssetAtPath<UniversalRenderPipelineAsset>(pipelinePath);
             if(pipeline==null){pipeline=UniversalRenderPipelineAsset.Create(renderer);AssetDatabase.CreateAsset(pipeline,pipelinePath);}
             GraphicsSettings.defaultRenderPipeline=pipeline;QualitySettings.renderPipeline=pipeline;
+            pipeline.renderScale=1;pipeline.msaaSampleCount=4;QualitySettings.antiAliasing=4;
             PlayerSettings.companyName="LAST KEY";PlayerSettings.productName="LAST KEY";PlayerSettings.defaultScreenWidth=1920;PlayerSettings.defaultScreenHeight=1080;
             PlayerSettings.fullScreenMode=FullScreenMode.Windowed;PlayerSettings.runInBackground=true;
             PlayerSettings.SetScriptingBackend(UnityEditor.Build.NamedBuildTarget.Standalone,ScriptingImplementation.Mono2x);
@@ -51,15 +54,16 @@ namespace LastKey.Editor
         public static void BuildWebGL()
         {
             Prepare();PlayerSettings.WebGL.compressionFormat=WebGLCompressionFormat.Disabled;
+            PlayerSettings.WebGL.template="PROJECT:LastKey";
             Directory.CreateDirectory("Builds/WebGL");
             var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=new[]{"Assets/LastKey/Scenes/LastKey.unity"},locationPathName="Builds/WebGL",target=BuildTarget.WebGL,options=BuildOptions.None});
             if(report.summary.result!=BuildResult.Succeeded)throw new Exception("WebGL build failed "+report.summary.result);
-            File.AppendAllText("Builds/WebGL/TemplateData/style.css", "\n/* Fit the full 16:9 HUD in desktop and compact browser views. */\n#unity-fullscreen-container { width:min(100vw,calc((100vh - 38px) * 16 / 9)) !important; height:auto !important; aspect-ratio:16/9; }\n#unity-container.unity-desktop { width:min(100vw,calc((100vh - 38px) * 16 / 9)); }\n");
             Debug.Log("LAST_KEY_WEBGL_BUILD_SUCCESS "+report.summary.totalSize);
         }
         public static void PlayEvidence()
         {
-            CoreQa.Run();
+            ShaderUtil.allowAsyncCompilation=false;
+            PolishQa.Run();
             EditorSceneManager.OpenScene("Assets/LastKey/Scenes/LastKey.unity");
             // Set a fixed Game view size so runtime PNGs are exactly 1920 x 1080.
             var assembly=typeof(UnityEditor.Editor).Assembly;

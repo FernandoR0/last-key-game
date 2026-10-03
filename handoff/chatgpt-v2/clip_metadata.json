@@ -1,0 +1,83 @@
+[
+  {
+    "file": "01_loading_to_menu.mp4",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "frames": 94,
+    "seconds": 3.1333,
+    "audio": true
+  },
+  {
+    "file": "02_character_select.mp4",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "frames": 91,
+    "seconds": 3.0333,
+    "audio": true
+  },
+  {
+    "file": "03_round_wakeup_intro.mp4",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "frames": 271,
+    "seconds": 9.0333,
+    "audio": true
+  },
+  {
+    "file": "04_gameplay_typing_with_rivals.mp4",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "frames": 300,
+    "seconds": 10.0,
+    "audio": true
+  },
+  {
+    "file": "05_danger_elimination.mp4",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "frames": 270,
+    "seconds": 9.0,
+    "audio": true
+  },
+  {
+    "file": "06_null_directive.mp4",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "frames": 120,
+    "seconds": 4.0,
+    "audio": true
+  },
+  {
+    "file": "07_echo_intercept.mp4",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "frames": 210,
+    "seconds": 7.0,
+    "audio": true
+  },
+  {
+    "file": "08_round_result.mp4",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "frames": 181,
+    "seconds": 6.0333,
+    "audio": true
+  },
+  {
+    "file": "09_final_winner.mp4",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "frames": 181,
+    "seconds": 6.0333,
+    "audio": true
+  }
+]

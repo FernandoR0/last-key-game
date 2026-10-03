@@ -1,0 +1,33 @@
+{
+  "source": "Unity Editor QA input replay; real Competition.Input/Tick",
+  "rounds": 5,
+  "winner": "CIPHER",
+  "standings": [
+    {
+      "alias": "CIPHER",
+      "total": 6173
+    },
+    {
+      "alias": "VECTOR",
+      "total": 3806
+    },
+    {
+      "alias": "RELAY",
+      "total": 3134
+    },
+    {
+      "alias": "UPLINK",
+      "total": 1544
+    }
+  ],
+  "round_1_elimination": {
+    "alias": "CIPHER",
+    "danger": 100,
+    "score": 415
+  },
+  "round_2_return": {
+    "alias": "CIPHER",
+    "total": 415,
+    "danger": 0
+  }
+}

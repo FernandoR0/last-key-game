@@ -23,7 +23,7 @@ namespace LastKey
             var bounds=main.bounds;float scale=new[]{1.73f,1.80f,1.69f,1.84f}[index]/bounds.size.y;
             root.transform.localScale=new Vector3(scale*(index==2?.94f:1),scale,scale);
             root.transform.localRotation=Quaternion.Euler(0,180,0);
-            root.transform.localPosition=new Vector3(0,.67f-animator.GetBoneTransform(HumanBodyBones.Hips).position.y+station.position.y,-1);
+            root.transform.localPosition=new Vector3(0,.76f-animator.GetBoneTransform(HumanBodyBones.Hips).position.y+station.position.y,-.97f);
             string skinName=female?(index==0?"T_Superhero_Female_Light_BaseColor":"T_Superhero_Female_Dark_BaseColor"):(index==1?"T_Superhero_Male_Ligh":"T_Superhero_Male_Dark");
             Color skinTint=new[]{new Color(.87f,.73f,.60f),Color.white,new Color(.96f,.89f,.78f),new Color(.56f,.40f,.29f)}[index];
             foreach(var renderer in allRenderers)
@@ -88,8 +88,17 @@ namespace LastKey
             }
             var groups=new[]{new List<int>(),new List<int>(),new List<int>(),new List<int>()};var tri=mesh.triangles;
             for(int i=0;i<tri.Length;i+=3){int a=types[tri[i]],b=types[tri[i+1]],c=types[tri[i+2]];int kind=a==b||a==c?a:b==c?b:a;groups[kind].Add(tri[i]);groups[kind].Add(tri[i+1]);groups[kind].Add(tri[i+2]);}
-            mesh.subMeshCount=4;for(int i=0;i<4;i++)mesh.SetTriangles(groups[i],i);
-            source.sharedMesh=mesh;source.sharedMaterials=new[]{source.sharedMaterial,Material(null,shirt),Material(null,new Color(.045f,.063f,.084f)),Material(null,new Color(.04f,.045f,.05f))};
+            var colors=new Color[vertices.Length];
+            for(int i=0;i<vertices.Length;i++)
+            {
+                if(types[i]==0){colors[i]=Color.white;continue;}
+                float y=source.transform.TransformPoint(vertices[i]).y;
+                var c=types[i]==3?new Color(.04f,.045f,.05f):Color.Lerp(new Color(.045f,.063f,.084f),shirt,Mathf.SmoothStep(0,1,Mathf.InverseLerp(hip+.07f,hip+.17f,y)));
+                c.a=0;colors[i]=c;
+            }
+            mesh.colors=colors;mesh.subMeshCount=1;mesh.SetTriangles(tri,0);
+            var clothing=new Material(Resources.Load<Shader>("LastKeyClothing"));clothing.SetTexture("_BaseMap",source.sharedMaterial.mainTexture);clothing.SetColor("_BaseColor",source.sharedMaterial.color);
+            source.sharedMesh=mesh;source.sharedMaterials=new[]{clothing};
         }
     }
 }

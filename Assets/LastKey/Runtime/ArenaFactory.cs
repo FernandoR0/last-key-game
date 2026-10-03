@@ -10,6 +10,9 @@ namespace LastKey
         public Renderer[] Collars = new Renderer[4];
         public Camera Camera;
         public TMP_Text Board;
+        public Transform[] Stations=new Transform[4];
+        public TMP_Text[] Screens=new TMP_Text[4];
+        public int HumanIndex;
         readonly Color metal = new Color(.11f,.14f,.17f);
         readonly Color cyan = new Color(.1f,.7f,.72f);
         public readonly Color[] Colors = {new Color(.1f,.65f,.7f),new Color(.7f,.46f,.15f),new Color(.4f,.53f,.72f),new Color(.52f,.65f,.35f)};
@@ -53,7 +56,7 @@ namespace LastKey
             var stations=Group("Stations",Root.transform);
             for(int i=0;i<4;i++)
             {
-                float x=(i-1.5f)*2.55f;var station=Group("Station_P"+(i+1),stations);station.localPosition=new Vector3(x,0,.7f);
+                var station=Group("Station_P"+(i+1),stations);Stations[i]=station;
                 var deskAsset=Resources.Load<GameObject>("PolyHaven/metal_office_desk");
                 if(deskAsset!=null)
                 {
@@ -71,15 +74,18 @@ namespace LastKey
                     for(int side=-1;side<=1;side+=2) Box("Desk leg",station,new Vector3(side*.85f,.48f,0),new Vector3(.1f,.97f,.85f),metal);
                 }
                 Box("PC tower",station,new Vector3(.68f,.45f,.1f),new Vector3(.3f,.7f,.55f),metal);
-                Box("Monitor stand",station,new Vector3(0,1.01f,.3f),new Vector3(.12f,.35f,.15f),metal);
+                Box("Monitor stand",station,new Vector3(0,1.01f,.37f),new Vector3(.12f,.35f,.09f),metal);
                 Box("Monitor",station,new Vector3(0,1.27f,.3f),new Vector3(1.12f,.65f,.09f),new Color(.02f,.035f,.04f));
-                Box("Screen",station,new Vector3(0,1.27f,.245f),new Vector3(1.02f,.54f,.01f),new Color(.03f,.28f,.31f),true);
-                for(int r=0;r<4;r++) Box("Screen text",station,new Vector3(-.1f,1.42f-r*.09f,.232f),new Vector3(.68f-r*.07f,.025f,.008f),Colors[i],true);
+                Box("Screen",station,new Vector3(0,1.27f,.245f),new Vector3(1.02f,.54f,.01f),new Color(.012f,.07f,.085f));
+                var screenText=new GameObject("Live monitor text",typeof(TextMeshPro));screenText.transform.SetParent(station,false);screenText.transform.localPosition=new Vector3(0,1.28f,.23f);
+                Screens[i]=screenText.GetComponent<TextMeshPro>();Screens[i].font=font;Screens[i].fontSize=.72f;Screens[i].color=new Color(.8f,1,1);Screens[i].alignment=TextAlignmentOptions.Center;Screens[i].rectTransform.sizeDelta=new Vector2(.96f,.47f);Screens[i].text="LAST KEY\nESTACIÓN LISTA";
                 Box("Keyboard",station,new Vector3(0,.86f,-.32f),new Vector3(.65f,.055f,.24f),new Color(.07f,.08f,.1f));
                 for(int row=0;row<3;row++)for(int col=0;col<10;col++) Box("Key",station,new Vector3(-.27f+col*.06f,.893f,-.39f+row*.06f),new Vector3(.043f,.012f,.041f),new Color(.35f,.38f,.4f));
-                Box("Chair seat",station,new Vector3(0,.55f,-1.0f),new Vector3(.65f,.12f,.6f),metal);
+                Box("Chair seat",station,new Vector3(0,.53f,-1.05f),new Vector3(.65f,.10f,.42f),metal);
+                Box("Chair footrest",station,new Vector3(0,.18f,-.72f),new Vector3(.56f,.045f,.30f),metal);
                 Box("Chair back",station,new Vector3(0,.95f,-1.29f),new Vector3(.65f,.65f,.1f),metal);
                 Limb("Chair pedestal",station,new Vector3(0,.05f,-1),new Vector3(0,.5f,-1),.12f,metal);
+                for(int side=-1;side<=1;side+=2)Box("Competition restraint",station,new Vector3(side*.34f,.71f,-1.0f),new Vector3(.055f,.08f,.29f),new Color(.24f,.28f,.31f));
                 Characters[i]=CharacterFactory.Create(station,i,Colors[i],out Collars[i]);
             }
             Box("Scoreboard frame",env,new Vector3(0,2.55f,4.43f),new Vector3(4.5f,1.18f,.12f),new Color(.015f,.027f,.037f));
@@ -89,6 +95,13 @@ namespace LastKey
             var lighting=Group("Lighting",Root.transform);var lightObj=new GameObject("Main",typeof(Light));lightObj.transform.SetParent(lighting);lightObj.transform.rotation=Quaternion.Euler(48,-25,0);var light=lightObj.GetComponent<Light>();light.type=LightType.Directional;light.intensity=1.7f;light.color=new Color(.75f,.85f,1);light.shadows=LightShadows.Soft;
             var fillObj=new GameObject("Face fill",typeof(Light));fillObj.transform.SetParent(lighting);fillObj.transform.rotation=Quaternion.Euler(30,180,0);var fill=fillObj.GetComponent<Light>();fill.type=LightType.Directional;fill.intensity=1.0f;fill.color=new Color(1,.93f,.84f);
             var cameraObj=new GameObject("Cam_Main",typeof(Camera),typeof(AudioListener));cameraObj.transform.SetParent(Root.transform);Camera=cameraObj.GetComponent<Camera>();Camera.fieldOfView=49;Camera.clearFlags=CameraClearFlags.SolidColor;Camera.backgroundColor=RenderSettings.fogColor;Camera.nearClipPlane=.05f;SetCamera(0);
+            Arrange(0);
+        }
+        public void Arrange(int human)
+        {
+            HumanIndex=human;var positions=new[]{new Vector3(-1.0f,0,-2.3f),new Vector3(-3.5f,0,1.0f),new Vector3(0,0,3.0f),new Vector3(3.5f,0,1.0f)};
+            var angles=new[]{0f,105f,135f,255f};int slot=1;
+            for(int i=0;i<4;i++){int s=i==human?0:slot++;Stations[i].localPosition=positions[s];Stations[i].localRotation=Quaternion.Euler(0,angles[s],0);}
         }
         public void SetCamera(int view)
         {
@@ -103,8 +116,12 @@ namespace LastKey
                 var p=game.Players[i];Color color=p.Danger>=75?new Color(.9f,.07f,.08f):p.Danger>=40?new Color(1,.55f,.06f):cyan;
                 Collars[i].material.color=color;Collars[i].material.SetColor("_EmissionColor",color*1.5f);
                 Characters[i].GetComponent<CharacterMotion>().SetCompetition(game);
+                var target=p.EchoAccepted&&!p.EchoResolved?Core.Competition.EchoText:game.Target(i);
+                int cursor=p.EchoAccepted&&!p.EchoResolved?p.EchoCursor:p.Cursor;
+                Screens[i].text=p.Name+"  "+(p.Eliminated?"FUERA DE RONDA":p.Wpm.ToString("0")+" WPM")+"\n"+(target.Length==0?"LISTO":game.Mode==Core.RoundMode.Memory&&game.Elapsed>=p.MemoryRevealUntil?"MEMORIA / TEXTO OCULTO":target.Substring(Mathf.Min(cursor,target.Length-1),Mathf.Min(42,target.Length-Mathf.Min(cursor,target.Length-1))))+"\n"+cursor+" / "+target.Length+"   "+p.RoundScore+" PTS";
+                Screens[i].color=p.Eliminated?new Color(1,.2f,.2f):new Color(.75f,1,1);
             }
-            Board.text=game.Round==0?"LAST KEY\n4 PARTICIPANTES � 5 RONDAS":"LAST KEY / RONDA "+game.Round+"\n"+game.Players[0].Name+" "+(game.Players[0].TotalScore+(game.Phase==Core.Phase.Running?game.Players[0].RoundScore:0))+"   "+game.Players[1].Name+" "+(game.Players[1].TotalScore+(game.Phase==Core.Phase.Running?game.Players[1].RoundScore:0))+"\n"+game.Players[2].Name+" "+(game.Players[2].TotalScore+(game.Phase==Core.Phase.Running?game.Players[2].RoundScore:0))+"   "+game.Players[3].Name+" "+(game.Players[3].TotalScore+(game.Phase==Core.Phase.Running?game.Players[3].RoundScore:0));
+            Board.text=game.Round==0?"LAST KEY\n4 PARTICIPANTES · 5 RONDAS":"LAST KEY / RONDA "+game.Round+"\n"+game.Players[0].Name+" "+(game.Players[0].TotalScore+(game.Phase==Core.Phase.Running?game.Players[0].RoundScore:0))+"   "+game.Players[1].Name+" "+(game.Players[1].TotalScore+(game.Phase==Core.Phase.Running?game.Players[1].RoundScore:0))+"\n"+game.Players[2].Name+" "+(game.Players[2].TotalScore+(game.Phase==Core.Phase.Running?game.Players[2].RoundScore:0))+"   "+game.Players[3].Name+" "+(game.Players[3].TotalScore+(game.Phase==Core.Phase.Running?game.Players[3].RoundScore:0));
         }
     }
 }

@@ -16,6 +16,8 @@ namespace LastKey
         int index,previousErrors;
         float recoil;
         Competition game;
+        public bool Wakeup,Preview;
+        public float IntroProgress;
         public void Initialize(Animator animator,int player,Transform origin)
         {
             rig=animator;index=player;station=origin;basePosition=transform.localPosition;
@@ -38,11 +40,14 @@ namespace LastKey
             transform.localPosition=basePosition;
             bool eliminated=game!=null&&game.Players[index].Eliminated;
             bool victory=game!=null&&game.Phase==Phase.Finished&&game.Winners().Contains(game.Players[index]);
-            bool typing=game!=null&&game.Phase==Phase.Running&&!eliminated;
-            State=victory?"VICTORY":eliminated?"ELIMINATED":recoil>0?"ERROR":typing?"TYPING":"IDLE SEATED";
+            bool typing=game!=null&&game.Phase==Phase.Running&&!eliminated&&!Wakeup&&!Preview;
+            bool roundWin=game!=null&&game.Phase==Phase.Results&&game.Players[index].RoundScore==game.Players.Max(p=>p.RoundScore);
+            bool danger=game!=null&&game.Players[index].Danger>=75&&!eliminated;
+            bool fast=typing&&game.Players[index].Wpm>=40;
+            State=Wakeup?"wakeup":victory?"final_win":eliminated?"eliminated":roundWin?"round_win":recoil>0?"mistake_reaction":danger?"danger_reaction":typing?(fast?"type_fast":"type_normal"):"seated_idle";
             var spine=Bone(HumanBodyBones.Spine);
             spine.localRotation*=Quaternion.Euler(eliminated?24:2+Mathf.Sin(time*1.7f+index)*.7f,0,recoil>0?Mathf.Sin(time*30)*4:0);
-            var head=Bone(HumanBodyBones.Head);head.localRotation*=Quaternion.Euler(eliminated?15:2,Mathf.Sin(time*(recoil>0?25:1.1f)+index)*(recoil>0?9:1),0);
+            var head=Bone(HumanBodyBones.Head);head.localRotation*=Quaternion.Euler(Wakeup?Mathf.Lerp(28,2,IntroProgress):victory?-6:eliminated?15:danger?12:2,Mathf.Sin(time*(recoil>0?25:1.1f)+index)*(recoil>0?9:Preview?9:1),0);
             // Base faces -Z; wrapper turns it toward its keyboard.
             for(int side=0;side<2;side++)
             {
@@ -50,29 +55,32 @@ namespace LastKey
                 var thigh=Bone(side==0?HumanBodyBones.LeftUpperLeg:HumanBodyBones.RightUpperLeg);
                 var calf=Bone(side==0?HumanBodyBones.LeftLowerLeg:HumanBodyBones.RightLowerLeg);
                 var foot=Bone(side==0?HumanBodyBones.LeftFoot:HumanBodyBones.RightFoot);
-                var ankle=station.TransformPoint(new Vector3(sign*.16f,.12f,-.54f));
-                TwoBone(thigh,calf,foot,ankle,Vector3.forward);
+                var ankle=station.TransformPoint(new Vector3(sign*.16f,.24f,-.84f));
+                TwoBone(thigh,calf,foot,ankle,station.forward);
                 var upper=Bone(side==0?HumanBodyBones.LeftUpperArm:HumanBodyBones.RightUpperArm);
                 var lower=Bone(side==0?HumanBodyBones.LeftLowerArm:HumanBodyBones.RightLowerArm);
                 var hand=Bone(side==0?HumanBodyBones.LeftHand:HumanBodyBones.RightHand);
-                Vector3 target=station.TransformPoint(new Vector3(sign*.18f,.91f+(typing?Mathf.Sin(time*11+side*3)*.008f:0),-.35f));
+                Vector3 target=station.TransformPoint(new Vector3(sign*.18f,.91f+(typing?Mathf.Sin(time*(fast?18:10)+side*3)*.008f:0),-.35f));
                 if(eliminated)target=station.TransformPoint(new Vector3(sign*.17f,.7f,-.72f));
-                if(victory)target=head.position+new Vector3(sign*.46f,.35f,.08f);
-                TwoBone(upper,lower,hand,target,new Vector3(sign*.4f,-1,0));
+                if(victory||roundWin)target=head.position+station.TransformDirection(new Vector3(sign*.33f,victory?.18f:.06f,.10f));
+                bool collarHand=Wakeup&&side==0&&IntroProgress<.65f;
+                if(collarHand)target=head.position+station.forward*.18f-station.up*.11f+station.right*sign*.12f;
+                TwoBone(upper,lower,hand,target,station.TransformDirection(new Vector3(sign*.4f,-1,0)));
                 // Wrist aligns with the horizontal keyboard instead of retaining a T-pose hand.
-                OrientHand(hand,side);
+                OrientHand(hand,side,station,victory||roundWin||collarHand);
             }
             if(typing)foreach(var pair in rest)if(pair.Key.name.Contains("_02_")&&(pair.Key.name.Contains("index")||pair.Key.name.Contains("middle")))pair.Key.localRotation=pair.Value*Quaternion.Euler(Mathf.Sin(time*12+index)*5,0,0);
         }
-        static void OrientHand(Transform hand,int side)
+        static void OrientHand(Transform hand,int side,Transform station,bool upright)
         {
             var children=hand.GetComponentsInChildren<Transform>();
             var middle=children.First(t=>t.name.Contains("middle_01"));
             var index=children.First(t=>t.name.Contains("index_01"));
             var pinky=children.First(t=>t.name.Contains("pinky_01"));
-            hand.rotation=Quaternion.FromToRotation(middle.position-hand.position,Vector3.forward)*hand.rotation;
-            var across=Vector3.ProjectOnPlane(index.position-pinky.position,Vector3.forward);
-            hand.rotation=Quaternion.AngleAxis(Vector3.SignedAngle(across,side==0?Vector3.right:Vector3.left,Vector3.forward),Vector3.forward)*hand.rotation;
+            var forward=upright?station.up:station.forward;
+            hand.rotation=Quaternion.FromToRotation(middle.position-hand.position,forward)*hand.rotation;
+            var across=Vector3.ProjectOnPlane(index.position-pinky.position,forward);
+            hand.rotation=Quaternion.AngleAxis(Vector3.SignedAngle(across,side==0?station.right:-station.right,forward),forward)*hand.rotation;
         }
         static void TwoBone(Transform upper,Transform lower,Transform end,Vector3 target,Vector3 pole)
         {

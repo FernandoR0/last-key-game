@@ -1,0 +1,74 @@
+[
+  {
+    "clip": "01_loading_to_menu",
+    "samples": 138180,
+    "sample_rate": 44100,
+    "channels": 1,
+    "peak": 0.01541376393288374,
+    "rms": 0.008158453687851527
+  },
+  {
+    "clip": "02_character_select",
+    "samples": 133770,
+    "sample_rate": 44100,
+    "channels": 1,
+    "peak": 0.01541376393288374,
+    "rms": 0.00815390625908796
+  },
+  {
+    "clip": "03_round_wakeup_intro",
+    "samples": 398370,
+    "sample_rate": 44100,
+    "channels": 1,
+    "peak": 0.09298431128263474,
+    "rms": 0.008710027885660802
+  },
+  {
+    "clip": "04_gameplay_typing_with_rivals",
+    "samples": 441000,
+    "sample_rate": 44100,
+    "channels": 1,
+    "peak": 0.1350957453250885,
+    "rms": 0.021841705712544315
+  },
+  {
+    "clip": "05_danger_elimination",
+    "samples": 396900,
+    "sample_rate": 44100,
+    "channels": 1,
+    "peak": 0.16777931153774261,
+    "rms": 0.01964319558620736
+  },
+  {
+    "clip": "06_null_directive",
+    "samples": 176400,
+    "sample_rate": 44100,
+    "channels": 1,
+    "peak": 0.13438011705875397,
+    "rms": 0.021261790811891917
+  },
+  {
+    "clip": "07_echo_intercept",
+    "samples": 308700,
+    "sample_rate": 44100,
+    "channels": 1,
+    "peak": 0.1351107507944107,
+    "rms": 0.020349917669170176
+  },
+  {
+    "clip": "08_round_result",
+    "samples": 266070,
+    "sample_rate": 44100,
+    "channels": 1,
+    "peak": 0.004281611647456884,
+    "rms": 0.002263558721193472
+  },
+  {
+    "clip": "09_final_winner",
+    "samples": 266070,
+    "sample_rate": 44100,
+    "channels": 1,
+    "peak": 0.004281611647456884,
+    "rms": 0.002263558721193472
+  }
+]

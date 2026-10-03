@@ -1,0 +1,324 @@
+{
+  "captures": [
+    {
+      "file": "screenshots/01_LOADING.png",
+      "flow": "Loading",
+      "camera": "ArenaWideCamera",
+      "prompt": "",
+      "motions": [
+        "seated_idle",
+        "seated_idle",
+        "seated_idle",
+        "seated_idle"
+      ],
+      "round": 0,
+      "total": 0,
+      "score": 0,
+      "danger": 0.0
+    },
+    {
+      "file": "screenshots/02_MAIN_MENU.png",
+      "flow": "MainMenu",
+      "camera": "ArenaWideCamera",
+      "prompt": "",
+      "motions": [
+        "seated_idle",
+        "seated_idle",
+        "seated_idle",
+        "seated_idle"
+      ],
+      "round": 0,
+      "total": 0,
+      "score": 0,
+      "danger": 0.0
+    },
+    {
+      "file": "screenshots/03_MODE_SELECT.png",
+      "flow": "ModeSelect",
+      "camera": "ArenaWideCamera",
+      "prompt": "",
+      "motions": [
+        "seated_idle",
+        "seated_idle",
+        "seated_idle",
+        "seated_idle"
+      ],
+      "round": 0,
+      "total": 0,
+      "score": 0,
+      "danger": 0.0
+    },
+    {
+      "file": "screenshots/04_CHARACTER_SELECT.png",
+      "flow": "CharacterSelect",
+      "camera": "WinnerCamera",
+      "prompt": "",
+      "motions": [
+        "seated_idle",
+        "seated_idle",
+        "seated_idle",
+        "seated_idle"
+      ],
+      "round": 0,
+      "total": 0,
+      "score": 0,
+      "danger": 0.0
+    },
+    {
+      "file": "screenshots/05_ROUND_WAKEUP_INTRO.png",
+      "flow": "RoundIntro",
+      "camera": "EliminationCamera",
+      "prompt": "No desperdicies una tecla. El tiempo sigue corriendo.",
+      "motions": [
+        "wakeup",
+        "wakeup",
+        "wakeup",
+        "wakeup"
+      ],
+      "round": 1,
+      "total": 0,
+      "score": 0,
+      "danger": 0.0
+    },
+    {
+      "file": "screenshots/06_GAMEPLAY_WIDE.png",
+      "flow": "Gameplay",
+      "camera": "GameplayPlayerCamera",
+      "prompt": "No desperdicies una tecla. El tiempo sigue corriendo.",
+      "motions": [
+        "type_fast",
+        "type_normal",
+        "type_normal",
+        "type_normal"
+      ],
+      "round": 1,
+      "total": 0,
+      "score": 83,
+      "danger": 0.0
+    },
+    {
+      "file": "screenshots/07_GAMEPLAY_COMPOSITION_PROOF.png",
+      "flow": "Gameplay",
+      "camera": "GameplayPlayerCamera",
+      "prompt": "No desperdicies una tecla. El tiempo sigue corriendo.",
+      "motions": [
+        "type_fast",
+        "type_normal",
+        "type_normal",
+        "type_normal"
+      ],
+      "round": 1,
+      "total": 0,
+      "score": 93,
+      "danger": 0.0
+    },
+    {
+      "file": "screenshots/08_HUD_DETAIL.png",
+      "flow": "Gameplay",
+      "camera": "GameplayPlayerCamera",
+      "prompt": "No desperdicies una tecla. El tiempo sigue corriendo.",
+      "motions": [
+        "type_fast",
+        "type_normal",
+        "type_normal",
+        "type_normal"
+      ],
+      "round": 1,
+      "total": 0,
+      "score": 110,
+      "danger": 0.0
+    },
+    {
+      "file": "screenshots/09_FOUR_PLAYERS.png",
+      "flow": "Gameplay",
+      "camera": "GameplayPlayerCamera",
+      "prompt": "No desperdicies una tecla. El tiempo sigue corriendo.",
+      "motions": [
+        "type_fast",
+        "type_normal",
+        "type_normal",
+        "type_normal"
+      ],
+      "round": 1,
+      "total": 0,
+      "score": 133,
+      "danger": 0.0
+    },
+    {
+      "file": "screenshots/13_NULL_DIRECTIVE.png",
+      "flow": "Gameplay",
+      "camera": "GameplayPlayerCamera",
+      "prompt": "La luz del collar refleja el peligro de esta ronda.",
+      "motions": [
+        "type_fast",
+        "type_normal",
+        "type_normal",
+        "type_fast"
+      ],
+      "round": 1,
+      "total": 0,
+      "score": 215,
+      "danger": 0.0
+    },
+    {
+      "file": "screenshots/10_DANGER_WARNING.png",
+      "flow": "Gameplay",
+      "camera": "GameplayPlayerCamera",
+      "prompt": "La luz del collar refleja el peligro de esta ronda.",
+      "motions": [
+        "mistake_reaction",
+        "type_normal",
+        "type_normal",
+        "type_fast"
+      ],
+      "round": 1,
+      "total": 0,
+      "score": 415,
+      "danger": 48.0
+    },
+    {
+      "file": "screenshots/11_DANGER_CRITICAL.png",
+      "flow": "Gameplay",
+      "camera": "GameplayPlayerCamera",
+      "prompt": "La luz del collar refleja el peligro de esta ronda.",
+      "motions": [
+        "mistake_reaction",
+        "type_normal",
+        "type_normal",
+        "type_fast"
+      ],
+      "round": 1,
+      "total": 0,
+      "score": 415,
+      "danger": 80.0
+    },
+    {
+      "file": "screenshots/12_ELIMINATION.png",
+      "flow": "Gameplay",
+      "camera": "EliminationCamera",
+      "prompt": "La luz del collar refleja el peligro de esta ronda.",
+      "motions": [
+        "eliminated",
+        "type_normal",
+        "type_normal",
+        "mistake_reaction"
+      ],
+      "round": 1,
+      "total": 0,
+      "score": 415,
+      "danger": 100.0
+    },
+    {
+      "file": "screenshots/15_ROUND_RESULTS.png",
+      "flow": "RoundResult",
+      "camera": "RoundResultCamera",
+      "prompt": "La luz del collar refleja el peligro de esta ronda.",
+      "motions": [
+        "eliminated",
+        "seated_idle",
+        "seated_idle",
+        "round_win"
+      ],
+      "round": 1,
+      "total": 415,
+      "score": 415,
+      "danger": 100.0
+    },
+    {
+      "file": "screenshots/14_ECHO_INTERCEPT.png",
+      "flow": "Gameplay",
+      "camera": "GameplayPlayerCamera",
+      "prompt": "El objetivo est\u00c3\u00a1 en el monitor de tu propia estaci\u00c3\u00b3n.",
+      "motions": [
+        "type_fast",
+        "type_normal",
+        "type_normal",
+        "type_fast"
+      ],
+      "round": 2,
+      "total": 415,
+      "score": 762,
+      "danger": 0.0
+    },
+    {
+      "file": "screenshots/16_FINAL_WINNER.png",
+      "flow": "FinalResult",
+      "camera": "WinnerCamera",
+      "prompt": "La luz del collar refleja el peligro de esta ronda.",
+      "motions": [
+        "final_win",
+        "seated_idle",
+        "seated_idle",
+        "seated_idle"
+      ],
+      "round": 5,
+      "total": 6173,
+      "score": 1414,
+      "danger": 0.0
+    },
+    {
+      "file": "characters/17_CIPHER.png",
+      "flow": "FinalResult",
+      "camera": "WinnerCamera",
+      "prompt": "La luz del collar refleja el peligro de esta ronda.",
+      "motions": [
+        "final_win",
+        "seated_idle",
+        "seated_idle",
+        "seated_idle"
+      ],
+      "round": 5,
+      "total": 6173,
+      "score": 1414,
+      "danger": 0.0
+    },
+    {
+      "file": "characters/18_UPLINK.png",
+      "flow": "FinalResult",
+      "camera": "WinnerCamera",
+      "prompt": "La luz del collar refleja el peligro de esta ronda.",
+      "motions": [
+        "final_win",
+        "seated_idle",
+        "seated_idle",
+        "seated_idle"
+      ],
+      "round": 5,
+      "total": 6173,
+      "score": 1414,
+      "danger": 0.0
+    },
+    {
+      "file": "characters/19_RELAY.png",
+      "flow": "FinalResult",
+      "camera": "WinnerCamera",
+      "prompt": "La luz del collar refleja el peligro de esta ronda.",
+      "motions": [
+        "final_win",
+        "seated_idle",
+        "seated_idle",
+        "seated_idle"
+      ],
+      "round": 5,
+      "total": 6173,
+      "score": 1414,
+      "danger": 0.0
+    },
+    {
+      "file": "characters/20_VECTOR.png",
+      "flow": "FinalResult",
+      "camera": "WinnerCamera",
+      "prompt": "La luz del collar refleja el peligro de esta ronda.",
+      "motions": [
+        "final_win",
+        "seated_idle",
+        "seated_idle",
+        "seated_idle"
+      ],
+      "round": 5,
+      "total": 6173,
+      "score": 1414,
+      "danger": 0.0
+    }
+  ]
+}

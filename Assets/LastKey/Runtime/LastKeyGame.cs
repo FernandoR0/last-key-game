@@ -5,138 +5,140 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 using LastKey.Core;
-
 namespace LastKey
 {
-    public sealed class LastKeyGame : MonoBehaviour
+    public enum ExperienceState {Boot,Loading,MainMenu,ModeSelect,CharacterSelect,MatchSetup,RoundIntro,Countdown,Gameplay,RoundResult,FinalResult,Paused}
+    public sealed class LastKeyGame:MonoBehaviour
     {
-        public Competition Game { get; private set; }
-        public ArenaFactory Arena { get; private set; }
-        public Canvas Canvas { get; private set; }
-        TMP_FontAsset font;
-        TMP_Text title, metrics, typing, eventText, ranking, directive, echo, result, footer;
-        Image dangerFill;
-        GameObject resultsPanel, echoButtons, startButton;
-        GameObject modeControls;
-        RoundMode selected = RoundMode.Classic;
-        int view;
-        Color cyan = new Color(.17f,.83f,.85f), ink = new Color(.025f,.045f,.064f,.97f), muted = new Color(.6f,.7f,.75f);
-
+        public Competition Game {get;private set;}
+        public ArenaFactory Arena {get;private set;}
+        public Canvas Canvas {get;private set;}
+        public CameraDirector Cameras {get;private set;}
+        public ExperienceState Flow {get;private set;}
+        public int HumanIndex {get;private set;}
+        public RoundMode SelectedMode {get;private set;}
+        public float StateTime {get;private set;}
+        public GameAudio Sound {get;private set;}
+        Rules rules;ContentBank content;TMP_FontAsset font;
+        Transform menu;GameObject hud,intro;
+        TMP_Text top,metrics,typing,rivals,directive,echo,caption,flash,dangerLabel;
+        Image danger,loading;CompetitionEffects effects;
+        bool wide,echoAnnounced,warning;Directive priorDirective;int priorCorrect,priorCombo,priorErrors;float flashUntil;
+        readonly Color ink=new Color(.025f,.04f,.055f,.92f),cyan=new Color(.2f,.86f,.86f),muted=new Color(.65f,.73f,.78f);
+        public static readonly string[] Aliases={"CIPHER","UPLINK","RELAY","VECTOR"};
+        public static readonly string[] Names={"Valeria Rojas","Ethan Cole","Akira Mori","Noah Bennett"};
+        public static readonly string[] Specialties={"Seguridad y análisis de sistemas","Redes y conectividad","Integración y arquitectura","Datos y optimización"};
         void Awake()
         {
-            Application.targetFrameRate=60;
-            var rules=JsonUtility.FromJson<Rules>(Resources.Load<TextAsset>("last_key_rules").text);
-            var bank=JsonUtility.FromJson<ContentBank>(Resources.Load<TextAsset>("last_key_content").text);
-            Game=new Competition(rules,bank);
-            var baseFont=Resources.Load<Font>("LastKeyFont");
-            if(baseFont==null) baseFont=Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-            font=Resources.Load<TMP_FontAsset>("Fonts & Materials/LiberationSans SDF");
-            if(font==null){font=TMP_FontAsset.CreateFontAsset(baseFont);font.name="LAST KEY Dynamic Font";}
-            Arena=new ArenaFactory();Arena.Create(font);CreateHud();
-            if(Environment.GetCommandLineArgs().Contains("--evidence")) gameObject.AddComponent<EvidenceRecorder>();
-            if(Environment.GetCommandLineArgs().Contains("--keyboard-qa")) gameObject.AddComponent<KeyboardQa>();
+            Time.timeScale=1;Application.targetFrameRate=60;
+            rules=JsonUtility.FromJson<Rules>(Resources.Load<TextAsset>("last_key_rules").text);content=JsonUtility.FromJson<ContentBank>(Resources.Load<TextAsset>("last_key_content").text);
+            font=Resources.Load<TMP_FontAsset>("Fonts & Materials/LiberationSans SDF");Game=new Competition(rules,content);Arena=new ArenaFactory();Arena.Create(font);Cameras=new CameraDirector(Arena);effects=new CompetitionEffects(Arena);
+            Sound=gameObject.AddComponent<GameAudio>();Sound.Initialize();CreateCanvas();Switch(ExperienceState.Boot);
+            if(Environment.GetCommandLineArgs().Contains("--evidence-v2"))gameObject.AddComponent<PolishEvidence>();
+            if(Environment.GetCommandLineArgs().Contains("--pose-audit"))gameObject.AddComponent<PoseAudit>();
         }
         void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Return)&&Game.Phase!=Phase.Running)StartNext();
-            if(Input.GetKeyDown(KeyCode.F2)){view=(view+1)%2;Arena.SetCamera(view);}
-            if(Input.GetKeyDown(KeyCode.Escape)) {if(Game.Phase==Phase.Running) Time.timeScale=Time.timeScale==0?1:0;}
-            if(Game.Phase==Phase.Running && Time.timeScale>0)
+            StateTime+=Time.deltaTime;
+            if(Flow==ExperienceState.Boot&&StateTime>.15f)Switch(ExperienceState.Loading);
+            else if(Flow==ExperienceState.Loading){loading.fillAmount=Mathf.Clamp01(StateTime/2);if(StateTime>2.1f)Switch(ExperienceState.MainMenu);}
+            if(Flow==ExperienceState.RoundIntro)
             {
-                foreach(char ch in Input.inputString) if(ch!='\b'&&ch!='\r'&&ch!='\n') Game.Input(0,ch);
-                Game.Tick(Time.deltaTime);
+                float t=Mathf.Clamp01(StateTime/6);Cameras.Intro(t);caption.text=t<.25f?"RONDA "+Game.Round+" / DESPIERTA":t<.5f?"COLLAR ACTIVO / CONTROL DE COMPETENCIA":t<.75f?"TU ESTACIÓN / PRECISIÓN BAJO PRESIÓN":"CUATRO PARTICIPANTES. UNA CLASIFICACIÓN.";
+                if(StateTime>=6||Input.GetKeyDown(KeyCode.Space))Switch(ExperienceState.Countdown);
             }
-            Arena.Animate(Time.time,Game);Refresh();
+            if(Flow==ExperienceState.Countdown){caption.text="RONDA "+Game.Round+"\n"+Mathf.Max(1,3-Mathf.FloorToInt(StateTime));Cameras.Gameplay();if(StateTime>=3){echoAnnounced=warning=false;priorCorrect=priorCombo=priorErrors=0;priorDirective=Directive.None;Switch(ExperienceState.Gameplay);}}
+            if(Flow==ExperienceState.Gameplay)
+            {
+                if(Input.GetKeyDown(KeyCode.Escape)){Switch(ExperienceState.Paused);return;}
+                if(Input.GetKeyDown(KeyCode.F1))RespondEcho(true);if(Input.GetKeyDown(KeyCode.F2))RespondEcho(false);
+                if(Input.GetKeyDown(KeyCode.F3)){wide=!wide;Cameras.Gameplay(wide);}
+                foreach(char ch in Input.inputString)if(ch!='\b'&&ch!='\r'&&ch!='\n')Game.Input(HumanIndex,ch);
+                Game.Tick(Time.deltaTime);Feedback();effects.Tick(Game,Sound);
+                if(Time.time-effects.LastEliminationTime<1.7f)Cameras.Event(effects.LastEliminated,effects.LastEliminated==HumanIndex);else Cameras.Gameplay(wide);
+                if(Game.Phase==Phase.Results)Switch(ExperienceState.RoundResult);else if(Game.Phase==Phase.Finished)Switch(ExperienceState.FinalResult);
+            }
+            else if(Flow==ExperienceState.Paused&&Input.GetKeyDown(KeyCode.Escape))Switch(ExperienceState.Gameplay);
+            Arena.Animate(Time.time,Game);foreach(var c in Arena.Characters){var m=c.GetComponent<CharacterMotion>();m.Wakeup=Flow==ExperienceState.RoundIntro;m.Preview=Flow==ExperienceState.CharacterSelect||Flow==ExperienceState.Countdown;m.IntroProgress=Mathf.Clamp01(StateTime/6);}Refresh();
         }
-        RectTransform Rect(GameObject obj,Transform parent,float x,float y,float w,float h)
+        void Feedback()
         {
-            obj.transform.SetParent(parent,false);var r=obj.GetComponent<RectTransform>();if(r==null)r=obj.AddComponent<RectTransform>();
-            r.anchorMin=r.anchorMax=new Vector2(0,1);r.pivot=new Vector2(0,1);r.anchoredPosition=new Vector2(x,-y);r.sizeDelta=new Vector2(w,h);return r;
+            var p=Game.Players[HumanIndex];if(p.Correct>priorCorrect){Sound.Cue("typing");flash.text="<color=#42D5CB>+</color>";flashUntil=Time.time+.15f;}
+            if(p.Errors>priorErrors){flash.text="<color=#FF5860>!</color>";flashUntil=Time.time+.35f;}priorErrors=p.Errors;if(Time.time>flashUntil)flash.text="";
+            if(p.Combo/20>priorCombo/20)Sound.Cue("combo");priorCorrect=p.Correct;priorCombo=p.Combo;
+            if(Game.ActiveDirective!=Directive.None&&Game.ActiveDirective!=priorDirective)Sound.Cue("null");priorDirective=Game.ActiveDirective;
+            if(Game.EchoOffered&&!echoAnnounced){echoAnnounced=true;Sound.Cue("echo");}if(p.Danger>=40&&!warning){warning=true;Sound.Cue("warning");}
         }
-        GameObject Panel(string name,float x,float y,float w,float h,Color color,Transform parent=null)
+        RectTransform Rect(GameObject o,Transform p,float x,float y,float w,float h){o.transform.SetParent(p,false);var r=o.GetComponent<RectTransform>();r.anchorMin=r.anchorMax=new Vector2(0,1);r.pivot=new Vector2(0,1);r.anchoredPosition=new Vector2(x,-y);r.sizeDelta=new Vector2(w,h);return r;}
+        GameObject Panel(string n,float x,float y,float w,float h,Color c,Transform p=null){var o=new GameObject(n,typeof(RectTransform),typeof(Image));Rect(o,p??Canvas.transform,x,y,w,h);o.GetComponent<Image>().color=c;return o;}
+        TMP_Text Label(string n,string s,float x,float y,float w,float h,float size,Color c,Transform p=null){var o=new GameObject(n,typeof(RectTransform),typeof(TextMeshProUGUI));Rect(o,p??Canvas.transform,x,y,w,h);var t=o.GetComponent<TextMeshProUGUI>();t.font=font;t.text=s;t.fontSize=size;t.color=c;t.textWrappingMode=TextWrappingModes.Normal;t.raycastTarget=false;return t;}
+        void Button(string s,float x,float y,float w,Action a,Transform p=null,Color? c=null){var o=Panel(s,x,y,w,66,c??new Color(.075f,.28f,.31f),p);o.AddComponent<Button>().onClick.AddListener(()=>{Sound.Cue("typing");a();});Label("Label",s,18,13,w-36,45,24,Color.white,o.transform);}
+        void CreateCanvas()
         {
-            var obj=new GameObject(name,typeof(RectTransform),typeof(Image));Rect(obj,parent??Canvas.transform,x,y,w,h);obj.GetComponent<Image>().color=color;return obj;
+            var o=new GameObject("Presentation and compact HUD",typeof(Canvas),typeof(CanvasScaler),typeof(GraphicRaycaster));Canvas=o.GetComponent<Canvas>();Canvas.renderMode=RenderMode.ScreenSpaceOverlay;var s=o.GetComponent<CanvasScaler>();s.uiScaleMode=CanvasScaler.ScaleMode.ScaleWithScreenSize;s.referenceResolution=new Vector2(1920,1080);s.matchWidthOrHeight=.5f;new GameObject("EventSystem",typeof(EventSystem),typeof(StandaloneInputModule));
+            menu=Panel("Screen",0,0,1920,1080,Color.clear).transform;
+            intro=Panel("Intro",0,0,1920,1080,Color.clear);Panel("Caption",440,910,1040,110,ink,intro.transform);caption=Label("Caption","",470,927,980,90,28,Color.white,intro.transform);caption.alignment=TextAlignmentOptions.Center;
+            hud=Panel("Gameplay HUD",0,0,1920,1080,Color.clear);Panel("Header",24,20,1872,66,ink,hud.transform);top=Label("Round","",44,34,1840,46,25,Color.white,hud.transform);
+            Panel("Rivals",1430,112,458,171,ink,hud.transform);rivals=Label("Rivals","",1447,124,420,151,21,Color.white,hud.transform);
+            Panel("NULL",28,112,540,92,ink,hud.transform);directive=Label("Directive","",44,124,510,72,22,cyan,hud.transform);
+            Panel("ECHO",28,218,540,109,ink,hud.transform);echo=Label("Echo","",44,230,510,93,21,muted,hud.transform);
+            Panel("Metrics",28,861,1860,65,ink,hud.transform);metrics=Label("Metrics","",48,877,1530,47,24,Color.white,hud.transform);dangerLabel=Label("Danger label","DANGER",1600,863,260,26,20,Color.white,hud.transform);Panel("Danger",1600,898,260,12,new Color(.2f,.12f,.14f),hud.transform);danger=Panel("Fill",1600,898,1,12,new Color(.95f,.19f,.23f),hud.transform).GetComponent<Image>();
+            Panel("Prompt",28,939,1860,116,ink,hud.transform);typing=Label("Target","",48,951,1778,82,30,Color.white,hud.transform);flash=Label("Feedback","",1820,943,48,75,34,cyan,hud.transform);
         }
-        TMP_Text Label(string name,string text,float x,float y,float w,float h,float size,Color color,Transform parent=null)
+        void Header(string s,string sub){Panel("Title backing",0,0,1920,117,ink,menu);Label("Title",s,60,27,1800,55,42,Color.white,menu);Label("Subtitle",sub,62,84,1790,32,20,muted,menu);}
+        void Switch(ExperienceState state)
         {
-            var obj=new GameObject(name,typeof(RectTransform),typeof(TextMeshProUGUI));Rect(obj,parent??Canvas.transform,x,y,w,h);var t=obj.GetComponent<TextMeshProUGUI>();t.font=font;t.text=text;t.fontSize=size;t.color=color;t.textWrappingMode=TextWrappingModes.Normal;t.richText=true;t.raycastTarget=false;return t;
+            Flow=state;StateTime=0;foreach(Transform child in menu)Destroy(child.gameObject);hud.SetActive(state==ExperienceState.Gameplay);intro.SetActive(state==ExperienceState.RoundIntro||state==ExperienceState.Countdown);menu.gameObject.SetActive(!hud.activeSelf&&!intro.activeSelf);Sound.Menu(state!=ExperienceState.Gameplay);
+            switch(state)
+            {
+                case ExperienceState.Boot:Header("LAST KEY","INICIANDO SISTEMAS");break;
+                case ExperienceState.Loading:Cameras.Gameplay(true);Panel("Loading",530,375,860,310,ink,menu);Label("Logo","LAST KEY",630,423,670,75,65,Color.white,menu);Label("Status","CARGANDO LA COMPETENCIA",635,527,650,50,27,cyan,menu);Panel("Track",635,600,650,8,new Color(.12f,.2f,.23f),menu);loading=Panel("Progress",635,600,650,8,cyan,menu).GetComponent<Image>();loading.sprite=Sprite.Create(Texture2D.whiteTexture,new Rect(0,0,Texture2D.whiteTexture.width,Texture2D.whiteTexture.height),new Vector2(.5f,.5f));loading.type=Image.Type.Filled;loading.fillMethod=Image.FillMethod.Horizontal;loading.fillOrigin=0;loading.fillAmount=0;break;
+                case ExperienceState.MainMenu:
+                    Cameras.Gameplay(true);Header("LAST KEY","ESCRIBE. SOBREVIVE. SÉ EL ÚLTIMO.");Panel("Menu",60,268,660,628,ink,menu);Label("Pitch","CUATRO PARTICIPANTES.\nCADA TECLA CUENTA.",92,306,570,130,39,Color.white,menu);Label("Rules","5 rondas · 60 segundos\nGana la mayor puntuación acumulada.\nDanger 100%: fuera solo de esta ronda.",92,476,570,150,26,muted,menu);Button("JUGAR",92,680,568,OpenModeSelect,menu);Label("Help","F1 aceptar ECHO · F2 ignorar\nF3 cámara · ESC pausa",92,779,570,85,22,muted,menu);break;
+                case ExperienceState.ModeSelect:
+                    Cameras.Gameplay(true);Header("ELIGE LA PRUEBA","CLASSIC es la experiencia principal. Las variantes están en BETA.");
+                    for(int i=0;i<5;i++){int k=i;float x=60+i%3*615,y=228+i/3*259;Panel("Mode",x,y,575,218,ink,menu);Label("Name",new[]{"CLASSIC","CODE / BETA","NUMBERS / BETA","MEMORY / BETA","SUDDEN / BETA"}[i],x+24,y+18,525,45,31,Color.white,menu);Label("Description",new[]{"Frases naturales: velocidad, precisión y combos.","Copia código literal. No es un examen de programación.","Secuencias numéricas y registros.","Observa, recuerda y escribe la frase.","Los errores aumentan Danger cuatro veces más."}[i],x+24,y+73,520,76,24,muted,menu);Button("SELECCIONAR",x+24,y+151,525,()=>{SelectedMode=(RoundMode)k;OpenCharacterSelect();},menu);}
+                    Label("Chaos","CHAOS / PRÓXIMAMENTE",1308,534,490,85,27,muted,menu);Button("VOLVER",60,950,350,MainMenu,menu);break;
+                case ExperienceState.CharacterSelect:
+                    Arena.Arrange(HumanIndex);Cameras.Portrait(HumanIndex,true);Header("ELIGE TU PERSONAJE","Identidad visual, sin ventajas de estadísticas. El elegido será humano.");Panel("Identity",60,205,640,695,ink,menu);
+                    for(int i=0;i<4;i++){int k=i;Button(Aliases[i]+" — "+Names[i],86,234+i*91,587,()=>ChooseCharacter(k),menu,i==HumanIndex?Arena.Colors[i]*.65f:(Color?)null);}
+                    Label("Specialty",Specialties[HumanIndex],86,650,580,65,27,Arena.Colors[HumanIndex],menu);Label("Preview","MODELO 3D EN VIVO\nLos otros tres participantes serán bots.",86,730,580,85,24,muted,menu);Button("CONFIRMAR "+Aliases[HumanIndex],86,822,587,ConfirmCharacter,menu);Button("VOLVER",60,950,350,OpenModeSelect,menu);break;
+                case ExperienceState.MatchSetup:
+                    Cameras.Gameplay(true);Header("COMPETENCIA PREPARADA",Aliases[HumanIndex]+" / "+SelectedMode.ToString().ToUpperInvariant());Panel("Setup",60,278,710,545,ink,menu);Label("Details","5 RONDAS × 60 SEGUNDOS\n\nVelocidad + precisión + combo = puntos.\nLos errores aumentan Danger.\n100%: fuera de ronda; vuelves después.\n\nNULL emite directivas automáticamente.\nECHO: F1 acepta · F2 ignora.",92,308,650,375,28,Color.white,menu);Button("ENTRAR A LA ARENA",92,715,646,BeginIntro,menu);Button("VOLVER",60,950,350,OpenCharacterSelect,menu);break;
+                case ExperienceState.Countdown:Sound.Cue("round");break;
+                case ExperienceState.RoundResult:DrawResults(false);Sound.Cue("round");break;
+                case ExperienceState.FinalResult:DrawResults(true);Sound.Cue("victory");break;
+                case ExperienceState.Paused:Header("PAUSA","La competencia está detenida.");Button("CONTINUAR",70,345,590,()=>Switch(ExperienceState.Gameplay),menu);Button("MENÚ PRINCIPAL",70,448,590,MainMenu,menu);break;
+            }
         }
-        GameObject Button(string label,float x,float y,float w,float h,Action action,Transform parent=null)
+        void DrawResults(bool final)
         {
-            var obj=Panel(label,x,y,w,h,new Color(.06f,.27f,.31f),parent);var b=obj.AddComponent<Button>();b.onClick.AddListener(()=>action());
-            var t=Label("Label",label,12,8,w-24,h-16,24,Color.white,obj.transform);t.alignment=TextAlignmentOptions.Center;return obj;
+            var winner=Game.Winners()[0];Cameras.Results(Array.IndexOf(Game.Players,winner),final);Header(final?(Game.Winners().Length>1?"EMPATE / THE LAST KEY":"THE LAST KEY — "+winner.Name):"RESULTADOS / RONDA "+Game.Round,final?"GANA LA MAYOR PUNTUACIÓN ACUMULADA":"Conservas tus puntos. Danger se restablece en la siguiente ronda.");Panel("Results",50,198,1080,635,ink,menu);
+            float[] columns={74,350,480,610,740,880};string[] headings={"POS. / PARTICIPANTE","RONDA","TOTAL","WPM","ACC.","BONUS"};for(int c=0;c<6;c++)Label("Column",headings[c],columns[c],220,c==0?260:120,46,22,muted,menu);
+            var ranking=Game.Ranking();for(int i=0;i<4;i++){var p=ranking[i];float y=299+i*119;var values=new[]{(i+1)+"  "+p.Name,p.RoundScore.ToString(),p.TotalScore.ToString(),p.Wpm.ToString("0"),p.Accuracy.ToString("0")+"%","+"+p.Bonus};for(int c=0;c<6;c++)Label("Value",values[c],columns[c],y,c==0?260:120,49,29,p.Bot?Color.white:cyan,menu);Label("State",p.Eliminated?"ELIMINADO SOLO DE ESTA RONDA":"RONDA COMPLETADA",117,y+52,940,34,20,p.Eliminated?new Color(1,.35f,.3f):muted,menu);}
+            Button(final?"REVANCHA":"SIGUIENTE RONDA",60,930,620,final?Rematch:(Action)BeginIntro,menu);Button("MENÚ PRINCIPAL",730,930,420,MainMenu,menu);
         }
-        void CreateHud()
-        {
-            var obj=new GameObject("HUD",typeof(Canvas),typeof(CanvasScaler),typeof(GraphicRaycaster));Canvas=obj.GetComponent<Canvas>();Canvas.renderMode=RenderMode.ScreenSpaceOverlay;
-            var scaler=obj.GetComponent<CanvasScaler>();scaler.uiScaleMode=CanvasScaler.ScaleMode.ScaleWithScreenSize;scaler.referenceResolution=new Vector2(1920,1080);scaler.matchWidthOrHeight=.5f;
-            new GameObject("EventSystem",typeof(EventSystem),typeof(StandaloneInputModule));
-            Panel("Header",0,0,1920,105,ink);
-            Label("Logo","LAST KEY",40,22,360,55,44,Color.white);
-            title=Label("Round","COMPETENCIA DE MECANOGRAFÍA",450,23,1060,50,28,cyan);
-            Label("Tagline","ESCRIBE. SOBREVIVE. SÉ EL ÚLTIMO.",40,75,740,30,18,muted);
-            Label("Version","MVP  /  1 HUMANO + 3 BOTS",1510,35,380,40,20,muted);
-            Panel("Leaderboard",1510,125,380,407,ink);
-            Label("Rank heading","CLASIFICACIÓN ACUMULADA",1532,145,340,40,20,cyan);
-            ranking=Label("Ranking","",1532,195,340,320,25,Color.white);
-            Panel("Directives",40,125,550,118,ink);
-            directive=Label("NULL","NULL  /  ÁRBITRO OFICIAL",60,145,510,90,23,cyan);
-            Panel("Echo",40,258,550,194,ink);
-            echo=Label("ECHO","ECHO  /  SEÑAL EXTERNA\nRetos opcionales de riesgo / recompensa.",60,276,510,95,22,muted);
-            echoButtons=Panel("Echo controls",60,380,495,53,Color.clear);
-            Button("ACEPTAR",0,0,230,48,()=>Game.AcceptEcho(0),echoButtons.transform);
-            Button("IGNORAR",245,0,230,48,()=>Game.IgnoreEcho(0),echoButtons.transform);
-            Panel("Metrics",40,600,1840,128,ink);
-            metrics=Label("Metrics values","",64,618,1540,95,26,Color.white);
-            Label("Danger label","DANGER",1600,620,250,40,23,new Color(1,.36f,.3f));
-            Panel("Danger track",1600,667,245,22,new Color(.19f,.12f,.13f));
-            dangerFill=Panel("Danger fill",1600,667,1,22,new Color(.9f,.12f,.15f)).GetComponent<Image>();
-            Panel("Typing panel",40,749,1840,230,ink);
-            Label("Typing heading","CIPHER  /  ESCRIBE EL CARÁCTER SUBRAYADO  ·  LOS ERRORES AUMENTAN DANGER",64,765,1710,35,20,cyan);
-            typing=Label("Target text","",64,810,1790,143,37,Color.white);
-            eventText=Label("Event","",40,993,1430,40,22,cyan);
-            footer=Label("Help","F2 cámara  ·  ESC pausa  ·  Errores: Danger  ·  100%: fuera solo de esta ronda",40,1042,1840,27,18,muted);
-            resultsPanel=Panel("Results",605,148,880,418,new Color(.025f,.045f,.064f,.985f));
-            result=Label("Results text","LAST KEY\n5 rondas · 60 segundos por ronda\nGana la mayor puntuación total.\nDanger 100%: vuelves en la siguiente ronda.",34,24,810,275,29,Color.white,resultsPanel.transform);
-            startButton=Button("INICIAR COMPETENCIA",34,314,810,68,StartNext,resultsPanel.transform);
-            // Additional variants share one validated core; Classic is default.
-            var modes=Panel("Mode controls",605,580,880,0,Color.clear);
-            modeControls=modes;
-            for(int i=0;i<5;i++){var mode=(RoundMode)i;Button(new[]{"CLASSIC","CODE","NUMBERS","MEMORY","SUDDEN"}[i],i*176,0,168,43,()=>{if(Game.Phase!=Phase.Running){selected=mode;Refresh();}},modes.transform);}
-        }
-        public void StartNext()
-        {
-            if(Game.Phase==Phase.Finished){Game=new Competition(Game.Rules,Game.Content);}
-            Game.StartRound(selected);Time.timeScale=1;
-        }
-        public void SelectMode(RoundMode mode){if(Game.Phase!=Phase.Running)selected=mode;}
+        public void OpenModeSelect(){Switch(ExperienceState.ModeSelect);}
+        public void OpenCharacterSelect(){Switch(ExperienceState.CharacterSelect);}
+        public void ChooseCharacter(int i){HumanIndex=i;Arena.Arrange(i);Switch(ExperienceState.CharacterSelect);}
+        public void ConfirmCharacter(){Switch(ExperienceState.MatchSetup);}
+        public void BeginIntro(){if(Game.Phase==Phase.Ready&&Game.HumanIndex!=HumanIndex)Game=new Competition(rules,content,humanIndex:HumanIndex);Game.StartRound(SelectedMode);Switch(ExperienceState.RoundIntro);}
+        public void Rematch(){Game=new Competition(rules,content,humanIndex:HumanIndex);BeginIntro();}
+        public void MainMenu(){Game=new Competition(rules,content,humanIndex:HumanIndex);Switch(ExperienceState.MainMenu);}
+        public void StartNext(){if(Game.Phase==Phase.Finished)Rematch();else BeginIntro();}
+        public void SelectMode(RoundMode mode){SelectedMode=mode;}
+        public void RespondEcho(bool accept){if(accept)Game.AcceptEcho(HumanIndex);else Game.IgnoreEcho(HumanIndex);}
         public void Refresh()
         {
-            var p=Game.Players[0];
-            title.text=Game.Phase==Phase.Ready?"COMPETENCIA POR RONDAS  /  "+selected.ToString().ToUpperInvariant():"RONDA "+Game.Round+" / "+Game.Rules.rounds+"  ·  "+Game.Mode.ToString().ToUpperInvariant()+"  ·  "+Mathf.CeilToInt(Game.Remaining)+" s";
-            metrics.text="WPM <b>"+p.Wpm.ToString("0")+"</b>     ACCURACY <b>"+p.Accuracy.ToString("0.0")+"%</b>     ERRORS <b>"+p.Errors+"</b>\nSCORE <b>"+p.RoundScore+"</b>     COMBO <b>"+p.Combo+"</b>     TOTAL <b>"+p.TotalScore+"</b>     DANGER <b>"+p.Danger.ToString("0")+"%</b>";
-            dangerFill.rectTransform.sizeDelta=new Vector2(245*p.Danger/100,22);
-            ranking.text=string.Join("\n\n",Game.Ranking().Select((q,i)=>(i+1)+"  <b>"+q.Name+"</b>\n     "+(q.TotalScore+(Game.Phase==Phase.Running?q.RoundScore:0))+" pts  ·  "+(q.Eliminated?"FUERA":q.Wpm.ToString("0")+" WPM")));
-            directive.text=Game.ActiveDirective==Directive.None?"NULL  /  ÁRBITRO OFICIAL\nSin directiva activa.":"NULL  /  "+Game.ActiveDirective.ToString().ToUpperInvariant()+"  "+Game.DirectiveRemaining.ToString("0")+" s\n"+(Game.ActiveDirective==Directive.PrecisionProtocol?"ERROR = DANGER ×2":Game.ActiveDirective==Directive.SpeedCheck?"OBJETIVO ≥ "+Game.Rules.speedTarget+" WPM  ·  +"+Game.Rules.directiveBonus+" pts":"RACHA "+Game.Rules.cleanTarget+" SIN ERROR  ·  +"+Game.Rules.directiveBonus+" pts");
-            echoButtons.SetActive(Game.Phase==Phase.Running&&Game.EchoOffered&&!p.EchoAccepted&&!p.EchoResolved&&!p.Eliminated);
-            echo.text=p.EchoAccepted&&!p.EchoResolved?"ECHO INTERCEPT  /  "+p.EchoRemaining.ToString("0.0")+" s\nEscribe NODE-07-RECOVERY":Game.EchoOffered&&!p.EchoResolved?"ECHO INTERCEPT  /  OPCIONAL\nÉXITO +150 pts / −15 Danger\nFALLO +15 Danger  ·  12 s":"ECHO  /  SEÑAL EXTERNA\n"+(p.EchoResolved?"Reto cerrado.":"Esperando señal externa.");
-            if(Game.Phase==Phase.Running)
-            {
-                string target=p.EchoAccepted&&!p.EchoResolved?Competition.EchoText:Game.Text;int cursor=p.EchoAccepted&&!p.EchoResolved?p.EchoCursor:p.Cursor;
-                typing.text=p.Eliminated?"<color=#FF5964>ELIMINADO DE ESTA RONDA</color>\nConservas tus puntos y vuelves en la siguiente.":Game.Mode==RoundMode.Memory&&Game.Elapsed>=Game.Rules.memoryRevealSeconds?"TEXTO OCULTO  /  Escribe de memoria\nProgreso: "+cursor+" / "+target.Length:"<color=#39C9CE>"+Escape(target.Substring(0,cursor))+"</color><u>"+Escape(target.Substring(cursor,1))+"</u>"+Escape(target.Substring(cursor+1));
-                if(Game.Mode==RoundMode.Memory&&Game.Elapsed<Game.Rules.memoryRevealSeconds)typing.text="MEMORIZA: "+Escape(target);
-            }
-            else typing.text="Velocidad + precisión + combos.\nLa clasificación final utiliza todos los puntos acumulados.";
-            eventText.text=Game.LastEvent;
-            footer.text=Time.timeScale==0?"PAUSA  /  ESC para continuar":"F2 cámara  ·  ESC pausa  ·  Errores: Danger  ·  100%: fuera solo de esta ronda";
-            resultsPanel.SetActive(Game.Phase!=Phase.Running);
-            modeControls.SetActive(Game.Phase!=Phase.Running);
-            if(Game.Phase==Phase.Results||Game.Phase==Phase.Finished)
-            {
-                result.text=(Game.Phase==Phase.Finished?(Game.Winners().Length>1?"EMPATE — THE LAST KEY\n"+string.Join(" / ",Game.Winners().Select(q=>q.Name)):"THE LAST KEY — "+Game.Winners()[0].Name):"RESULTADOS DE RONDA "+Game.Round)+"\n\n"+string.Join("\n",Game.Ranking().Select(q=>q.Name+"     +"+q.RoundScore+" ronda     "+q.TotalScore+" total"));
-                startButton.GetComponentInChildren<TMP_Text>().text=Game.Phase==Phase.Finished?"NUEVA COMPETENCIA":"SIGUIENTE RONDA";
-            }
+            if(Game==null||top==null)return;var p=Game.Players[HumanIndex];int pos=Array.IndexOf(Game.Ranking(),p)+1;
+            top.text="LAST KEY / RONDA "+Game.Round+" / "+rules.rounds+"       "+Mathf.CeilToInt(Game.Remaining)+" s       POSICIÓN "+pos+" / 4     ·     "+p.Name+" / "+SelectedMode.ToString().ToUpperInvariant();
+            metrics.text="WPM "+p.Wpm.ToString("0")+"   ACCURACY "+p.Accuracy.ToString("0.0")+"%   ERRORS "+p.Errors+"   SCORE "+p.RoundScore+"   TOTAL "+p.TotalScore+"   COMBO "+p.Combo;dangerLabel.text="DANGER "+p.Danger.ToString("0")+"%";danger.rectTransform.sizeDelta=new Vector2(260*p.Danger/100,12);
+            rivals.text=string.Join("\n\n",Game.Ranking().Where(q=>q.Bot).Select(q=>q.Name+"  "+(q.TotalScore+(Game.Phase==Phase.Running?q.RoundScore:0))+" pts   "+(q.Eliminated?"FUERA":q.Wpm.ToString("0")+" WPM · "+q.Danger.ToString("0")+"%")));
+            directive.text=Game.ActiveDirective==Directive.None?"NULL / ÁRBITRO OFICIAL\nSin directiva activa.":"NULL / "+(Game.ActiveDirective==Directive.PrecisionProtocol?"PRECISION PROTOCOL":Game.ActiveDirective==Directive.SpeedCheck?"SPEED CHECK":"CLEAN STREAK")+" · "+Game.DirectiveRemaining.ToString("0")+" s\n"+(Game.ActiveDirective==Directive.PrecisionProtocol?"ERROR = DANGER ×2":Game.ActiveDirective==Directive.SpeedCheck?"30 WPM en esta ventana · +75 pts":"25 aciertos sin error · +75 pts");
+            echo.text=p.EchoAccepted&&!p.EchoResolved?"ECHO ACTIVO / "+p.EchoRemaining.ToString("0.0")+" s\n+150 pts / −15 Danger · Fallo +15":Game.EchoOffered&&!p.EchoResolved?"ECHO / F1 ACEPTAR · F2 IGNORAR\n+150 pts / −15 Danger · Fallo +15\nSin respuesta: ignorar en "+Game.EchoOfferRemaining.ToString("0")+" s":"ECHO / SEÑAL EXTERNA\n"+(p.EchoResolved?"Señal cerrada.":"Esperando señal.");
+            string target=p.EchoAccepted&&!p.EchoResolved?Competition.EchoText:p.Prompt;int cursor=p.EchoAccepted&&!p.EchoResolved?p.EchoCursor:p.Cursor;
+            typing.text=p.Eliminated?"ELIMINADO SOLO DE ESTA RONDA. Conservas tus puntos y vuelves en la siguiente.":target.Length==0?"Prepárate para escribir.":Game.Mode==RoundMode.Memory&&Game.Elapsed>=p.MemoryRevealUntil?"MEMORIA / TEXTO OCULTO     Progreso "+cursor+" / "+target.Length:"<color=#42D5CB>"+Escape(target.Substring(0,cursor))+"</color><u>"+Escape(target.Substring(cursor,1))+"</u>"+Escape(target.Substring(cursor+1));
         }
-        static string Escape(string value){return value.Replace("&","&amp;").Replace("<","&lt;").Replace(">","&gt;");}
+        static string Escape(string s){return s.Replace("&","&amp;").Replace("<","&lt;").Replace(">","&gt;");}
     }
 }

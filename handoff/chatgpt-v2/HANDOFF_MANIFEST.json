@@ -1,0 +1,575 @@
+{
+  "version": 2,
+  "unity": "6000.6.0f1",
+  "cost": "S/0",
+  "github": "not published; CLI authentication pending",
+  "unity_play": "not published",
+  "runtime": "Editor and WebGL tested; Windows compilation only",
+  "files": [
+    {
+      "path": "ASSET_MANIFEST.md",
+      "bytes": 3785,
+      "sha256": "d4320c638bc34ae9f642f5ef618eab87a6a11a71befd3198d545fc6d488a4e3d"
+    },
+    {
+      "path": "audio_source_report.json",
+      "bytes": 1668,
+      "sha256": "1524228d5453ed695addcb253262363f69ad70f1a75569f038794202225a10ff"
+    },
+    {
+      "path": "capture_states.json",
+      "bytes": 7984,
+      "sha256": "fd149be8de274a1d534bc9f32c22ceddb0b6d25087f5a957bd840a853cfec04e"
+    },
+    {
+      "path": "characters/17_CIPHER.png",
+      "bytes": 1026780,
+      "sha256": "f9e7c4e86893edf53ef38be1af60815c5ba8f4895f665153addc0945ac3a6d50"
+    },
+    {
+      "path": "characters/18_UPLINK.png",
+      "bytes": 1120689,
+      "sha256": "f76e27c540a6b3d60b03b721ed5f98f193e3fcf0691032d41d73018073c9e36d"
+    },
+    {
+      "path": "characters/19_RELAY.png",
+      "bytes": 943269,
+      "sha256": "cab223301b5ce7a94bd90e07b9658dc7a41460a2238a6b2ecce172bfd08e108b"
+    },
+    {
+      "path": "characters/20_VECTOR.png",
+      "bytes": 910197,
+      "sha256": "37eb866ac477c747b8b8fd740e8fd19c05cfa8c1bfbccc7e82f7f9c4acf18bd9"
+    },
+    {
+      "path": "clip_decode_report.json",
+      "bytes": 1465,
+      "sha256": "5b0ac9667f3f5cfe3a3191470f56804e578e8e78a8ec910d96895de5dd01573a"
+    },
+    {
+      "path": "clip_metadata.json",
+      "bytes": 1531,
+      "sha256": "0273a0b9128e7314f53923501cdd831d3e07bc30ce048a3c5a0b08a2fdee70e8"
+    },
+    {
+      "path": "clips/01_loading_to_menu.mp4",
+      "bytes": 1341574,
+      "sha256": "5853955c086f5e55bb49ee30aed6ef0c9f62d1adb3947a505e22dde0fd28f2ae"
+    },
+    {
+      "path": "clips/02_character_select.mp4",
+      "bytes": 1009399,
+      "sha256": "5448f5fd2c0bc7f28a54653dce435d75ebc7175f66070689940f558d57b3a558"
+    },
+    {
+      "path": "clips/03_round_wakeup_intro.mp4",
+      "bytes": 3175503,
+      "sha256": "7515854b8649e318df42607cef693e6fbbe41b2f663f9b98162fae63b5dec7ad"
+    },
+    {
+      "path": "clips/04_gameplay_typing_with_rivals.mp4",
+      "bytes": 2954184,
+      "sha256": "df45ff791ee1f9a71743604c21c5d419c33d008bcc9995c23d5c06f3ffa866e3"
+    },
+    {
+      "path": "clips/05_danger_elimination.mp4",
+      "bytes": 2885849,
+      "sha256": "f8a5ef9efced7d9ecbac945a2effb5fd0b7a75f88d5ea7fa469ae73e305f629b"
+    },
+    {
+      "path": "clips/06_null_directive.mp4",
+      "bytes": 1161534,
+      "sha256": "a7fbd6d64989bff36726190d09667d5ee34a8e5a6aa967ca21b9efe038fd5752"
+    },
+    {
+      "path": "clips/07_echo_intercept.mp4",
+      "bytes": 2124517,
+      "sha256": "78013267197aeb81bacd9f54147f0f6562e395e86dd9e9dcb624a67ce783562d"
+    },
+    {
+      "path": "clips/08_round_result.mp4",
+      "bytes": 1993230,
+      "sha256": "5adf7a2ff997746a563ab465a96bf36060e1b3dae4de107747c5db0d4b75953e"
+    },
+    {
+      "path": "clips/09_final_winner.mp4",
+      "bytes": 1807673,
+      "sha256": "4fff8d85483ac984a1e67e47081521a52600e55194b8c81e4c9465c4802e80ff"
+    },
+    {
+      "path": "decoded_review/01_loading_to_menu_0.png",
+      "bytes": 1288491,
+      "sha256": "b554f9b7a4c7c949b6dd1d711298a6cd98eb1acb7f9e0d2fae135f7d30d14f4a"
+    },
+    {
+      "path": "decoded_review/01_loading_to_menu_23.png",
+      "bytes": 1455180,
+      "sha256": "689f078c947ac9771244c099ed4eebeed3550abf284c473a80095544e3f8c22e"
+    },
+    {
+      "path": "decoded_review/01_loading_to_menu_47.png",
+      "bytes": 1577304,
+      "sha256": "1e168559b5226f233d5a8de17cf648af8b5c88cb008a4a2fd070fd9ba75048a3"
+    },
+    {
+      "path": "decoded_review/01_loading_to_menu_70.png",
+      "bytes": 1634549,
+      "sha256": "7591d0cd933519adc400e76a78855affdcf5ca78d81445514404f793c82eef5a"
+    },
+    {
+      "path": "decoded_review/01_loading_to_menu_92.png",
+      "bytes": 1626966,
+      "sha256": "0518ef475c40f72bf2e75d4e972d7d6ecc30b3d6790253be3df540603e1c512b"
+    },
+    {
+      "path": "decoded_review/01_loading_to_menu_93.png",
+      "bytes": 1626486,
+      "sha256": "85132bfa963621609c962237379b354c25aa41240bdb83d098fe6d111b6a03b1"
+    },
+    {
+      "path": "decoded_review/02_character_select_0.png",
+      "bytes": 824118,
+      "sha256": "824a893f6b6497b47b20e0dc11a6255ba3c3522d0d0780abbca9d308bf90a4b9"
+    },
+    {
+      "path": "decoded_review/02_character_select_22.png",
+      "bytes": 885163,
+      "sha256": "ed8cbc1816d1b1f0df2a5dda6fda32389ed6f19e4095b8ee7f9e43232d3ca8a7"
+    },
+    {
+      "path": "decoded_review/02_character_select_45.png",
+      "bytes": 959096,
+      "sha256": "52aa7f58b98b4da1c369f6be9cf422aa5a3b263c609937713c46a1624b673e63"
+    },
+    {
+      "path": "decoded_review/02_character_select_68.png",
+      "bytes": 974066,
+      "sha256": "abf133c570fec510986e3fb11ed35ed7d4af95eb6895b9cf841f6beb637e5255"
+    },
+    {
+      "path": "decoded_review/02_character_select_89.png",
+      "bytes": 980249,
+      "sha256": "36334177c8fcf0e598cfd8fc512d285434ece6cfe913242393eeaecdc25ea682"
+    },
+    {
+      "path": "decoded_review/02_character_select_90.png",
+      "bytes": 1654445,
+      "sha256": "84094e2e6439b5a3bad7a2e481b6ee03fe8bbb5a504be3ff8aaa7429371ecf17"
+    },
+    {
+      "path": "decoded_review/03_round_wakeup_intro_0.png",
+      "bytes": 878968,
+      "sha256": "a538f0751f8c2fa24d681a1219f4262ef3b51069a1c51745c907a15a38144893"
+    },
+    {
+      "path": "decoded_review/03_round_wakeup_intro_135.png",
+      "bytes": 1722188,
+      "sha256": "4991733e2c3478d6a530eea25defac7cf416503d9d7e8ef9a120a60fbc40e405"
+    },
+    {
+      "path": "decoded_review/03_round_wakeup_intro_203.png",
+      "bytes": 1876252,
+      "sha256": "cca3dd39aaadd59584250f92e9f41877f306ca15ab95306768a95079e878e6ed"
+    },
+    {
+      "path": "decoded_review/03_round_wakeup_intro_269.png",
+      "bytes": 1787629,
+      "sha256": "44c77947fceb89bde019a7e6c84b99fdee5c30aea03120ae65b6794ed3355706"
+    },
+    {
+      "path": "decoded_review/03_round_wakeup_intro_270.png",
+      "bytes": 1693342,
+      "sha256": "2e3b225e6be5ea7be7f6fd7d99e3cb4cdff23c3c44b442c8600102712b398077"
+    },
+    {
+      "path": "decoded_review/03_round_wakeup_intro_67.png",
+      "bytes": 1214223,
+      "sha256": "b67b5b35326e1edec90c5fed2f93163d5479edfaf806bd20da1da399ac6e49d9"
+    },
+    {
+      "path": "decoded_review/04_gameplay_typing_with_rivals_0.png",
+      "bytes": 1510106,
+      "sha256": "b0581f1356848f18de5afaeb0b294efab346c73a8bf9852716a674ed39004e46"
+    },
+    {
+      "path": "decoded_review/04_gameplay_typing_with_rivals_150.png",
+      "bytes": 1653945,
+      "sha256": "5d5443bb61921eab91c496e29535e2f6859cc46d9e94e62ed5a8c86febfac646"
+    },
+    {
+      "path": "decoded_review/04_gameplay_typing_with_rivals_225.png",
+      "bytes": 1634226,
+      "sha256": "83660168678bc5f8036987a8b973493256ad7c5876a590f6139873460d1c1c0c"
+    },
+    {
+      "path": "decoded_review/04_gameplay_typing_with_rivals_298.png",
+      "bytes": 1614451,
+      "sha256": "2aac833448b3122f42f0e4a3b10cd8b461da74724df193dca4b6200c939797b1"
+    },
+    {
+      "path": "decoded_review/04_gameplay_typing_with_rivals_299.png",
+      "bytes": 1613915,
+      "sha256": "7338679b6dbdb68533980abc7cd1ada8516a02f4e14ad5bec37c191d34f67406"
+    },
+    {
+      "path": "decoded_review/04_gameplay_typing_with_rivals_75.png",
+      "bytes": 1681621,
+      "sha256": "48b3d52ff34e456c5fc0bfe82b14b9864384f773991745eb3d0a311d48cc7403"
+    },
+    {
+      "path": "decoded_review/05_danger_elimination_0.png",
+      "bytes": 1512855,
+      "sha256": "4c46b5c98347212d19ad657dc4b6c5b177ca20c903e55fe7bd8c49c69539692f"
+    },
+    {
+      "path": "decoded_review/05_danger_elimination_135.png",
+      "bytes": 1790444,
+      "sha256": "4d41ba4d94e33e2d90315d50f322266f06b5f855a5c6be4180436f6242232eac"
+    },
+    {
+      "path": "decoded_review/05_danger_elimination_202.png",
+      "bytes": 1782685,
+      "sha256": "f7c2e7648df0882fc7abe024ce7a0a8589cb156c23973a90539ed304892f3a9a"
+    },
+    {
+      "path": "decoded_review/05_danger_elimination_268.png",
+      "bytes": 1646499,
+      "sha256": "85f5545302ad1539c8d641c49bf588204e2d5a5b9604474c33e333f56f5355f4"
+    },
+    {
+      "path": "decoded_review/05_danger_elimination_269.png",
+      "bytes": 1646828,
+      "sha256": "1ff5d459275ad12f404529e71c0ea018491d009b82e0adc8b9332998437b5cf7"
+    },
+    {
+      "path": "decoded_review/05_danger_elimination_67.png",
+      "bytes": 1666226,
+      "sha256": "b1735833cc9a0e6b5b2c08343a565cfcfd25d655a9a90ca341a991a303e706cb"
+    },
+    {
+      "path": "decoded_review/06_null_directive_0.png",
+      "bytes": 1514739,
+      "sha256": "a5a335d8ba303ac14b2635a9d9cb402c4d384e92a9039f87225f7cc1369633e4"
+    },
+    {
+      "path": "decoded_review/06_null_directive_118.png",
+      "bytes": 1652108,
+      "sha256": "7e0d7bcc67ee5a05612ea5786a30e27c5173fd302be417a0dd691e6dbf02b77d"
+    },
+    {
+      "path": "decoded_review/06_null_directive_119.png",
+      "bytes": 1651993,
+      "sha256": "cc4d1ed9d9bde68c5b55237c41304de2ca55de4867d5ff8f027b57dcc283bc73"
+    },
+    {
+      "path": "decoded_review/06_null_directive_30.png",
+      "bytes": 1545993,
+      "sha256": "901a3d74c975f0d0a7766a6f513c10f0ed2ca0ab1a5498afc6f64b22a53cbf11"
+    },
+    {
+      "path": "decoded_review/06_null_directive_60.png",
+      "bytes": 1614693,
+      "sha256": "c08ded13d3413382f988d07d893e0c069f4f18083842565b47a10a9fb3c1308f"
+    },
+    {
+      "path": "decoded_review/06_null_directive_90.png",
+      "bytes": 1615208,
+      "sha256": "a8c978c22d65aad8484fc41c979882d388fef3a744c55831be668946c0cd77cc"
+    },
+    {
+      "path": "decoded_review/07_echo_intercept_0.png",
+      "bytes": 1507076,
+      "sha256": "7a440a1738b9bc3c93efaffecaad15999db75492b9d4f2b2d682545f83f72c7c"
+    },
+    {
+      "path": "decoded_review/07_echo_intercept_105.png",
+      "bytes": 1655652,
+      "sha256": "1d7a755be743f1c8719a79bee4d300f7d5aca455dd5cf7bd872a6a6a398e725a"
+    },
+    {
+      "path": "decoded_review/07_echo_intercept_157.png",
+      "bytes": 1651149,
+      "sha256": "c3486c787b308e9a1884ebb29b5fa33f7d16be0680f3dbf274d443482aacca1b"
+    },
+    {
+      "path": "decoded_review/07_echo_intercept_208.png",
+      "bytes": 1699905,
+      "sha256": "aba1123983cc8a007e2d04d5a2ceeb8899919b35ab2321c6016e2f2019ef4ee6"
+    },
+    {
+      "path": "decoded_review/07_echo_intercept_209.png",
+      "bytes": 1698320,
+      "sha256": "e679d635f944fe3558792794853f7b9ec307e5634d2cc35cd22ea078bd6e65be"
+    },
+    {
+      "path": "decoded_review/07_echo_intercept_52.png",
+      "bytes": 1636363,
+      "sha256": "1c6d7688882bd47d946196f4141b6426058e1def5a038d6a1df1108bd7206f30"
+    },
+    {
+      "path": "decoded_review/08_round_result_0.png",
+      "bytes": 1178290,
+      "sha256": "5f2c3a4c00f3a182391120fa116ef08d10a69910064088f3b9b9aeba22c99ad6"
+    },
+    {
+      "path": "decoded_review/08_round_result_135.png",
+      "bytes": 1438508,
+      "sha256": "5397e3216b823b4bc1ef544364665583e9c9c0d00b452bb17aa671ac55903bbe"
+    },
+    {
+      "path": "decoded_review/08_round_result_179.png",
+      "bytes": 1430290,
+      "sha256": "df8059d6e31541471c9f4b715106b3c1c8f39a7bc01b2b23a0d3d03811235250"
+    },
+    {
+      "path": "decoded_review/08_round_result_180.png",
+      "bytes": 1242915,
+      "sha256": "ab99ca5c36050ed822e8700a9e1ed0bf75f252d3d1dbc904daa05d755b68b8b0"
+    },
+    {
+      "path": "decoded_review/08_round_result_45.png",
+      "bytes": 1471647,
+      "sha256": "0ee78d3328f66a1af9b9505af1cbda46d4a40a815fea11333f1f3dc2aac8d2ef"
+    },
+    {
+      "path": "decoded_review/08_round_result_90.png",
+      "bytes": 1436227,
+      "sha256": "02320c2b9f771474d324a248e12985d6cf8be09d8cafe55ef07c23695f8c29e2"
+    },
+    {
+      "path": "decoded_review/09_final_winner_0.png",
+      "bytes": 744674,
+      "sha256": "a1af5f5ebeba74440ba536899a2b88fb00a6aa91dce4494584e0414a893b062c"
+    },
+    {
+      "path": "decoded_review/09_final_winner_135.png",
+      "bytes": 867037,
+      "sha256": "e740cbfbf426e4c1e56a3e569e13da566d2245a70d2adc40a03f998587ed6325"
+    },
+    {
+      "path": "decoded_review/09_final_winner_179.png",
+      "bytes": 891256,
+      "sha256": "7025662b517b748e1c938e4de5d156bd46d2ef42a7392b0fc2e416a379bef988"
+    },
+    {
+      "path": "decoded_review/09_final_winner_180.png",
+      "bytes": 849770,
+      "sha256": "ea953886811355dbb0b9e91ffb5de725ae2425a042736e5f11287b0e8ec198c6"
+    },
+    {
+      "path": "decoded_review/09_final_winner_45.png",
+      "bytes": 889595,
+      "sha256": "9ff5e10d4b3220c1ca1ab27996c36a136e3eb836a3d454644f4e8a6a79b01bf0"
+    },
+    {
+      "path": "decoded_review/09_final_winner_90.png",
+      "bytes": 849700,
+      "sha256": "9a1ddc391f9da47bfedaa5bcbf84031141422a2346920eaac74254faf2adfda8"
+    },
+    {
+      "path": "HANDOFF_GALLERY.md",
+      "bytes": 6161,
+      "sha256": "50d6f8d0ca8eb65564cc81866dac055018c99fe983f1b9d617ab7dfbc4d373af"
+    },
+    {
+      "path": "HANDOFF_MANIFEST.md",
+      "bytes": 1843,
+      "sha256": "07c5ad409192fb4a922340225c2df50228ae739c14ae767917be7a3ca0494df8"
+    },
+    {
+      "path": "IMPLEMENTATION_STATUS.md",
+      "bytes": 4198,
+      "sha256": "02c72c7afdeadf1d7f2cbcd69e3e852377e4a0a8fcd6bab516d411c5d832dcda"
+    },
+    {
+      "path": "QA_REPORT.md",
+      "bytes": 6050,
+      "sha256": "b6523a35c563288ef90977aab105f732e7e85564db7a35480b12b1413edd6505"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4567,
+      "sha256": "21aed5e04dfd695223010382396d422f4310b5e330a492b5effb2e060920e9d1"
+    },
+    {
+      "path": "runtime_results.json",
+      "bytes": 571,
+      "sha256": "b2a64e0abd291990c187d777f01a23fc7c876effb6b14366316c9bba68df5ed3"
+    },
+    {
+      "path": "screenshots/01_LOADING.png",
+      "bytes": 1803388,
+      "sha256": "861022e7843c55b3dd942184aa26121ed247d03a2e3ca8c5c7d70da98e28e286"
+    },
+    {
+      "path": "screenshots/02_MAIN_MENU.png",
+      "bytes": 1820516,
+      "sha256": "37c65c5bb3996f7887588b72133d9dbb3e6994270d5d6ae943029c30a5864ec1"
+    },
+    {
+      "path": "screenshots/03_MODE_SELECT.png",
+      "bytes": 1751444,
+      "sha256": "78bc87e62db320c0deb8e33b3b662e7f700af5f157744a6e65a1ea3a5e4396bd"
+    },
+    {
+      "path": "screenshots/04_CHARACTER_SELECT.png",
+      "bytes": 919607,
+      "sha256": "5f5184ed3b9701fa8554fd796dff0c859f9b52890eabf2c999b744d737a54d9a"
+    },
+    {
+      "path": "screenshots/05_ROUND_WAKEUP_INTRO.png",
+      "bytes": 1136419,
+      "sha256": "fabc68542434f09e1e1da78eddc555076a425129cc564c382c7106d22a97a280"
+    },
+    {
+      "path": "screenshots/06_GAMEPLAY_WIDE.png",
+      "bytes": 2038036,
+      "sha256": "ad34c0bb3f55e31a0a7dedebf781e8db686ea9ea320ac8e06204d1fd0e12924e"
+    },
+    {
+      "path": "screenshots/07_GAMEPLAY_COMPOSITION_PROOF.png",
+      "bytes": 2036646,
+      "sha256": "8a0bb56de15bc0dc033f34f77aedc5a54e091fad3d3b31e96f61fcedce28a553"
+    },
+    {
+      "path": "screenshots/08_HUD_DETAIL.png",
+      "bytes": 2034926,
+      "sha256": "d2a35a2371d828d955069cbdd667b4a55fe940ec094780a74e98e31b9aa12f5e"
+    },
+    {
+      "path": "screenshots/09_FOUR_PLAYERS.png",
+      "bytes": 2034994,
+      "sha256": "145fe1fdc6f238ad97bebbea13340845376c80893b3c4db75662203400f9f161"
+    },
+    {
+      "path": "screenshots/10_DANGER_WARNING.png",
+      "bytes": 2034311,
+      "sha256": "f3f255458eae3801cae08130802698a45586204dc992da055c959d27f6a20059"
+    },
+    {
+      "path": "screenshots/11_DANGER_CRITICAL.png",
+      "bytes": 2034130,
+      "sha256": "50a87a214c215313f6c598d1e9e059647d8efbd934f90272863a9441e1fea60a"
+    },
+    {
+      "path": "screenshots/12_ELIMINATION.png",
+      "bytes": 868083,
+      "sha256": "7dd107b70ba453819c27f48a29b6dfff58b2e270ce422f9c888b98cb20dbf9ec"
+    },
+    {
+      "path": "screenshots/13_NULL_DIRECTIVE.png",
+      "bytes": 2042086,
+      "sha256": "df0f394891a75f8fb99ed376a65b3e37bb92cc427c26bdf1b103849e7f035333"
+    },
+    {
+      "path": "screenshots/14_ECHO_INTERCEPT.png",
+      "bytes": 2034011,
+      "sha256": "6358c8f1acf54f826bf33435c90e55e40b5ccc34350d09884a2206d5f224e676"
+    },
+    {
+      "path": "screenshots/15_ROUND_RESULTS.png",
+      "bytes": 1657134,
+      "sha256": "f640992692afeb1ed4d987e9499e7bd9b5ef120a57e047d161ff05cc176cab97"
+    },
+    {
+      "path": "screenshots/16_FINAL_WINNER.png",
+      "bytes": 792430,
+      "sha256": "e476e143759a3f089c711c4b6cb2414417de906e6d12a30171f6a67573c59b79"
+    },
+    {
+      "path": "screenshots/21_WEBGL.png",
+      "bytes": 201217,
+      "sha256": "74098840ac8399dffd2903cf669a08b3ee188e44b7fdd9620e207d5714ed0fce"
+    },
+    {
+      "path": "technical/22_UNITY_EDITOR.png",
+      "bytes": 445817,
+      "sha256": "621e2451522964950eeadf15ae42aa9e0371c4d56eed53c22b80022495a0429f"
+    },
+    {
+      "path": "technical/build_qa_markers.txt",
+      "bytes": 263,
+      "sha256": "cf94f517670e31de69535a24a32df1b29975c0604a6644c8385728856535d33d"
+    },
+    {
+      "path": "technical/pose-review/CIPHER_seated.png",
+      "bytes": 1179757,
+      "sha256": "e48946953078214973fe034b8c69909e3ff8aa186289f35caf70cce4e7b838a8"
+    },
+    {
+      "path": "technical/pose-review/CIPHER_wakeup.png",
+      "bytes": 1178737,
+      "sha256": "8f64d17e8f27634315427cda4e1152fc40bd0ceeb5be2dcff10d265893a6281a"
+    },
+    {
+      "path": "technical/pose-review/CIPHER_winner.png",
+      "bytes": 1186264,
+      "sha256": "7daab414a71cb7d541c3c9b2056550c89c348f020dc8d80bccd97c426e7585c5"
+    },
+    {
+      "path": "technical/pose-review/RELAY_seated.png",
+      "bytes": 1179970,
+      "sha256": "c35c599cdef46b6b8f5642936b69baca735be01276b35cea27379ec372d89017"
+    },
+    {
+      "path": "technical/pose-review/RELAY_wakeup.png",
+      "bytes": 1178811,
+      "sha256": "ab506493d5c60a46235cea12a65e57073aba4480101a8f6af8ada54065552557"
+    },
+    {
+      "path": "technical/pose-review/RELAY_winner.png",
+      "bytes": 1186757,
+      "sha256": "7b34c9b557e9d9021f3537d202e6bab55194e6a65f9424d91245a92427215a59"
+    },
+    {
+      "path": "technical/pose-review/UPLINK_seated.png",
+      "bytes": 1184524,
+      "sha256": "af1893f7e9e1ae0d98351161f9b69c0b0990d75c69ff68da86e2b213558f1270"
+    },
+    {
+      "path": "technical/pose-review/UPLINK_wakeup.png",
+      "bytes": 1183911,
+      "sha256": "f9516b90691f55a890f1b81586ec050a65b67422b29f41fba4156e9aa5225580"
+    },
+    {
+      "path": "technical/pose-review/UPLINK_winner.png",
+      "bytes": 1189101,
+      "sha256": "dd003783c918a4c9c00dfe49df4d7426bc7d55682e098b73547fc9a68bcd55b7"
+    },
+    {
+      "path": "technical/pose-review/VECTOR_seated.png",
+      "bytes": 1181348,
+      "sha256": "42db9dd379a42e5192a73e50904f82d7e3f5f94400a9328e5643f474c38331e2"
+    },
+    {
+      "path": "technical/pose-review/VECTOR_wakeup.png",
+      "bytes": 1182449,
+      "sha256": "05332a29c0710b5edd436f9ae217bf2b3816ecf468efd546e69c6293c406e3c3"
+    },
+    {
+      "path": "technical/pose-review/VECTOR_winner.png",
+      "bytes": 1188315,
+      "sha256": "e5474fbcb2c55126037245b12b5dc07e1d570730090dd5a558066c505389e890"
+    },
+    {
+      "path": "technical/WEBGL_1366x768.png",
+      "bytes": 114054,
+      "sha256": "61114765672eb8498bc3c6c4ab0c0e53f3bfedcdde229d3d01203796aabde279"
+    },
+    {
+      "path": "technical/WEBGL_1600x900.png",
+      "bytes": 147683,
+      "sha256": "c89178d142332738c9f47f4021240117be17e936dc518030925641829a1d3684"
+    },
+    {
+      "path": "technical/WEBGL_FINAL_WINNER.png",
+      "bytes": 97063,
+      "sha256": "8a33820d95f6c06781ef339485465244a7e2ca2c94d07e3165287fca60c8bf88"
+    },
+    {
+      "path": "WEBGL_RUNTIME_STATUS.md",
+      "bytes": 711,
+      "sha256": "f0bedd84977a299e1ba02b7d228d8a707e7eb94fb56d1a1d3f8f1c43befaa6d5"
+    }
+  ]
+}

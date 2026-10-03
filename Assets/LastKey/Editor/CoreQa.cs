@@ -48,4 +48,3 @@ public static class CoreQa
         UnityEngine.Debug.Log("TOTAL " + passed + " PASS");
     }
 }
-
