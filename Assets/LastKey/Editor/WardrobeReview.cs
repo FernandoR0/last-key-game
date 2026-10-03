@@ -1,0 +1,13 @@
+﻿using System;using System.Linq;using System.IO;using UnityEngine;using UnityEditor;
+namespace LastKey.Editor {public static class WardrobeReview {
+public static void Inspect(){
+foreach(var name in new[]{"Women_Casual","Men_Casual_Hoodie","Women_Suit","Men_Worker","Men_Suit","Women_Punk","Men_Casual_2"}){
+string path="Assets/Resources/ModularCharacters/"+name+".fbx";var imp=(ModelImporter)AssetImporter.GetAtPath(path);imp.animationType=ModelImporterAnimationType.Generic;imp.importAnimation=false;imp.SaveAndReimport();
+var go=UnityEngine.Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(path));go.name=name+"_Humanoid";var all=go.GetComponentsInChildren<Transform>();var hips=all.First(t=>t.name=="Hips");all.First(t=>t.name=="Abdomen").SetParent(hips,true);foreach(var side in new[]{"L","R"}){all.First(t=>t.name=="UpperLeg."+side).SetParent(hips,true);all.First(t=>t.name=="Foot."+side).SetParent(all.First(t=>t.name=="LowerLeg."+side),true);}
+string[] human={"Hips","Spine","Chest","UpperChest","Neck","Head","LeftShoulder","LeftUpperArm","LeftLowerArm","LeftHand","RightShoulder","RightUpperArm","RightLowerArm","RightHand","LeftUpperLeg","LeftLowerLeg","LeftFoot","RightUpperLeg","RightLowerLeg","RightFoot"};string[] bone={"Hips","Abdomen","Torso","Chest","Neck","Head","Shoulder.L","UpperArm.L","LowerArm.L","Wrist.L","Shoulder.R","UpperArm.R","LowerArm.R","Wrist.R","UpperLeg.L","LowerLeg.L","Foot.L","UpperLeg.R","LowerLeg.R","Foot.R"};
+var description=new HumanDescription{human=human.Select((h,n)=>new HumanBone{humanName=h,boneName=bone[n],limit=new HumanLimit{useDefaultValues=true}}).ToArray(),skeleton=go.GetComponentsInChildren<Transform>().Select(t=>new SkeletonBone{name=t.name,position=t.localPosition,rotation=t.localRotation,scale=t.localScale}).ToArray(),armStretch=.05f,legStretch=.05f,upperArmTwist=.5f,lowerArmTwist=.5f,upperLegTwist=.5f,lowerLegTwist=.5f};
+var avatar=AvatarBuilder.BuildHumanAvatar(go,description);if(!avatar.isHuman||!avatar.isValid)throw new Exception("Avatar invalid "+name);avatar.name=name+"_HumanoidAvatar";string ap="Assets/Resources/ModularCharacters/"+avatar.name+".asset";var saved=AssetDatabase.LoadAssetAtPath<Avatar>(ap);if(saved==null){AssetDatabase.CreateAsset(avatar,ap);saved=avatar;}else{EditorUtility.CopySerialized(avatar,saved);UnityEngine.Object.DestroyImmediate(avatar);}
+var a=go.GetComponent<Animator>();if(a==null)a=go.AddComponent<Animator>();a.avatar=saved;a.enabled=false;PrefabUtility.SaveAsPrefabAsset(go,"Assets/Resources/ModularCharacters/"+name+"_Humanoid.prefab");
+Debug.Log("WARDROBE_HUMANOID_PASS "+name);UnityEngine.Object.DestroyImmediate(go);
+}AssetDatabase.SaveAssets();}
+}}

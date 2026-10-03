@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,6 +35,7 @@ namespace LastKey
             font=Resources.Load<TMP_FontAsset>("Fonts & Materials/LiberationSans SDF");Game=new Competition(rules,content);Arena=new ArenaFactory();Arena.Create(font);Cameras=new CameraDirector(Arena);effects=new CompetitionEffects(Arena);
             Sound=gameObject.AddComponent<GameAudio>();Sound.Initialize();CreateCanvas();Switch(ExperienceState.Boot);
             if(Environment.GetCommandLineArgs().Contains("--evidence-v2"))gameObject.AddComponent<PolishEvidence>();
+            if(Environment.GetCommandLineArgs().Contains("--wardrobe-review"))gameObject.AddComponent<WardrobeShow>();
             if(Environment.GetCommandLineArgs().Contains("--pose-audit"))gameObject.AddComponent<PoseAudit>();
         }
         void Update()
@@ -142,3 +143,4 @@ namespace LastKey
         static string Escape(string s){return s.Replace("&","&amp;").Replace("<","&lt;").Replace(">","&gt;");}
     }
 }
+
