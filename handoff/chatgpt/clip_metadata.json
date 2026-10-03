@@ -1,0 +1,62 @@
+[
+  {
+    "file": "danger_event.mp4",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30.0,
+    "frames": 240,
+    "duration": 8.0,
+    "bytes": 2318946,
+    "source_frames": 240
+  },
+  {
+    "file": "echo_intercept.mp4",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30.0,
+    "frames": 180,
+    "duration": 6.0,
+    "bytes": 1680234,
+    "source_frames": 180
+  },
+  {
+    "file": "final_winner.mp4",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30.0,
+    "frames": 180,
+    "duration": 6.0,
+    "bytes": 1713221,
+    "source_frames": 180
+  },
+  {
+    "file": "gameplay_round.mp4",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30.0,
+    "frames": 300,
+    "duration": 10.0,
+    "bytes": 2907180,
+    "source_frames": 300
+  },
+  {
+    "file": "null_directive.mp4",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30.0,
+    "frames": 180,
+    "duration": 6.0,
+    "bytes": 1648434,
+    "source_frames": 180
+  },
+  {
+    "file": "round_results.mp4",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30.0,
+    "frames": 180,
+    "duration": 6.0,
+    "bytes": 1616447,
+    "source_frames": 180
+  }
+]

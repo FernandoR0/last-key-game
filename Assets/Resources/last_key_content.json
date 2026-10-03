@@ -1,0 +1,14 @@
+{
+  "classic":[
+    "La pantalla se apagó, pero el contador siguió avanzando.",
+    "No confíes en la señal. Comprueba primero los registros.",
+    "Cada tecla cuenta. Respira y mantén el ritmo.",
+    "La puerta sigue cerrada. Una nueva ronda está por comenzar.",
+    "Escribe con calma. La precisión también gana carreras.",
+    "Una luz roja parpadea al otro lado de la sala.",
+    "No desperdicies una tecla. El tiempo sigue corriendo.",
+    "El silencio terminó cuando apareció la siguiente directiva."
+  ],
+  "code":["if (ready) return true;","score += bonus;","count = count + 1;","bool active = true;"],
+  "numbers":["4821-73-906","NODE-07-4821","906 274 831 560","1702-4809-7316"]
+}

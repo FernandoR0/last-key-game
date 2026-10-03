@@ -1,0 +1,23 @@
+{
+    "unity": "6000.6.0f1",
+    "winner": "CIPHER",
+    "rounds": 5,
+    "players": [
+        {
+            "name": "CIPHER",
+            "total": 5417
+        },
+        {
+            "name": "UPLINK",
+            "total": 1520
+        },
+        {
+            "name": "RELAY",
+            "total": 3078
+        },
+        {
+            "name": "VECTOR",
+            "total": 3726
+        }
+    ]
+}

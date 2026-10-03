@@ -1,0 +1,1 @@
+{"rounds":5,"roundSeconds":60,"characterPoints":1,"wordBonus":8,"streakStep":20,"maxMultiplier":4,"errorDanger":8,"recoveryPerCharacter":0.35,"directiveBonus":75,"cleanTarget":25,"speedTarget":30,"directiveSeconds":12,"memoryRevealSeconds":4,"echoReward":150,"echoRecovery":15,"echoPenalty":15,"echoSeconds":12,"botWpm":[29,36,43],"botAccuracy":[0.90,0.94,0.96]}

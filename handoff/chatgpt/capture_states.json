@@ -1,0 +1,422 @@
+{
+    "captures": [
+        {
+            "file": "screenshots/01_HERO_ARENA.png",
+            "phase": "Ready",
+            "round": 0,
+            "score": 0,
+            "total": 0,
+            "errors": 0,
+            "elapsed": 60.0,
+            "danger": 0.0,
+            "eliminated": false,
+            "echoAccepted": false,
+            "echoResolved": false,
+            "motions": [
+                "IDLE SEATED",
+                "IDLE SEATED",
+                "IDLE SEATED",
+                "IDLE SEATED"
+            ]
+        },
+        {
+            "file": "characters/13_CIPHER.png",
+            "phase": "Ready",
+            "round": 0,
+            "score": 0,
+            "total": 0,
+            "errors": 0,
+            "elapsed": 60.0,
+            "danger": 0.0,
+            "eliminated": false,
+            "echoAccepted": false,
+            "echoResolved": false,
+            "motions": [
+                "IDLE SEATED",
+                "IDLE SEATED",
+                "IDLE SEATED",
+                "IDLE SEATED"
+            ]
+        },
+        {
+            "file": "characters/14_UPLINK.png",
+            "phase": "Ready",
+            "round": 0,
+            "score": 0,
+            "total": 0,
+            "errors": 0,
+            "elapsed": 60.0,
+            "danger": 0.0,
+            "eliminated": false,
+            "echoAccepted": false,
+            "echoResolved": false,
+            "motions": [
+                "IDLE SEATED",
+                "IDLE SEATED",
+                "IDLE SEATED",
+                "IDLE SEATED"
+            ]
+        },
+        {
+            "file": "characters/15_RELAY.png",
+            "phase": "Ready",
+            "round": 0,
+            "score": 0,
+            "total": 0,
+            "errors": 0,
+            "elapsed": 60.0,
+            "danger": 0.0,
+            "eliminated": false,
+            "echoAccepted": false,
+            "echoResolved": false,
+            "motions": [
+                "IDLE SEATED",
+                "IDLE SEATED",
+                "IDLE SEATED",
+                "IDLE SEATED"
+            ]
+        },
+        {
+            "file": "characters/16_VECTOR.png",
+            "phase": "Ready",
+            "round": 0,
+            "score": 0,
+            "total": 0,
+            "errors": 0,
+            "elapsed": 60.0,
+            "danger": 0.0,
+            "eliminated": false,
+            "echoAccepted": false,
+            "echoResolved": false,
+            "motions": [
+                "IDLE SEATED",
+                "IDLE SEATED",
+                "IDLE SEATED",
+                "IDLE SEATED"
+            ]
+        },
+        {
+            "file": "screenshots/02_TYPING_GAMEPLAY.png",
+            "phase": "Running",
+            "round": 1,
+            "score": 93,
+            "total": 0,
+            "errors": 0,
+            "elapsed": 8.033210754394531,
+            "danger": 0.0,
+            "eliminated": false,
+            "echoAccepted": false,
+            "echoResolved": false,
+            "motions": [
+                "TYPING",
+                "TYPING",
+                "TYPING",
+                "TYPING"
+            ]
+        },
+        {
+            "file": "screenshots/03_HUD_DETAIL.png",
+            "phase": "Running",
+            "round": 1,
+            "score": 101,
+            "total": 0,
+            "errors": 0,
+            "elapsed": 9.033195495605469,
+            "danger": 0.0,
+            "eliminated": false,
+            "echoAccepted": false,
+            "echoResolved": false,
+            "motions": [
+                "TYPING",
+                "TYPING",
+                "TYPING",
+                "TYPING"
+            ]
+        },
+        {
+            "file": "screenshots/04_FOUR_PLAYERS.png",
+            "phase": "Running",
+            "round": 1,
+            "score": 118,
+            "total": 0,
+            "errors": 0,
+            "elapsed": 10.033180236816406,
+            "danger": 0.0,
+            "eliminated": false,
+            "echoAccepted": false,
+            "echoResolved": false,
+            "motions": [
+                "TYPING",
+                "TYPING",
+                "TYPING",
+                "TYPING"
+            ]
+        },
+        {
+            "file": "screenshots/05_DANGER_SAFE.png",
+            "phase": "Running",
+            "round": 1,
+            "score": 130,
+            "total": 0,
+            "errors": 0,
+            "elapsed": 11.033164978027344,
+            "danger": 0.0,
+            "eliminated": false,
+            "echoAccepted": false,
+            "echoResolved": false,
+            "motions": [
+                "TYPING",
+                "TYPING",
+                "TYPING",
+                "TYPING"
+            ]
+        },
+        {
+            "file": "modes/17_CLASSIC_RACE.png",
+            "phase": "Running",
+            "round": 1,
+            "score": 150,
+            "total": 0,
+            "errors": 0,
+            "elapsed": 12.033149719238281,
+            "danger": 0.0,
+            "eliminated": false,
+            "echoAccepted": false,
+            "echoResolved": false,
+            "motions": [
+                "TYPING",
+                "TYPING",
+                "TYPING",
+                "TYPING"
+            ]
+        },
+        {
+            "file": "screenshots/08_NULL_DIRECTIVE.png",
+            "phase": "Running",
+            "round": 1,
+            "score": 182,
+            "total": 0,
+            "errors": 0,
+            "elapsed": 14.033119201660156,
+            "danger": 0.0,
+            "eliminated": false,
+            "echoAccepted": false,
+            "echoResolved": false,
+            "motions": [
+                "TYPING",
+                "TYPING",
+                "TYPING",
+                "TYPING"
+            ]
+        },
+        {
+            "file": "screenshots/06_DANGER_WARNING.png",
+            "phase": "Running",
+            "round": 1,
+            "score": 355,
+            "total": 0,
+            "errors": 3,
+            "elapsed": 22.766319274902344,
+            "danger": 48.0,
+            "eliminated": false,
+            "echoAccepted": false,
+            "echoResolved": false,
+            "motions": [
+                "ERROR",
+                "TYPING",
+                "TYPING",
+                "TYPING"
+            ]
+        },
+        {
+            "file": "screenshots/07_DANGER_CRITICAL.png",
+            "phase": "Running",
+            "round": 1,
+            "score": 355,
+            "total": 0,
+            "errors": 5,
+            "elapsed": 23.266311645507813,
+            "danger": 80.0,
+            "eliminated": false,
+            "echoAccepted": false,
+            "echoResolved": false,
+            "motions": [
+                "ERROR",
+                "TYPING",
+                "TYPING",
+                "TYPING"
+            ]
+        },
+        {
+            "file": "screenshots/12_ELIMINATED_ROUND.png",
+            "phase": "Running",
+            "round": 1,
+            "score": 355,
+            "total": 0,
+            "errors": 7,
+            "elapsed": 23.76630401611328,
+            "danger": 100.0,
+            "eliminated": true,
+            "echoAccepted": false,
+            "echoResolved": false,
+            "motions": [
+                "ELIMINATED",
+                "TYPING",
+                "TYPING",
+                "ERROR"
+            ]
+        },
+        {
+            "file": "screenshots/10_ROUND_RESULTS.png",
+            "phase": "Results",
+            "round": 1,
+            "score": 355,
+            "total": 355,
+            "errors": 7,
+            "elapsed": 60.0,
+            "danger": 100.0,
+            "eliminated": true,
+            "echoAccepted": false,
+            "echoResolved": false,
+            "motions": [
+                "ELIMINATED",
+                "IDLE SEATED",
+                "IDLE SEATED",
+                "IDLE SEATED"
+            ]
+        },
+        {
+            "file": "screenshots/27_RETURN_NEXT_ROUND.png",
+            "phase": "Running",
+            "round": 2,
+            "score": 28,
+            "total": 355,
+            "errors": 0,
+            "elapsed": 3.0332870483398438,
+            "danger": 0.0,
+            "eliminated": false,
+            "echoAccepted": false,
+            "echoResolved": false,
+            "motions": [
+                "TYPING",
+                "TYPING",
+                "TYPING",
+                "TYPING"
+            ]
+        },
+        {
+            "file": "screenshots/09_ECHO_INTERCEPT.png",
+            "phase": "Running",
+            "round": 2,
+            "score": 674,
+            "total": 355,
+            "errors": 0,
+            "elapsed": 33.766151428222656,
+            "danger": 0.0,
+            "eliminated": false,
+            "echoAccepted": true,
+            "echoResolved": false,
+            "motions": [
+                "TYPING",
+                "TYPING",
+                "TYPING",
+                "TYPING"
+            ]
+        },
+        {
+            "file": "screenshots/11_FINAL_RESULTS.png",
+            "phase": "Finished",
+            "round": 5,
+            "score": 1206,
+            "total": 5417,
+            "errors": 0,
+            "elapsed": 60.0,
+            "danger": 0.0,
+            "eliminated": false,
+            "echoAccepted": false,
+            "echoResolved": false,
+            "motions": [
+                "VICTORY",
+                "IDLE SEATED",
+                "IDLE SEATED",
+                "IDLE SEATED"
+            ]
+        },
+        {
+            "file": "modes/18_CODE_RACE.png",
+            "phase": "Running",
+            "round": 1,
+            "score": 77,
+            "total": 0,
+            "errors": 0,
+            "elapsed": 7.033226013183594,
+            "danger": 0.0,
+            "eliminated": false,
+            "echoAccepted": false,
+            "echoResolved": false,
+            "motions": [
+                "TYPING",
+                "TYPING",
+                "TYPING",
+                "TYPING"
+            ]
+        },
+        {
+            "file": "modes/19_NUMBERS_RUSH.png",
+            "phase": "Running",
+            "round": 2,
+            "score": 53,
+            "total": 101,
+            "errors": 0,
+            "elapsed": 7.033226013183594,
+            "danger": 0.0,
+            "eliminated": false,
+            "echoAccepted": false,
+            "echoResolved": false,
+            "motions": [
+                "TYPING",
+                "TYPING",
+                "TYPING",
+                "TYPING"
+            ]
+        },
+        {
+            "file": "modes/20_MEMORY_TYPE.png",
+            "phase": "Running",
+            "round": 3,
+            "score": 28,
+            "total": 178,
+            "errors": 0,
+            "elapsed": 7.033226013183594,
+            "danger": 0.0,
+            "eliminated": false,
+            "echoAccepted": false,
+            "echoResolved": false,
+            "motions": [
+                "TYPING",
+                "ERROR",
+                "TYPING",
+                "TYPING"
+            ]
+        },
+        {
+            "file": "modes/21_SUDDEN_DEATH.png",
+            "phase": "Running",
+            "round": 4,
+            "score": 69,
+            "total": 223,
+            "errors": 0,
+            "elapsed": 7.033226013183594,
+            "danger": 0.0,
+            "eliminated": false,
+            "echoAccepted": false,
+            "echoResolved": false,
+            "motions": [
+                "TYPING",
+                "TYPING",
+                "TYPING",
+                "TYPING"
+            ]
+        }
+    ]
+}

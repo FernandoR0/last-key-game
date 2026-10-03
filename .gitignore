@@ -1,0 +1,17 @@
+/Library/
+/Temp/
+/Obj/
+/Logs/
+/UserSettings/
+/Builds/
+/Tests/bin/
+/Tests/obj/
+/handoff/chatgpt/frames/
+*.csproj.user
+*.sln
+*.mp4
+*.zip
+*.log
+
+/Data/
+/Assets/_Recovery/

@@ -1,0 +1,200 @@
+{
+  "game": "LAST KEY",
+  "cost": "S/0",
+  "source": "real Unity runtime QA; no AI gameplay",
+  "unity": "6000.6.0f1",
+  "characters": "Quaternius CC0; four variants",
+  "github": "pending gh auth login",
+  "files": [
+    {
+      "path": "ASSET_MANIFEST.md",
+      "bytes": 3126,
+      "sha256": "2f886f6a20bef83b6857d5d092dcfcef11324e5988b1d4f5002614b742322e12"
+    },
+    {
+      "path": "capture_states.json",
+      "bytes": 11489,
+      "sha256": "1388f01c0101738f7298e7686b29be1da9e9a966351f12df62d98a3de5fd9332"
+    },
+    {
+      "path": "characters/13_CIPHER.png",
+      "bytes": 414017,
+      "sha256": "72f12686d2c7bbe0b1d018f9f0e790a95f1f28fdfb84f476cf436d070d9284bf"
+    },
+    {
+      "path": "characters/14_UPLINK.png",
+      "bytes": 472991,
+      "sha256": "87d6640fd5893294c63e5fa5e6e3c9a8c0353696db801d361790ced97d1f503e"
+    },
+    {
+      "path": "characters/15_RELAY.png",
+      "bytes": 400818,
+      "sha256": "43f7d6e367e94fdc5483d207b29f8a4e939941002a6d7371aaf8008843ee001f"
+    },
+    {
+      "path": "characters/16_VECTOR.png",
+      "bytes": 453896,
+      "sha256": "5713fb3685963661ab156d641516b5cc391e0b0dfab4e8da271a21a6d60b7a36"
+    },
+    {
+      "path": "clip_metadata.json",
+      "bytes": 1175,
+      "sha256": "bb2d035719e940254d82e4c772f59643f6491204af6ddb61a43b9d0431aeaa18"
+    },
+    {
+      "path": "clips/danger_event.mp4",
+      "bytes": 2318946,
+      "sha256": "7ce986f48ee1c7f455c69b2b11fd3ae358ab335bc540ac576ef131a8ef1de946"
+    },
+    {
+      "path": "clips/echo_intercept.mp4",
+      "bytes": 1680234,
+      "sha256": "eaf4ec420f1c5a8d71851e038db4317ba9815f5e20d80137e80bd3db5a587aaf"
+    },
+    {
+      "path": "clips/final_winner.mp4",
+      "bytes": 1713221,
+      "sha256": "f80256633fdd1de9e6e5dd974240ef17b9ee4d3f75dfbc2153cf85c1e49e914b"
+    },
+    {
+      "path": "clips/gameplay_round.mp4",
+      "bytes": 2907180,
+      "sha256": "62565430c0ecdfee2dc1ecec60db7448a2a972c2f16b6df8aa98994569d5ecb7"
+    },
+    {
+      "path": "clips/null_directive.mp4",
+      "bytes": 1648434,
+      "sha256": "55febf3078a994d67947629182145b082ea34f04c60ac440842cdc85108685de"
+    },
+    {
+      "path": "clips/round_results.mp4",
+      "bytes": 1616447,
+      "sha256": "9633ac46012e485fd6ce373dcd2b49b6ef2edb67c7ffae2f0b87d6aad9514982"
+    },
+    {
+      "path": "IMPLEMENTATION_STATUS.md",
+      "bytes": 3082,
+      "sha256": "5019bdf654aea22aae55975d51b834ea6db8ed30f1d4288f709b8fd4af13156f"
+    },
+    {
+      "path": "modes/17_CLASSIC_RACE.png",
+      "bytes": 1206927,
+      "sha256": "c950e053ef4b0f56f2057702d416429653c4ceb9789eed7986cfe7ebb6a1fb43"
+    },
+    {
+      "path": "modes/18_CODE_RACE.png",
+      "bytes": 1188931,
+      "sha256": "53da9828382c77312af8ba9d06e7feae90a862144765007a041a495adef0b4f8"
+    },
+    {
+      "path": "modes/19_NUMBERS_RUSH.png",
+      "bytes": 1189972,
+      "sha256": "bc4cd52ffef47acd857fa49ee2f3c1f1d8726dfaa89ebe180e28e34df38c07fd"
+    },
+    {
+      "path": "modes/20_MEMORY_TYPE.png",
+      "bytes": 1204610,
+      "sha256": "439b96f00765b71a46f6ddda82c00e8dccd2759e8ac331b4984590ca4fcebe9c"
+    },
+    {
+      "path": "modes/21_SUDDEN_DEATH.png",
+      "bytes": 1207788,
+      "sha256": "03551c5152a53a7440b840a5a4b99cb17179cb4829e3b408ace91b020e6c0823"
+    },
+    {
+      "path": "QA_REPORT.md",
+      "bytes": 1566,
+      "sha256": "e50b249b282298bd24b63c51ed66594cc31c27f757d0eb9fdcb038c55081e916"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5017,
+      "sha256": "3ee1c3c93ebcd332bf277740b5f253bc2ecff67d2fd59edff12090e76c2c0226"
+    },
+    {
+      "path": "runtime_results.json",
+      "bytes": 400,
+      "sha256": "c5d513d8ebc14f379819e5bc7fa4551233a73c1050eae326afe5f5056586098d"
+    },
+    {
+      "path": "screenshots/01_HERO_ARENA.png",
+      "bytes": 1806756,
+      "sha256": "0c6435cdf3c9ae38bb726ca231b2dd97cfb223e804c1c6e60c927a88046ee497"
+    },
+    {
+      "path": "screenshots/02_TYPING_GAMEPLAY.png",
+      "bytes": 1203947,
+      "sha256": "41d5e2e3fc80540a782313901e5b58b680efffdf2471538aa83cfb873b9a22aa"
+    },
+    {
+      "path": "screenshots/03_HUD_DETAIL.png",
+      "bytes": 1204003,
+      "sha256": "9d8b673fc557df6a5ca9ed4f1efbef89be01279039781d010f64345e4205e3e5"
+    },
+    {
+      "path": "screenshots/04_FOUR_PLAYERS.png",
+      "bytes": 1203873,
+      "sha256": "01334ddc37b6ad097ea97383bfd2450b73038028974b151c585ec66814d1cdf0"
+    },
+    {
+      "path": "screenshots/05_DANGER_SAFE.png",
+      "bytes": 1204768,
+      "sha256": "5d56944ea86e630edb86e189f720e7a8d3ef8f3ccef35bb4c5da73501d422781"
+    },
+    {
+      "path": "screenshots/06_DANGER_WARNING.png",
+      "bytes": 1207796,
+      "sha256": "1cd69f6e91157b46239133913078eae79d654a07acbde9d72b137ecfa3b6a4d7"
+    },
+    {
+      "path": "screenshots/07_DANGER_CRITICAL.png",
+      "bytes": 1207016,
+      "sha256": "9f7d192684329d49959505590e07a700fe6fb22164e1a14bceee001d4ccd0142"
+    },
+    {
+      "path": "screenshots/08_NULL_DIRECTIVE.png",
+      "bytes": 1205868,
+      "sha256": "5bb9b2e0bed40062bc772a47d3ce0e08ca9d8fee519e8749474cf98291133835"
+    },
+    {
+      "path": "screenshots/09_ECHO_INTERCEPT.png",
+      "bytes": 1198447,
+      "sha256": "ec515900e1e42c49e2c020626e7fd6f64e87a3003d16cfbd865902fcbe328888"
+    },
+    {
+      "path": "screenshots/10_ROUND_RESULTS.png",
+      "bytes": 1090119,
+      "sha256": "58892e17f6b3e83fc01285123e0594dd7a03f5b52d21f7ed21c4e36876ba3aca"
+    },
+    {
+      "path": "screenshots/11_FINAL_RESULTS.png",
+      "bytes": 1090727,
+      "sha256": "0bfeae70914b5ccc766bde2dab91aba290957d2b3ff975d7445f09204db1bd8e"
+    },
+    {
+      "path": "screenshots/12_ELIMINATED_ROUND.png",
+      "bytes": 1214033,
+      "sha256": "0db50f1ab3e4973022e877138c3aa77553887288a9dae0794ec18c6e38884eb5"
+    },
+    {
+      "path": "screenshots/27_RETURN_NEXT_ROUND.png",
+      "bytes": 1207288,
+      "sha256": "bba9abf25fb070b0bb749aea46e068ba3111f127383a7e8308b3e5dddfd16da7"
+    },
+    {
+      "path": "technical/22_UNITY_EDITOR.png",
+      "bytes": 110261,
+      "sha256": "ac43fee315256652bdc8005e3d1e15b78ed5818875a22190b5fa8ef0a8093381"
+    },
+    {
+      "path": "technical/23_WEBGL_KEYBOARD_UI.png",
+      "bytes": 40043,
+      "sha256": "1460ccb74ffe7c9d9767208092e07ea5723924a2b3b7bd990312fd5ca7e971c4"
+    },
+    {
+      "path": "WEBGL_RUNTIME_STATUS.md",
+      "bytes": 1312,
+      "sha256": "6c197ca1702085b90697be05fb01d7db4d366b4ba0f98687c1045414dfa519d3"
+    }
+  ]
+}
