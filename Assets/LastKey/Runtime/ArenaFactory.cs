@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
 namespace LastKey
@@ -15,7 +15,7 @@ namespace LastKey
         public int HumanIndex;
         readonly Color metal = new Color(.11f,.14f,.17f);
         readonly Color cyan = new Color(.1f,.7f,.72f);
-        public readonly Color[] Colors = {new Color(.1f,.65f,.7f),new Color(.7f,.46f,.15f),new Color(.4f,.53f,.72f),new Color(.52f,.65f,.35f)};
+        public readonly Color[] Colors = {new Color(.1f,.65f,.7f),new Color(.25f,.43f,.72f),new Color(.40f,.51f,.30f),new Color(.62f,.22f,.25f)};
         Material Mat(Color c, bool glow=false)
         {
             var m = new Material(Shader.Find("Universal Render Pipeline/Lit")); m.color=c;

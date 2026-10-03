@@ -1,0 +1,673 @@
+{
+  "status": "REVIEW_ONLY_MUSIC_GATE_PENDING",
+  "character_gate": "PASS",
+  "camera_gate": "PASS",
+  "music_gate": "PENDING_AUDITORY_REVIEW",
+  "files": [
+    {
+      "file": "ASSET_MANIFEST.md",
+      "bytes": 6564,
+      "sha256": "0a4ec8f1ee60ac3c1e9fb2230bdaeb07a449ddf377b08d6e97668fe618a6cf46"
+    },
+    {
+      "file": "CHARACTER_CIPHER_FINAL.png",
+      "bytes": 278154,
+      "sha256": "ab5fce756bb41304636e04e5e4dd7f079fa5906ecb454be47f7105ad7109c75d"
+    },
+    {
+      "file": "CHARACTER_RELAY_FINAL.png",
+      "bytes": 291995,
+      "sha256": "ec3141638ddfa569b55a152d4b46c69899b08738d8f82c7c9cc438c494480a9f"
+    },
+    {
+      "file": "CHARACTER_UPLINK_FINAL.png",
+      "bytes": 276739,
+      "sha256": "c247dd69caf4fa9224d02d1277b6b685a08a08e4b77e6c053f09d192c57cd48c"
+    },
+    {
+      "file": "CHARACTER_VECTOR_FINAL.png",
+      "bytes": 307682,
+      "sha256": "b46e2fd275b77c7fae205ccee85b7c3c1a5ae47912b6f1da1d8fb1a8782e69a1"
+    },
+    {
+      "file": "characters/17_CIPHER.png",
+      "bytes": 1083222,
+      "sha256": "4fad5b0f06c0f047cbb53a52216282c5331b8108f90093100d84642f9a4b6e8f"
+    },
+    {
+      "file": "characters/18_UPLINK.png",
+      "bytes": 1200340,
+      "sha256": "1d59972550bca25f1ef041f510905652b429ab35b388a6a969942cf950cb7f6e"
+    },
+    {
+      "file": "characters/19_RELAY.png",
+      "bytes": 1075290,
+      "sha256": "3c9f58f983dd86f4bf6d5b0bc1f99e35176b49311c81b82e12a1576ae361daee"
+    },
+    {
+      "file": "characters/20_VECTOR.png",
+      "bytes": 1035852,
+      "sha256": "524c96e5e789b93b4bb92b276f26b0271fc87ec9ebff1a1b3e07ddabfd784641"
+    },
+    {
+      "file": "clips/01_music_menu.mp4",
+      "bytes": 2724505,
+      "sha256": "65d14f3c2de58b2e1fb4e9eb80415d0f7f6c59b9900f0d838c7b5f87aaf713a2"
+    },
+    {
+      "file": "clips/02_music_wakeup_to_type.mp4",
+      "bytes": 5865305,
+      "sha256": "77e8df248b0ad04c84eb9533e65909c37e058e8194c89679d19021d4b756ccbd"
+    },
+    {
+      "file": "clips/03_music_gameplay.mp4",
+      "bytes": 1781374,
+      "sha256": "762f5d96dc5dfc4b3424a22439dfb0a1e980adf21a9eaea89d8c3db49f8ea2c9"
+    },
+    {
+      "file": "clips/04_music_danger.mp4",
+      "bytes": 1164931,
+      "sha256": "8f04cd52bd6f1c9dce39cf3db7171dc221a9b6dae7b500be88fa05e1fa70adf7"
+    },
+    {
+      "file": "clips/05_music_null_echo.mp4",
+      "bytes": 8401945,
+      "sha256": "86d07c775561b4e396d95c7ab63026f42b752b8e58ce6cd8375e67d4333de065"
+    },
+    {
+      "file": "clips/06_music_elimination.mp4",
+      "bytes": 1985640,
+      "sha256": "4f514626d1ecfd1612380b5adfdd5064cad353c9312a15513691641f2cf96ddf"
+    },
+    {
+      "file": "clips/07_music_round_result.mp4",
+      "bytes": 2100516,
+      "sha256": "b54571b33dcad91838c5cb2425e7f013cd177dcc38f36855a263dcce1527b4af"
+    },
+    {
+      "file": "clips/08_music_final_winner.mp4",
+      "bytes": 1824916,
+      "sha256": "2985defa0396e65941f0ec0d9cc5b3be0a8490ddb14f56374914084b9a869713"
+    },
+    {
+      "file": "fullbody/00_FOUR_FULL_BODY.png",
+      "bytes": 721740,
+      "sha256": "c1700bcab74d11bd5abff2f07c2b36f47855616f8eed09cf33aca5be76e5e70e"
+    },
+    {
+      "file": "fullbody/01_CIPHER_FULL_BODY.png",
+      "bytes": 278154,
+      "sha256": "ab5fce756bb41304636e04e5e4dd7f079fa5906ecb454be47f7105ad7109c75d"
+    },
+    {
+      "file": "fullbody/02_UPLINK_FULL_BODY.png",
+      "bytes": 276739,
+      "sha256": "c247dd69caf4fa9224d02d1277b6b685a08a08e4b77e6c053f09d192c57cd48c"
+    },
+    {
+      "file": "fullbody/03_RELAY_FULL_BODY.png",
+      "bytes": 291995,
+      "sha256": "ec3141638ddfa569b55a152d4b46c69899b08738d8f82c7c9cc438c494480a9f"
+    },
+    {
+      "file": "fullbody/04_VECTOR_FULL_BODY.png",
+      "bytes": 307682,
+      "sha256": "b46e2fd275b77c7fae205ccee85b7c3c1a5ae47912b6f1da1d8fb1a8782e69a1"
+    },
+    {
+      "file": "fullbody/CIPHER_LATERAL.png",
+      "bytes": 181255,
+      "sha256": "ab92d4995e4a4eeb10d5d8d97282fa3a083ac1729454da5218fb39cc04aeb2e6"
+    },
+    {
+      "file": "fullbody/RELAY_LATERAL.png",
+      "bytes": 195847,
+      "sha256": "47ea955d44dc10f88fccc3e461dc6a2f0a80a19c68c6b80381038b88eb43cc92"
+    },
+    {
+      "file": "fullbody/UPLINK_LATERAL.png",
+      "bytes": 184642,
+      "sha256": "c98cf20be2dbe9e27ccee35b27528315b8ff2bc03a97a0f2c20ffe33969d80e6"
+    },
+    {
+      "file": "fullbody/VECTOR_LATERAL.png",
+      "bytes": 207709,
+      "sha256": "aab88db6a404cf6a952f6f548a8a15f0101486fc857c9620158829c93a75e0a7"
+    },
+    {
+      "file": "GAMEPLAY_CHARACTERS_FINAL.png",
+      "bytes": 2043243,
+      "sha256": "323284be006e50a9d056015b8eda7f33ec99cff37492ff55d353dfdeae4fc81d"
+    },
+    {
+      "file": "IMPLEMENTATION_STATUS.md",
+      "bytes": 5104,
+      "sha256": "24ac573075ccf84e55288bbb1fa6a7c11616db8e165f61a8d5fc482bb72da10e"
+    },
+    {
+      "file": "index.html",
+      "bytes": 5222,
+      "sha256": "5a902f4384ed4de544235af7fefcd872df2138613124d0dc2540db13d9ff8a16"
+    },
+    {
+      "file": "masters/Dead Current.wav",
+      "bytes": 10829364,
+      "sha256": "38d519587b8915c02c30504a633b6ea695d3a0cbdbd78f18fecc63eb99228856"
+    },
+    {
+      "file": "masters/Iron Dominion.wav",
+      "bytes": 13654106,
+      "sha256": "879e1f41b46d561cceada84a447b12b2ee4f398cb5de145f0795d55c5b438bba"
+    },
+    {
+      "file": "masters/Mainframe.wav",
+      "bytes": 33042652,
+      "sha256": "5f4853f22b95d6a11e421a081408854c28722ccf3c58559cf7dfb104b0a0e03c"
+    },
+    {
+      "file": "MUSIC_INTEGRATION_REPORT.md",
+      "bytes": 4030,
+      "sha256": "21e2c8b73ba26c0b8ba3745ad8e82161e2d0a651d559e86e1d816edd7afdecbc"
+    },
+    {
+      "file": "poses/CIPHER_seated.png",
+      "bytes": 1252468,
+      "sha256": "958aae43fa7313e753fa2eb74a76f47ac84fdf839baf395120b85831d5005277"
+    },
+    {
+      "file": "poses/CIPHER_wakeup.png",
+      "bytes": 1248972,
+      "sha256": "bf67c2e78ede222cbc53563ce5a56ca04eed6a13b186ebeb7c01c4f5677a543b"
+    },
+    {
+      "file": "poses/CIPHER_winner.png",
+      "bytes": 1258696,
+      "sha256": "a75a9208630bd354d798398fcb03d6db22e6e0fb596c2ee767bc0d9f8a6567c5"
+    },
+    {
+      "file": "poses/RELAY_seated.png",
+      "bytes": 1299671,
+      "sha256": "8942c8684d9415a48377eef8402667a91e9cc5d4c7b9295cd54fddb791d7f5a5"
+    },
+    {
+      "file": "poses/RELAY_wakeup.png",
+      "bytes": 1292254,
+      "sha256": "ff6d5baf8c1b8ed1805f135dcd7df0d9e8c0de83c773e53005ed0a081118c966"
+    },
+    {
+      "file": "poses/RELAY_winner.png",
+      "bytes": 1295684,
+      "sha256": "d214c0a30fe70860426294b9252a6422a1e2f4cba37603d17f2267daa7526223"
+    },
+    {
+      "file": "poses/UPLINK_seated.png",
+      "bytes": 1269389,
+      "sha256": "a25454f86d13227242730b04137b01df339f0039ac8fc95270a7b9327a8fd511"
+    },
+    {
+      "file": "poses/UPLINK_wakeup.png",
+      "bytes": 1266125,
+      "sha256": "bf4f1af50448a5e827ab1dcc4e60a8b97edc6d82c23f31de9aa06842e67c9c9a"
+    },
+    {
+      "file": "poses/UPLINK_winner.png",
+      "bytes": 1263519,
+      "sha256": "89d337e2d8cdd4406cd5ccb2a245f7ec12cb9eb33e0c0943e21e9743e19a2e62"
+    },
+    {
+      "file": "poses/VECTOR_seated.png",
+      "bytes": 1297621,
+      "sha256": "2883d585b92fcaa1b8289462c742d1fc8e18d89ae37e1e8980284948661de470"
+    },
+    {
+      "file": "poses/VECTOR_wakeup.png",
+      "bytes": 1292726,
+      "sha256": "058cc4dbb146ad9ca04a3ebbb05957ab430c638afbd8484f05e4ed6b01d6d384"
+    },
+    {
+      "file": "poses/VECTOR_winner.png",
+      "bytes": 1293222,
+      "sha256": "03f71c0577ed6fa1c6b2e6f05d7983fb03141807d9237968a7575b190440f3d9"
+    },
+    {
+      "file": "QA_REPORT_V3.md",
+      "bytes": 5808,
+      "sha256": "4d1820a50b7a898a078aba9f4d8b0294c000146330726a8cf1b4c2150728e32f"
+    },
+    {
+      "file": "README.md",
+      "bytes": 6012,
+      "sha256": "9c333d54a3772a14bc18c4887a53e4859a381f33fd8177255d4b50c8e19c381a"
+    },
+    {
+      "file": "requested-screenshots/01_HERO_ARENA.png",
+      "bytes": 2040895,
+      "sha256": "0405619a7b945dd6ccd7e59157dd7d3df175bcfc5dec81d08e966221fa11ed43"
+    },
+    {
+      "file": "requested-screenshots/02_TYPING_GAMEPLAY.png",
+      "bytes": 2043243,
+      "sha256": "323284be006e50a9d056015b8eda7f33ec99cff37492ff55d353dfdeae4fc81d"
+    },
+    {
+      "file": "requested-screenshots/03_HUD_DETAIL.png",
+      "bytes": 2042218,
+      "sha256": "0e256c3cf5526eae12abb42032e7820a4ca31eb5e7e4be26804c1556d1087752"
+    },
+    {
+      "file": "requested-screenshots/04_FOUR_PLAYERS.png",
+      "bytes": 2040895,
+      "sha256": "0405619a7b945dd6ccd7e59157dd7d3df175bcfc5dec81d08e966221fa11ed43"
+    },
+    {
+      "file": "requested-screenshots/05_DANGER_SAFE.png",
+      "bytes": 2045846,
+      "sha256": "8c9d01bd69649e046eec0a4eeed964dd1bb5f9642f37f08f49ce7cdb385904f0"
+    },
+    {
+      "file": "requested-screenshots/06_DANGER_WARNING.png",
+      "bytes": 2223466,
+      "sha256": "95ac92798e599eae0fcc8c20b3d7b87398025299499f100480865b2309b0da78"
+    },
+    {
+      "file": "requested-screenshots/07_DANGER_CRITICAL.png",
+      "bytes": 2040107,
+      "sha256": "90d944112c87b2ac51305f151dfdafb35371d4d41c4c0c089c3cdfe712fba42b"
+    },
+    {
+      "file": "requested-screenshots/08_NULL_DIRECTIVE.png",
+      "bytes": 2049923,
+      "sha256": "94144cdf27bdf148b9c19315e970659a999d77d681667327671b3b09ba06c63f"
+    },
+    {
+      "file": "requested-screenshots/09_ECHO_INTERCEPT.png",
+      "bytes": 2044234,
+      "sha256": "d18352554c81a3fb695b6f45147c1108b404c4f43f0827bf559ffc598dadb6f9"
+    },
+    {
+      "file": "requested-screenshots/10_ROUND_RESULTS.png",
+      "bytes": 1658788,
+      "sha256": "3976344b98a7ec22cf7b86ba33790210b403eb626d1b66b3945b479753b8c767"
+    },
+    {
+      "file": "requested-screenshots/11_FINAL_RESULTS.png",
+      "bytes": 885290,
+      "sha256": "fd1dc2aa2c49bd3713fefd968e5ccd50065fb67efe23aac105a4f6a21ce6bce1"
+    },
+    {
+      "file": "requested-screenshots/12_ELIMINATED_ROUND.png",
+      "bytes": 904515,
+      "sha256": "d12a95ede1150a3f4c968a697a797d3780a98597bc051205132b715ff12cdb52"
+    },
+    {
+      "file": "requested-screenshots/13_CIPHER.png",
+      "bytes": 1083222,
+      "sha256": "4fad5b0f06c0f047cbb53a52216282c5331b8108f90093100d84642f9a4b6e8f"
+    },
+    {
+      "file": "requested-screenshots/14_UPLINK.png",
+      "bytes": 1200340,
+      "sha256": "1d59972550bca25f1ef041f510905652b429ab35b388a6a969942cf950cb7f6e"
+    },
+    {
+      "file": "requested-screenshots/15_RELAY.png",
+      "bytes": 1075290,
+      "sha256": "3c9f58f983dd86f4bf6d5b0bc1f99e35176b49311c81b82e12a1576ae361daee"
+    },
+    {
+      "file": "requested-screenshots/16_VECTOR.png",
+      "bytes": 1035852,
+      "sha256": "524c96e5e789b93b4bb92b276f26b0271fc87ec9ebff1a1b3e07ddabfd784641"
+    },
+    {
+      "file": "screenshots/01_LOADING.png",
+      "bytes": 1806814,
+      "sha256": "bc44139a5ecc2f8ac91316c59d7f8d474b3711e3e451186c5604301867d9c3dc"
+    },
+    {
+      "file": "screenshots/02_MAIN_MENU.png",
+      "bytes": 1779792,
+      "sha256": "51e4a73181af744293f11525f50706ccd2a83fc9ce511a4581ec210d236c5bdd"
+    },
+    {
+      "file": "screenshots/03_MODE_SELECT.png",
+      "bytes": 1753840,
+      "sha256": "1edcfcad6bfc4ceab04de326a2d3b2d87dcfe01214fe1ee5122c5d56066b6bb5"
+    },
+    {
+      "file": "screenshots/04_CHARACTER_SELECT.png",
+      "bytes": 994245,
+      "sha256": "fa2e3005754b946c8bda12c7dcde96b25ee886f6101c4edc37c0f25a90d254fc"
+    },
+    {
+      "file": "screenshots/05_ROUND_WAKEUP_INTRO.png",
+      "bytes": 1238066,
+      "sha256": "fe62c93117303abe36d37930189d2d8d7bb4a5fd59457e8d8e34915c178b682d"
+    },
+    {
+      "file": "screenshots/06_GAMEPLAY_WIDE.png",
+      "bytes": 2045846,
+      "sha256": "8c9d01bd69649e046eec0a4eeed964dd1bb5f9642f37f08f49ce7cdb385904f0"
+    },
+    {
+      "file": "screenshots/07_GAMEPLAY_COMPOSITION_PROOF.png",
+      "bytes": 2043243,
+      "sha256": "323284be006e50a9d056015b8eda7f33ec99cff37492ff55d353dfdeae4fc81d"
+    },
+    {
+      "file": "screenshots/08_HUD_DETAIL.png",
+      "bytes": 2042218,
+      "sha256": "0e256c3cf5526eae12abb42032e7820a4ca31eb5e7e4be26804c1556d1087752"
+    },
+    {
+      "file": "screenshots/09_FOUR_PLAYERS.png",
+      "bytes": 2040895,
+      "sha256": "0405619a7b945dd6ccd7e59157dd7d3df175bcfc5dec81d08e966221fa11ed43"
+    },
+    {
+      "file": "screenshots/10_DANGER_WARNING.png",
+      "bytes": 2223466,
+      "sha256": "95ac92798e599eae0fcc8c20b3d7b87398025299499f100480865b2309b0da78"
+    },
+    {
+      "file": "screenshots/11_DANGER_CRITICAL.png",
+      "bytes": 2040107,
+      "sha256": "90d944112c87b2ac51305f151dfdafb35371d4d41c4c0c089c3cdfe712fba42b"
+    },
+    {
+      "file": "screenshots/12_ELIMINATION.png",
+      "bytes": 904515,
+      "sha256": "d12a95ede1150a3f4c968a697a797d3780a98597bc051205132b715ff12cdb52"
+    },
+    {
+      "file": "screenshots/13_NULL_DIRECTIVE.png",
+      "bytes": 2049923,
+      "sha256": "94144cdf27bdf148b9c19315e970659a999d77d681667327671b3b09ba06c63f"
+    },
+    {
+      "file": "screenshots/14_ECHO_INTERCEPT.png",
+      "bytes": 2044234,
+      "sha256": "d18352554c81a3fb695b6f45147c1108b404c4f43f0827bf559ffc598dadb6f9"
+    },
+    {
+      "file": "screenshots/15_ROUND_RESULTS.png",
+      "bytes": 1658788,
+      "sha256": "3976344b98a7ec22cf7b86ba33790210b403eb626d1b66b3945b479753b8c767"
+    },
+    {
+      "file": "screenshots/16_FINAL_WINNER.png",
+      "bytes": 885290,
+      "sha256": "fd1dc2aa2c49bd3713fefd968e5ccd50065fb67efe23aac105a4f6a21ce6bce1"
+    },
+    {
+      "file": "technical/browser_decode_status.json",
+      "bytes": 701,
+      "sha256": "741570fd73112ad5fbf7ac1d1470ed2e4ef8109ecaa0c199f554d1214c33783f"
+    },
+    {
+      "file": "technical/capture_states.json",
+      "bytes": 9629,
+      "sha256": "74173e024f9dc6aa1193a0a81d04017a428d1a5078519671876bce529989046d"
+    },
+    {
+      "file": "technical/clip_metadata.json",
+      "bytes": 3542,
+      "sha256": "3a97ce59adc3cd60c3f9f1eb2025497b278af8bf6f8cc1073f9cfd08d620f6d6"
+    },
+    {
+      "file": "technical/decoded_review/browser_00.png",
+      "bytes": 1670205,
+      "sha256": "f3cfea6bcbeff1af0002be86d4a3d1be918c35a9d87a9056bc900afb684e81ed"
+    },
+    {
+      "file": "technical/decoded_review/browser_01.png",
+      "bytes": 2041236,
+      "sha256": "2afb4c64716fbbb60fa80568fdecc4641ea439028554129b6ba5c66cdaebfb19"
+    },
+    {
+      "file": "technical/decoded_review/browser_02.png",
+      "bytes": 2007750,
+      "sha256": "aca9771a57410b935f812536e20c0bb263700154e555d6155214c037163a9e62"
+    },
+    {
+      "file": "technical/decoded_review/browser_03.png",
+      "bytes": 2041500,
+      "sha256": "6b361a65e717c0470972644509ba88b37b666bb3f07100284d2700078b67866c"
+    },
+    {
+      "file": "technical/decoded_review/browser_04.png",
+      "bytes": 2043583,
+      "sha256": "0178dfef866b971ac4b4b449ffa76ca2a95f89e6a75ca0a0aef3410aaaad512a"
+    },
+    {
+      "file": "technical/decoded_review/browser_05.png",
+      "bytes": 1383284,
+      "sha256": "d046780c21f99c62460b5027f49485465709e9c71e078b354eee45e507fb8565"
+    },
+    {
+      "file": "technical/decoded_review/browser_06.png",
+      "bytes": 2000925,
+      "sha256": "48a21e85d8f6ff74789a7265f384865740ccb2ead324ad09943cb4021b02d12c"
+    },
+    {
+      "file": "technical/decoded_review/browser_07.png",
+      "bytes": 1945088,
+      "sha256": "dee788cdd659a7c376c843a04e9fdd7451f067d0d4c4da067006bd2ef160704e"
+    },
+    {
+      "file": "technical/decoded_review/browser_08.png",
+      "bytes": 1985689,
+      "sha256": "ec1b426a3d87681857d5c0a3d39b3caa0ab1db170cc1372b189ec9c46fa20e40"
+    },
+    {
+      "file": "technical/decoded_review/browser_09.png",
+      "bytes": 2065343,
+      "sha256": "adb9afb81f3e1bb0d9e09344c2616c5a17275af4ab15008ebc9633a174f7cffe"
+    },
+    {
+      "file": "technical/decoded_review/browser_10.png",
+      "bytes": 2051045,
+      "sha256": "25ab6cf6801773570b734a38ed84d0b465505af7b22b9a9383ec21f8f8cfb9cb"
+    },
+    {
+      "file": "technical/decoded_review/browser_11.png",
+      "bytes": 2229821,
+      "sha256": "9f16fb4cfc9463e5e484023a0653386b67005fd4f929d52fd00b619c4fab449b"
+    },
+    {
+      "file": "technical/decoded_review/browser_12.png",
+      "bytes": 2105328,
+      "sha256": "2d0f3b13a7b4b475095657ec8a0135bbdccf6f13a400d1b7191ecc8c8d54d35f"
+    },
+    {
+      "file": "technical/decoded_review/browser_13.png",
+      "bytes": 2174215,
+      "sha256": "569f50cc82aa615327fe7cb02914a5484f9b0a7979f8b37d31b4611a5a206f7e"
+    },
+    {
+      "file": "technical/decoded_review/browser_14.png",
+      "bytes": 2204707,
+      "sha256": "a365dd1e7d1f1734176c926dd9a248b9242181a2b942ca2e33cd92b47436d29d"
+    },
+    {
+      "file": "technical/decoded_review/browser_15.png",
+      "bytes": 2055949,
+      "sha256": "84c56ef08dce627afef15c5daace55bf3f48000005e27fd3e42205eb336a7e15"
+    },
+    {
+      "file": "technical/decoded_review/browser_16.png",
+      "bytes": 2102679,
+      "sha256": "35a17af113c56e56bd034032aaabe7ec41016455ced14975d140e44bf4fcfbdd"
+    },
+    {
+      "file": "technical/decoded_review/browser_17.png",
+      "bytes": 2116066,
+      "sha256": "82a7ba539608e17d33dea0cee64b5e791b17b3e055ef96719089e73ec51f8cf8"
+    },
+    {
+      "file": "technical/decoded_review/browser_18.png",
+      "bytes": 2153420,
+      "sha256": "ea4e64faada5c03728bb0aa9c389b6d07f4bf9406c065304fd808c0680776dca"
+    },
+    {
+      "file": "technical/decoded_review/browser_19.png",
+      "bytes": 2223466,
+      "sha256": "95ac92798e599eae0fcc8c20b3d7b87398025299499f100480865b2309b0da78"
+    },
+    {
+      "file": "technical/decoded_review/browser_20.png",
+      "bytes": 2202583,
+      "sha256": "3d3fa69708045bd6b2b2d8a47438742f1781c8b0febea10eb47657ef2ffa8a24"
+    },
+    {
+      "file": "technical/decoded_review/browser_21.png",
+      "bytes": 2161669,
+      "sha256": "379025db858c46501fd201f1e2a974dd62dac14323d759dffb92b477cbf0399c"
+    },
+    {
+      "file": "technical/decoded_review/browser_22.png",
+      "bytes": 2255534,
+      "sha256": "0261671cb1f55e9ad211b2fdb160d42f801e35412eaf9a1e116880dca92f73a5"
+    },
+    {
+      "file": "technical/decoded_review/browser_23.png",
+      "bytes": 2236694,
+      "sha256": "ebb3591a4b3e7ff49e91c5e95d56af09b281f87b4e1c13373e85f822dd99602c"
+    },
+    {
+      "file": "technical/decoded_review/browser_24.png",
+      "bytes": 2209317,
+      "sha256": "4f89b3d1229edf95561d4a852b90442e375f67d23d4e64f5b5207b65e33ed6f3"
+    },
+    {
+      "file": "technical/decoded_review/browser_25.png",
+      "bytes": 2054329,
+      "sha256": "6d7a80ec81aeb95692dd4d75845c5dd1fd7824acebd605c8aaffd631fa394396"
+    },
+    {
+      "file": "technical/decoded_review/browser_26.png",
+      "bytes": 2109249,
+      "sha256": "dccd7744c3aa53f1af52183411d6a9c81a7139fd4f4edf6ad270e97c170f980a"
+    },
+    {
+      "file": "technical/decoded_review/browser_27.png",
+      "bytes": 2184906,
+      "sha256": "6079f977868ae2e2d27cfc4e3742e819122cad83332f24f6fbcee39cb746c8da"
+    },
+    {
+      "file": "technical/decoded_review/browser_28.png",
+      "bytes": 1045352,
+      "sha256": "6f06a9569fb45828b6f53763f48fd2972c974b1e21e3755b75e3ef4a423eea85"
+    },
+    {
+      "file": "technical/decoded_review/browser_29.png",
+      "bytes": 2528356,
+      "sha256": "8365acaf032af1a644f8aa763a6c28c7e87b34c560c8d9e1f54ed49e05caf954"
+    },
+    {
+      "file": "technical/decoded_review/browser_30.png",
+      "bytes": 1515199,
+      "sha256": "b4c3d167127d09ee9482c657851b97b33719fe07da2931ed3738dbcb0f98ba4b"
+    },
+    {
+      "file": "technical/decoded_review/browser_31.png",
+      "bytes": 1901287,
+      "sha256": "14ba8373b67a2a37dc8659dd8bff5be7e251ce1d291fb8814f5bbbc73f1e3a7d"
+    },
+    {
+      "file": "technical/decoded_review/browser_32.png",
+      "bytes": 1869483,
+      "sha256": "8c87fd36b3269135d715bb628cb8b0430df034839aed627d26d93cae9f94aadf"
+    },
+    {
+      "file": "technical/decoded_review/browser_33.png",
+      "bytes": 1871881,
+      "sha256": "7ef34464a1ef0a4b27421c783e8e1785e242624640d23a543e7a36afde4054c4"
+    },
+    {
+      "file": "technical/decoded_review/browser_34.png",
+      "bytes": 1871936,
+      "sha256": "ea75a06fcaf39c196bb1bcab5d27d963f779735f49be3e4c7720b683d96ac1bc"
+    },
+    {
+      "file": "technical/decoded_review/browser_35.png",
+      "bytes": 998948,
+      "sha256": "5af683876aceff5d33c42ad6fa45784fbc452a5c17747b23c0f6ab2a6bd79ae5"
+    },
+    {
+      "file": "technical/decoded_review/browser_36.png",
+      "bytes": 1179948,
+      "sha256": "787cd35214c10f5d48db835a16864f64a8602c6c153156adcd610b0eaa84520c"
+    },
+    {
+      "file": "technical/decoded_review/browser_37.png",
+      "bytes": 1171708,
+      "sha256": "714932d2d5f6443a8d01a69394409b002034e4531f344ba2c51e5ffb73f0334f"
+    },
+    {
+      "file": "technical/decoded_review/browser_38.png",
+      "bytes": 1174372,
+      "sha256": "ba0ca26ef9a0bab464b46f8002a5b3ce0e24af41eccc6ba790b697ffbabeef8e"
+    },
+    {
+      "file": "technical/decoded_review/browser_39.png",
+      "bytes": 1177065,
+      "sha256": "b7cdab69c7e42c3a89ada9ed5a7102b6b0dee0ffc3a9c607a0994a4b137325e7"
+    },
+    {
+      "file": "technical/pcm_checks.json",
+      "bytes": 2328,
+      "sha256": "c585e577a724afa9aa9298099813e0e1299f6506a5155c009dee32c1c17b59ab"
+    },
+    {
+      "file": "technical/windows-runtime/01_LOADING.png",
+      "bytes": 1827554,
+      "sha256": "6677f82af8d6836835db5ca56df9215dbf5b439c410dbe4b2ae01579d56685eb"
+    },
+    {
+      "file": "technical/windows-runtime/02_MAIN_MENU.png",
+      "bytes": 1796744,
+      "sha256": "bb563a30ebf87b20a32026879b8c57416d39b22eeec2df6ba8d919653c2baf94"
+    },
+    {
+      "file": "technical/windows-runtime/03_MODE_SELECT.png",
+      "bytes": 1769241,
+      "sha256": "8a405093f0fcf566c1b10bef72f556a167f7e345833475aba5f000ffe979e136"
+    },
+    {
+      "file": "technical/windows-runtime/04_CHARACTER_SELECT.png",
+      "bytes": 999039,
+      "sha256": "8ca298e745e3019aa8ac7174432631f78b22602b0a083160aeb4e22f28b25c92"
+    },
+    {
+      "file": "technical/windows-runtime/05_ROUND_WAKEUP_INTRO.png",
+      "bytes": 1240793,
+      "sha256": "1a6ca1f267b21cdf0dd04439e236d722701e7a6229095225b7fd46ae2ec4806c"
+    },
+    {
+      "file": "technical/windows-runtime/06_GAMEPLAY_WIDE.png",
+      "bytes": 2056612,
+      "sha256": "01ef216cd2dc4fce58c74ab1be05649d0dd33f6d0c9047f68c59ad3eb83ea2e2"
+    },
+    {
+      "file": "technical/windows-runtime/07_GAMEPLAY_COMPOSITION_PROOF.png",
+      "bytes": 2055254,
+      "sha256": "0350d2af2456e00f3f81d55453dc2de0f0b3fcc3acc962e8f2914396ffae5e6f"
+    },
+    {
+      "file": "technical/windows-runtime/08_HUD_DETAIL.png",
+      "bytes": 2054352,
+      "sha256": "e83721b86fbc66f27a6b7dde09016ea355a6b0bc60eb810a78e4d5804850c67c"
+    },
+    {
+      "file": "technical/windows-runtime/09_FOUR_PLAYERS.png",
+      "bytes": 2053308,
+      "sha256": "d39a0fa30ada2684b946490b31021138fbd9e07ef8a88174fb54be05f138ae5b"
+    },
+    {
+      "file": "WEBGL_V3_MENU.jpg",
+      "bytes": 52739,
+      "sha256": "7a3111dc97baa33dae042c837481be6fc3825ebb6e8da1fbd6b06486cc35f8ff"
+    }
+  ]
+}

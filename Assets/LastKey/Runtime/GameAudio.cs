@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 namespace LastKey
 {
@@ -6,14 +6,17 @@ namespace LastKey
     public sealed class GameAudio:MonoBehaviour
     {
         public event System.Action<AudioClip> Emitted;
+        public event System.Action<string> CuePlayed;
         public AudioClip Ambience {get{return clips["menu"];}}
-        AudioSource effects,ambient;
+        AudioSource effects,ambient,ui;
+        public void Route(MusicManager music){effects.outputAudioMixerGroup=music.Group("SFX");ambient.outputAudioMixerGroup=music.Group("AMBIENCE");ui.outputAudioMixerGroup=music.Group("UI");}
         readonly Dictionary<string,AudioClip> clips=new Dictionary<string,AudioClip>();
         public void Initialize()
         {
             effects=gameObject.AddComponent<AudioSource>();effects.volume=.32f;
+            ui=gameObject.AddComponent<AudioSource>();ui.volume=.32f;
             ambient=gameObject.AddComponent<AudioSource>();ambient.loop=true;ambient.volume=.09f;
-            var cues=new[]{"typing","error","combo","warning","null","echo","elimination","round","victory","menu"};
+            var cues=new[]{"typing","error","combo","warning","null","echo","elimination","round","victory","menu","ui"};
             for(int i=0;i<cues.Length;i++)clips[cues[i]]=Synth(cues[i],i==9?4:i==8?1.2f:i==6?.7f:.12f+i*.03f,130+i*65);
             ambient.clip=clips["menu"];ambient.Play();
         }
@@ -28,7 +31,7 @@ namespace LastKey
             }
             var clip=AudioClip.Create(name,samples.Length,1,rate,false);clip.SetData(samples,0);return clip;
         }
-        public void Cue(string name){if(effects!=null&&clips.ContainsKey(name)){effects.PlayOneShot(clips[name]);Emitted?.Invoke(clips[name]);}}
+        public void Cue(string name){if(effects!=null&&clips.ContainsKey(name)){(name=="ui"?ui:effects).PlayOneShot(clips[name]);Emitted?.Invoke(clips[name]);CuePlayed?.Invoke(name);}}
         public void Menu(bool active){if(ambient!=null)ambient.volume=active?.09f:.025f;}
     }
 }

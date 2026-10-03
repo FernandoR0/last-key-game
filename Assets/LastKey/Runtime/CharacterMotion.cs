@@ -12,7 +12,7 @@ namespace LastKey
 
 {
 
-    // Original procedural animation on the imported CC0 Humanoid rig: seated/idle/typing,
+    // Original procedural animation on the imported Humanoid rig: seated/idle/typing,
 
     // error recoil, round elimination slump and seated victory. No paid motion dependency.
 
@@ -112,9 +112,9 @@ namespace LastKey
 
                 var foot=Bone(side==0?HumanBodyBones.LeftFoot:HumanBodyBones.RightFoot);
 
-                var ankle=station.TransformPoint(new Vector3(sign*.16f,.24f,-.84f));
+                var ankle=station.TransformPoint(new Vector3(sign*.16f,index==0?.39f:.30f,-.84f));
 
-                TwoBone(thigh,calf,foot,ankle,station.forward);
+                var neutralFoot=foot.rotation;TwoBone(thigh,calf,foot,ankle,station.forward);foot.rotation=neutralFoot;
 
                 var upper=Bone(side==0?HumanBodyBones.LeftUpperArm:HumanBodyBones.RightUpperArm);
 
@@ -122,7 +122,7 @@ namespace LastKey
 
                 var hand=Bone(side==0?HumanBodyBones.LeftHand:HumanBodyBones.RightHand);
 
-                Vector3 target=station.TransformPoint(new Vector3(sign*.18f,.85f+(typing?Mathf.Sin(time*(fast?18:10)+side*3)*.008f:0),-.35f));
+                Vector3 target=station.TransformPoint(new Vector3(sign*.18f,.91f+(typing?Mathf.Sin(time*(fast?18:10)+side*3)*.008f:0),-.47f));
 
                 if(eliminated)target=station.TransformPoint(new Vector3(sign*.17f,.7f,-.72f));
 

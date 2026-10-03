@@ -17,3 +17,14 @@
 /Assets/_Recovery/
 
 /handoff/chatgpt-v2/decoded_review/
+
+/Assets/PrivateRenderpeople/
+/Assets/PrivateRenderpeople.meta
+
+/Assets/Resources/PerformanceTestRunInfo.json
+/Assets/Resources/PerformanceTestRunInfo.json.meta
+/Assets/Resources/PerformanceTestRunSettings.json
+/Assets/Resources/PerformanceTestRunSettings.json.meta
+
+__pycache__/
+*.pyc

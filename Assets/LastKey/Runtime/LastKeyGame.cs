@@ -19,6 +19,7 @@ namespace LastKey
         public RoundMode SelectedMode {get;private set;}
         public float StateTime {get;private set;}
         public GameAudio Sound {get;private set;}
+        public MusicManager Music {get;private set;}
         Rules rules;ContentBank content;TMP_FontAsset font;
         Transform menu;GameObject hud,intro;
         TMP_Text top,metrics,typing,rivals,directive,echo,caption,flash,dangerLabel;
@@ -33,7 +34,9 @@ namespace LastKey
             Time.timeScale=1;Application.targetFrameRate=60;
             rules=JsonUtility.FromJson<Rules>(Resources.Load<TextAsset>("last_key_rules").text);content=JsonUtility.FromJson<ContentBank>(Resources.Load<TextAsset>("last_key_content").text);
             font=Resources.Load<TMP_FontAsset>("Fonts & Materials/LiberationSans SDF");Game=new Competition(rules,content);Arena=new ArenaFactory();Arena.Create(font);Cameras=new CameraDirector(Arena);effects=new CompetitionEffects(Arena);
-            Sound=gameObject.AddComponent<GameAudio>();Sound.Initialize();CreateCanvas();Switch(ExperienceState.Boot);
+            Sound=gameObject.AddComponent<GameAudio>();Sound.Initialize();Music=gameObject.AddComponent<MusicManager>();Music.Initialize(this);Sound.Route(Music);CreateCanvas();Switch(ExperienceState.Boot);
+            if(Environment.GetCommandLineArgs().Contains("--music-runtime-qa"))gameObject.AddComponent<MusicRuntimeQa>();
+            if(Environment.GetCommandLineArgs().Contains("--music-evidence")){gameObject.AddComponent<PolishEvidence>();gameObject.AddComponent<MusicCapture>();}
             if(Environment.GetCommandLineArgs().Contains("--evidence-v2"))gameObject.AddComponent<PolishEvidence>();
             if(Environment.GetCommandLineArgs().Contains("--wardrobe-review"))gameObject.AddComponent<WardrobeShow>();
             if(Environment.GetCommandLineArgs().Contains("--pose-audit"))gameObject.AddComponent<PoseAudit>();
@@ -45,8 +48,8 @@ namespace LastKey
             else if(Flow==ExperienceState.Loading){loading.fillAmount=Mathf.Clamp01(StateTime/2);if(StateTime>2.1f)Switch(ExperienceState.MainMenu);}
             if(Flow==ExperienceState.RoundIntro)
             {
-                float t=Mathf.Clamp01(StateTime/6);Cameras.Intro(t);caption.text=t<.25f?"RONDA "+Game.Round+" / DESPIERTA":t<.5f?"COLLAR ACTIVO / CONTROL DE COMPETENCIA":t<.75f?"TU ESTACIÓN / PRECISIÓN BAJO PRESIÓN":"CUATRO PARTICIPANTES. UNA CLASIFICACIÓN.";
-                if(StateTime>=6||Input.GetKeyDown(KeyCode.Space))Switch(ExperienceState.Countdown);
+                float t=Mathf.Clamp01(StateTime/MusicManager.IntroSeconds);Cameras.Intro(t);caption.text=t<.25f?"RONDA "+Game.Round+" / DESPIERTA":t<.5f?"COLLAR ACTIVO / CONTROL DE COMPETENCIA":t<.75f?"TU ESTACIÓN / PRECISIÓN BAJO PRESIÓN":"CUATRO PARTICIPANTES. UNA CLASIFICACIÓN.";
+                if(StateTime>=MusicManager.IntroSeconds||Input.GetKeyDown(KeyCode.Space))Switch(ExperienceState.Countdown);
             }
             if(Flow==ExperienceState.Countdown){caption.text="RONDA "+Game.Round+"\n"+Mathf.Max(1,3-Mathf.FloorToInt(StateTime));Cameras.Gameplay();if(StateTime>=3){echoAnnounced=warning=false;priorCorrect=priorCombo=priorErrors=0;priorDirective=Directive.None;Switch(ExperienceState.Gameplay);}}
             if(Flow==ExperienceState.Gameplay)
@@ -60,7 +63,7 @@ namespace LastKey
                 if(Game.Phase==Phase.Results)Switch(ExperienceState.RoundResult);else if(Game.Phase==Phase.Finished)Switch(ExperienceState.FinalResult);
             }
             else if(Flow==ExperienceState.Paused&&Input.GetKeyDown(KeyCode.Escape))Switch(ExperienceState.Gameplay);
-            Arena.Animate(Time.time,Game);foreach(var c in Arena.Characters){var m=c.GetComponent<CharacterMotion>();m.Wakeup=Flow==ExperienceState.RoundIntro;m.Preview=Flow==ExperienceState.CharacterSelect||Flow==ExperienceState.Countdown;m.IntroProgress=Mathf.Clamp01(StateTime/6);}Refresh();
+            Arena.Animate(Time.time,Game);foreach(var c in Arena.Characters){var m=c.GetComponent<CharacterMotion>();m.Wakeup=Flow==ExperienceState.RoundIntro;m.Preview=Flow==ExperienceState.CharacterSelect||Flow==ExperienceState.Countdown;m.IntroProgress=Mathf.Clamp01(StateTime/MusicManager.IntroSeconds);}Refresh();
         }
         void Feedback()
         {
@@ -73,7 +76,7 @@ namespace LastKey
         RectTransform Rect(GameObject o,Transform p,float x,float y,float w,float h){o.transform.SetParent(p,false);var r=o.GetComponent<RectTransform>();r.anchorMin=r.anchorMax=new Vector2(0,1);r.pivot=new Vector2(0,1);r.anchoredPosition=new Vector2(x,-y);r.sizeDelta=new Vector2(w,h);return r;}
         GameObject Panel(string n,float x,float y,float w,float h,Color c,Transform p=null){var o=new GameObject(n,typeof(RectTransform),typeof(Image));Rect(o,p??Canvas.transform,x,y,w,h);o.GetComponent<Image>().color=c;return o;}
         TMP_Text Label(string n,string s,float x,float y,float w,float h,float size,Color c,Transform p=null){var o=new GameObject(n,typeof(RectTransform),typeof(TextMeshProUGUI));Rect(o,p??Canvas.transform,x,y,w,h);var t=o.GetComponent<TextMeshProUGUI>();t.font=font;t.text=s;t.fontSize=size;t.color=c;t.textWrappingMode=TextWrappingModes.Normal;t.raycastTarget=false;return t;}
-        void Button(string s,float x,float y,float w,Action a,Transform p=null,Color? c=null){var o=Panel(s,x,y,w,66,c??new Color(.075f,.28f,.31f),p);o.AddComponent<Button>().onClick.AddListener(()=>{Sound.Cue("typing");a();});Label("Label",s,18,13,w-36,45,24,Color.white,o.transform);}
+        void Button(string s,float x,float y,float w,Action a,Transform p=null,Color? c=null){var o=Panel(s,x,y,w,66,c??new Color(.075f,.28f,.31f),p);o.AddComponent<Button>().onClick.AddListener(()=>{Sound.Cue("ui");a();});Label("Label",s,18,13,w-36,45,24,Color.white,o.transform);}
         void CreateCanvas()
         {
             var o=new GameObject("Presentation and compact HUD",typeof(Canvas),typeof(CanvasScaler),typeof(GraphicRaycaster));Canvas=o.GetComponent<Canvas>();Canvas.renderMode=RenderMode.ScreenSpaceOverlay;var s=o.GetComponent<CanvasScaler>();s.uiScaleMode=CanvasScaler.ScaleMode.ScaleWithScreenSize;s.referenceResolution=new Vector2(1920,1080);s.matchWidthOrHeight=.5f;new GameObject("EventSystem",typeof(EventSystem),typeof(StandaloneInputModule));
@@ -89,7 +92,8 @@ namespace LastKey
         void Header(string s,string sub){Panel("Title backing",0,0,1920,117,ink,menu);Label("Title",s,60,27,1800,55,42,Color.white,menu);Label("Subtitle",sub,62,84,1790,32,20,muted,menu);}
         void Switch(ExperienceState state)
         {
-            Flow=state;StateTime=0;foreach(Transform child in menu)Destroy(child.gameObject);hud.SetActive(state==ExperienceState.Gameplay);intro.SetActive(state==ExperienceState.RoundIntro||state==ExperienceState.Countdown);menu.gameObject.SetActive(!hud.activeSelf&&!intro.activeSelf);Sound.Menu(state!=ExperienceState.Gameplay);
+            bool resume=Flow==ExperienceState.Paused&&state==ExperienceState.Gameplay;Flow=state;Music.SetFlow(state,resume);StateTime=0;foreach(Transform child in menu)Destroy(child.gameObject);hud.SetActive(state==ExperienceState.Gameplay);intro.SetActive(state==ExperienceState.RoundIntro||state==ExperienceState.Countdown);menu.gameObject.SetActive(!hud.activeSelf&&!intro.activeSelf);Sound.Menu(state!=ExperienceState.Gameplay);
+            if(state==ExperienceState.MainMenu||state==ExperienceState.Paused)MusicSlider();
             switch(state)
             {
                 case ExperienceState.Boot:Header("LAST KEY","INICIANDO SISTEMAS");break;
@@ -111,6 +115,16 @@ namespace LastKey
                 case ExperienceState.FinalResult:DrawResults(true);Sound.Cue("victory");break;
                 case ExperienceState.Paused:Header("PAUSA","La competencia está detenida.");Button("CONTINUAR",70,345,590,()=>Switch(ExperienceState.Gameplay),menu);Button("MENÚ PRINCIPAL",70,448,590,MainMenu,menu);break;
             }
+        }
+        void MusicSlider()
+        {
+            var backing=Panel("Music setting",1320,950,560,98,ink,menu);
+            Label("Music volume","MUSIC VOLUME",18,10,250,32,20,muted,backing.transform);
+            var track=Panel("Slider",18,54,515,16,new Color(.12f,.24f,.27f),backing.transform);
+            var slider=track.AddComponent<Slider>();slider.minValue=0;slider.maxValue=1;
+            var fill=Panel("Fill",0,0,515,16,cyan,track.transform);slider.fillRect=fill.GetComponent<RectTransform>();slider.fillRect.sizeDelta=Vector2.zero;
+            var handle=Panel("Handle",0,0,24,30,Color.white,track.transform);slider.handleRect=handle.GetComponent<RectTransform>();slider.targetGraphic=handle.GetComponent<Image>();
+            slider.SetValueWithoutNotify(Music.Volume);slider.onValueChanged.AddListener(Music.SetVolume);
         }
         void DrawResults(bool final)
         {
@@ -143,4 +157,3 @@ namespace LastKey
         static string Escape(string s){return s.Replace("&","&amp;").Replace("<","&lt;").Replace(">","&gt;");}
     }
 }
-

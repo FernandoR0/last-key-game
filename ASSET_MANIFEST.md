@@ -54,3 +54,26 @@ Los placeholders primitivos se sustituyeron por dos bases Quaternius y cuatro va
 - Sonido original sintetizado en `GameAudio.cs`: ambiente, typing, error, combo, warning, NULL, ECHO, eliminación, ronda y victoria. Sin música de terceros ni costo.
 - Material eléctrico URP referenciado en Resources para que el shader forme parte del build.
 - Sillas con asiento ajustado y apoyo de pies: geometría original del proyecto.
+
+
+## Realistic character evaluation — 2026-10-03 (not final assets)
+
+Renderpeople free rigged/animated samples: https://renderpeople.com/free-3d-people/
+License checked before download: https://renderpeople.com/general-terms-and-conditions/ (version 2024-12-13), sections 2.5, 4.1–4.3. Free license permits games and rendered images, but prohibits redistribution of individual source assets. Evaluation files remain outside Assets and Git. No Renderpeople source files may be added to public GitHub or the handoff ZIP. Compatibility and availability of four suitable distinct characters remain unverified. No character quality PASS is declared.
+
+## Supplied music masters — preserved 2026-10-03
+
+Iron Dominion.wav, Dead Current.wav, Mainframe.wav: supplied by Fernando for this integration. Copies in Assets/Audio/Music/Masters are byte-identical (SHA-256 in work/game/music-analysis.json). No music generation or paid service. No third-party music license inferred from file names. Full auditory verification remains pending.
+
+## Reemplazo realista en evaluación local
+
+| Identidad | Asset original Renderpeople | Ropa existente | Adaptación |
+|---|---|---|---|
+| CIPHER / Valeria Rojas | rp_carla_rigged_001_u3d | Chaqueta, pantalón y zapatos del modelo | Acento teal oscuro; altura 1.73 m |
+| UPLINK / Ethan Cole | rp_eric_rigged_001_u3d | Camisa, chaleco, corbata y pantalón | Acento azul; altura 1.81 m |
+| RELAY / Akira Mori | rp_manuel_animated_001_dancing | Camiseta, jeans y zapatillas | Acento verde apagado; altura 1.76 m; masculino |
+| VECTOR / Noah Bennett | rp_nathan_animated_003_walking | Camiseta, jeans y zapatillas | Acento rojo oscuro; altura 1.85 m |
+
+Fuente: https://renderpeople.com/free-3d-people/ . Descarga directa oficial FBX de paquetes rigged y animated. Licencia gratuita propietaria Renderpeople, https://renderpeople.com/general-terms-and-conditions/ . Los cuatro Humanoid importan como isValid/isHuman; aproximadamente 11.4k–13.1k vértices por personaje. Ropa incluida, no modelada desde cero. Se conservan piel y cabello; mask01 recolorea la prenda superior y mask02 pantalones. Texturas runtime máximo 2048.
+
+Rig y skinning originales. El juego utiliza su animación procedural existente adaptada a estos rigs: sentado, typing normal/rápido, error, Danger, eliminación, victoria de ronda/final y despertar. No se afirma haber utilizado Mixamo ni mocap descargado para mecanografía. Los modelos animated se usan con sus rigs, sin reproducir baile/caminata en gameplay. No redistribuir fuentes, texturas, prefabs o derivados Renderpeople en GitHub público, bundle fuente ni ZIP de handoff. Assets/PrivateRenderpeople está excluido de Git; el checkpoint anterior permite restaurar el fallback Quaternius.
