@@ -10,6 +10,7 @@ namespace LastKey {
 public sealed class ImportedMotionPilot : MonoBehaviour {
  public Animator Rig {get;private set;} public Renderer Collar {get;private set;}
  public Transform Station {get;private set;}
+ public Vector3 CollarCenter => Collar.GetComponentInParent<ImportedSpaceCollar>().RingCenter;
  PlayableGraph graph; AnimationMixerPlayable bodyMixer; AnimationLayerMixerPlayable layers;
  AnimationClipPlayable idle,action,gesture,electric; AnimationClip[] clips; int prior=-1;
  public float CollarSourceTime=-1;
@@ -21,7 +22,7 @@ public sealed class ImportedMotionPilot : MonoBehaviour {
   Rig=rig;Station=station;clips=motions;rig.enabled=true;rig.applyRootMotion=false;rig.cullingMode=AnimatorCullingMode.AlwaysAnimate;
   jaw=rig.GetBoneTransform(HumanBodyBones.Jaw);if(jaw!=null)jawRest=jaw.localRotation;
   CacheHandSurfaces();
-  Collar=CharacterFactory.AttachCollar(transform,rig,station,identity,new Color(.3f,.55f,1));
+  Collar=ImportedSpaceCollar.Attach(rig,station);
   graph=PlayableGraph.Create("LAST KEY downloaded motion pilot");graph.SetTimeUpdateMode(DirectorUpdateMode.Manual);
   idle=AnimationClipPlayable.Create(graph,clips[0]);bodyMixer=AnimationMixerPlayable.Create(graph,2);graph.Connect(idle,0,bodyMixer,0);
   electric=AnimationClipPlayable.Create(graph,clips[4]);layers=AnimationLayerMixerPlayable.Create(graph,3);graph.Connect(bodyMixer,0,layers,0);graph.Connect(electric,0,layers,1);layers.SetInputWeight(0,1);
@@ -48,8 +49,7 @@ public sealed class ImportedMotionPilot : MonoBehaviour {
   var hips=Rig.GetBoneTransform(HumanBodyBones.Hips);transform.position+=Station.TransformPoint(new Vector3(0,.82f,-.97f))-hips.position;
   if(jaw!=null)jaw.localRotation=jawRest;
   var neck=Rig.GetBoneTransform(HumanBodyBones.Neck);var head=Rig.GetBoneTransform(HumanBodyBones.Head);var hardware=Collar.GetComponentInParent<CollarVisual>().transform;
-  hardware.rotation=Quaternion.Slerp(Station.rotation,Quaternion.FromToRotation(Station.up,(head.position-neck.position).normalized)*Station.rotation,.2f);
-  hardware.position+=Vector3.Lerp(neck.position,head.position,.25f)-Collar.bounds.center;
+  hardware.GetComponent<ImportedSpaceCollar>().SamplePose();
   if(stage==2||stage==3||stage==4){ContactHand(false);ContactHand(true);}
   // Preserve the downloaded two-hand grasp, adapting reach to the collar hardware.
   if(stage==1&&CollarSourceTime<0){float w=Mathf.SmoothStep(0,1,Mathf.Clamp01((s-.5f)/.8f));CollarGrip(false,w);CollarGrip(true,w);}
@@ -58,8 +58,8 @@ public sealed class ImportedMotionPilot : MonoBehaviour {
    float weight=n=="a14_eye_blink_left"||n=="a15_eye_blink_right"?blink*100:n=="mouth_open"?Intensity*envelope*12:0;skin.SetBlendShapeWeight(i,weight);
   }
   var color=Intensity==3?new Color(1,.08f,.10f):Intensity==2?new Color(1,.5f,.08f):new Color(.3f,.8f,1);
-  Collar.GetComponentInParent<CollarVisual>().SetDanger(color);arc.enabled=Intensity>0&&envelope>.05f;arc.widthMultiplier=.0015f*Intensity;
-  var c=Collar.bounds.center;for(int i=0;i<12;i++){float x=-.065f+i*.13f/11;arc.SetPosition(i,c+Station.TransformVector(new Vector3(x,Mathf.Sin(i*2.5f+t*43)*.006f*Intensity,.082f)));}
+  var fitting=Collar.GetComponentInParent<ImportedSpaceCollar>();fitting.SetDanger(color);arc.enabled=Intensity>0&&envelope>.05f;arc.widthMultiplier=.0015f*Intensity;
+  var c=fitting.StatusCenter;for(int i=0;i<12;i++){float x=-.027f+i*.054f/11;arc.SetPosition(i,c+fitting.transform.TransformDirection(new Vector3(x,Mathf.Sin(i*2.5f+t*43)*.002f*Intensity,.004f)));}
  }
  void CacheHandSurfaces(){
   foreach(var skin in GetComponentsInChildren<SkinnedMeshRenderer>()){
@@ -91,8 +91,13 @@ public sealed class ImportedMotionPilot : MonoBehaviour {
   var hand=Rig.GetBoneTransform(right?HumanBodyBones.RightHand:HumanBodyBones.LeftHand);
   var knuckle=Rig.GetBoneTransform(right?HumanBodyBones.RightMiddleProximal:HumanBodyBones.LeftMiddleProximal);
   if(knuckle==null)return;
-  var anchor=Collar.bounds.center+Station.right*(right?.115f:-.115f)+Station.forward*.055f+Station.up*.012f;
-  SolveArm(right,Vector3.Lerp(hand.position,hand.position+anchor-knuckle.position,weight));
+  var anchor=Collar.GetComponentInParent<ImportedSpaceCollar>().GripContact(right);
+  // Match the rendered fingers to the imported metal surface, rather than an arbitrary wrist offset.
+  for(int pass=0;pass<2;pass++){
+   Vector3 closest=knuckle.position;float best=float.PositiveInfinity;
+   foreach(var surface in handSurfaces){surface.skin.BakeMesh(surface.baked);var vertices=surface.baked.vertices;foreach(int i in surface.indices[right?1:0]){var point=surface.skin.transform.TransformPoint(vertices[i]);float distance=(point-anchor).sqrMagnitude;if(distance<best){best=distance;closest=point;}}}
+   SolveArm(right,Vector3.Lerp(hand.position,hand.position+anchor-closest,weight));
+  }
  }
  void SolveArm(bool right,Vector3 target){
   var upper=Rig.GetBoneTransform(right?HumanBodyBones.RightUpperArm:HumanBodyBones.LeftUpperArm);var lower=Rig.GetBoneTransform(right?HumanBodyBones.RightLowerArm:HumanBodyBones.LeftLowerArm);var end=Rig.GetBoneTransform(right?HumanBodyBones.RightHand:HumanBodyBones.LeftHand);var wrist=end.rotation;

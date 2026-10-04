@@ -4,19 +4,19 @@
 
 Estado: prueba técnica de un personaje candidato. No es el juego actualizado ni la introducción final. No se sustituyeron todavía los cuatro personajes del juego publicado.
 
-Captura nativa de Unity, 1920Ã—1080, 30 fps, 34 segundos, 1020 cuadros decodificados y verificados. Audio de prueba con efectos gratuitos ya descargados; sin narración NULL ni música. Mezcla de cues sobre la captura, no grabación de una partida.
+Captura nativa de Unity, 1920×1080, 30 fps, 34 segundos, 1020 cuadros decodificados y verificados. Audio de prueba con efectos gratuitos ya descargados; sin narración NULL ni música. Mezcla de cues sobre la captura, no grabación de una partida.
 
 
 
 ## Qué se hizo
 
-- Teclado integrado reducido a aproximadamente 52 cm de ancho, con cinco filas completas de letras, números, puntuación, tildes, Ã‘ y espacio. HUD del jugador sin rediseño.
+- Teclado integrado reducido a aproximadamente 52 cm de ancho, con cinco filas completas de letras, números, puntuación, tildes, Ñ y espacio. HUD del jugador sin rediseño.
 
 - Texto de la mesa ampliado y con mayor superficie disponible.
 
 - Mesa de esta prueba acercada y elevada para coincidir con la silla y este cuerpo; ese ajuste de mobiliario es específico del candidato, aún no global.
 
-- Humanoid ActorCore Party-M-0001; materiales originales y collar gratuito existente, colocado siguiendo cuello/cabeza y conservando una orientación más estable.
+- Humanoid ActorCore Party-M-0001; materiales originales y nuevo collar metálico existente de Infernalight, con carcasa, botones y pantalla luminosa que cambia con Danger. Collar unido directamente al hueso Neck, con perfil de 42 mm en el acolchado, ajuste ceñido y pieza trasera saliente retirada para esta chaqueta. Las manos usan contacto con la superficie importada, medido sobre los dedos renderizados.
 
 - Motion clips oficiales de Mixamo: Waking (Waking Up While Sitting), Being Strangled (Getting Snuck Up On And Strangled), Typing, Being Electrocuted (Being Electrocuted Into Unconciousness), Sitting Victory, Sitting Idle (breathing).
 
@@ -64,4 +64,8 @@ Sonidos Kenney CC0: https://kenney.nl/assets/interface-sounds y https://kenney.n
 
 Grito CC0 aargh3: https://freesound.org/people/JohnsonBrandEditing/sounds/173944/
 
-Fuentes FBX bajo sus respectivas licencias conservadas privadas. Paquete con renders, clips y documentación únicamente. Costo adicional: S/0.
+Collar: “the space collar” de Infernalight, CC BY 4.0, adaptado con materiales metálicos, pantalla emisiva y ajuste humano. https://sketchfab.com/3d-models/the-space-collar-daa389bf97f545309518a3c519a66b5d
+
+Licencia del collar: https://creativecommons.org/licenses/by/4.0/
+
+Fuentes ActorCore/Mixamo bajo sus respectivas licencias conservadas privadas. Paquete con renders, clips y documentación únicamente. Costo adicional: S/0.

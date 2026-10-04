@@ -25,7 +25,7 @@ public static class IntegratedMotionTrial {
   try{float t=frame/30f;if(!poseReady){if(collarAudit){pilot.CollarSourceTime=frame/60f;t=7;}pilot.Sample(t);bool typing=t>=10&&t<18;arena.Screens[0].text=typing?"ESCRIBE CON PRECISIÓN\nCada tecla decide la ronda.":t<5?"SISTEMA EN ESPERA":t<10?"COLLAR ACTIVO":t<30?pilot.Stage:"THE LAST KEY";arena.Screens[0].color=pilot.Intensity>0?new Color(1,.8f,.75f):new Color(.70f,1,1);arena.Board.text="PRUEBA DE ANIMACIÓN\n"+pilot.Stage;
    arena.Displays[0].material.color=pilot.Intensity>0?new Color(.15f,.02f,.04f):new Color(.012f,.07f,.085f);
    arena.Camera.fieldOfView=43;arena.Camera.transform.position=station.TransformPoint(new Vector3(1.20f,1.57f,.75f));arena.Camera.transform.LookAt(station.TransformPoint(new Vector3(0,1.10f,-.77f)));
-   if(t>=5&&t<10){arena.Camera.fieldOfView=35;arena.Camera.transform.position=station.TransformPoint(new Vector3(-.55f,1.51f,-.27f));arena.Camera.transform.LookAt(pilot.Collar.bounds.center);}
+   if(t>=5&&t<10){arena.Camera.fieldOfView=35;arena.Camera.transform.position=station.TransformPoint(new Vector3(-.55f,1.51f,-.27f));arena.Camera.transform.LookAt(pilot.CollarCenter);}
    if(t>=14&&t<18){arena.Camera.fieldOfView=78;arena.Camera.transform.position=pilot.Rig.GetBoneTransform(HumanBodyBones.Head).position+station.TransformVector(new Vector3(0,.045f,.18f));arena.Camera.transform.LookAt(station.TransformPoint(new Vector3(0,.985f,-.44f)));}
    // Let the editor player loop update GPU skinning before capturing accessories and the body.
    poseReady=true;return;}

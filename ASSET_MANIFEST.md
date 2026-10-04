@@ -26,3 +26,19 @@ Atribución requerida de Blender Studio: **Rain Rig (CC) Blender Foundation | st
 Los assets antiguos Poly Haven, modelos privados y candidatos no seleccionados son referencias históricas; no representan los personajes ni las estaciones activos. Los archivos privados de Renderpeople no deben incluirse en un handoff público.
 
 La pantalla táctil y las teclas se componen mediante elementos de renderizado de Unity: es la superficie física del mundo. La interfaz flotante, los menús, controles de interacción y multijugador quedan en la parte asignada a Fernando.
+
+## Metallic collar animation pilot (revision 18)
+
+# LAST KEY — adapted Space Collar
+
+Original model: **the space collar** by **Infernalight**.
+Source: https://sketchfab.com/3d-models/the-space-collar-daa389bf97f545309518a3c519a66b5d
+License: Creative Commons Attribution 4.0 International (CC BY 4.0).
+https://creativecommons.org/licenses/by/4.0/
+
+Downloaded through Sketchfab's official download interface, without payment.
+Adaptations: GLB-to-FBX conversion, graphite/steel materials, emissive Danger display, human-neck scale and bone attachment, removal of projecting rear tracker geometry for jacket clearance. Original geometry is reused; no new collar was modeled. The original author described it as a space dog collar; LAST KEY adapts the existing technological housing as a human competition restraint. This does not imply endorsement by the original author.
+
+Current integration: one-character animation pilot. The previous playable build still uses the previous assets. No claims of final four-character integration.
+
+Original GLB SHA256: 02f939ed883f06209a7c2cd9ae52549b6a1bd9f8b2d6e57dba77d8e4e36e8761
