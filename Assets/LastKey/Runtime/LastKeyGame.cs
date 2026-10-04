@@ -133,6 +133,7 @@ namespace LastKey
             var ranking=Game.Ranking();for(int i=0;i<4;i++){var p=ranking[i];float y=299+i*119;var values=new[]{(i+1)+"  "+p.Name,p.RoundScore.ToString(),p.TotalScore.ToString(),p.Wpm.ToString("0"),p.Accuracy.ToString("0")+"%","+"+p.Bonus};for(int c=0;c<6;c++)Label("Value",values[c],columns[c],y,c==0?260:120,49,29,p.Bot?Color.white:cyan,menu);Label("State",p.Eliminated?"ELIMINADO SOLO DE ESTA RONDA":"RONDA COMPLETADA",117,y+52,940,34,20,p.Eliminated?new Color(1,.35f,.3f):muted,menu);}
             Button(final?"REVANCHA":"SIGUIENTE RONDA",60,930,620,final?Rematch:(Action)BeginIntro,menu);Button("MENÚ PRINCIPAL",730,930,420,MainMenu,menu);
         }
+        public void EnableBrowserAudio(){Music.EnableBrowserAudio();}
         public void OpenModeSelect(){Switch(ExperienceState.ModeSelect);}
         public void OpenCharacterSelect(){Switch(ExperienceState.CharacterSelect);}
         public void ChooseCharacter(int i){HumanIndex=i;Arena.Arrange(i);Switch(ExperienceState.CharacterSelect);}

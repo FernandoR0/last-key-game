@@ -17,6 +17,7 @@ namespace LastKey
         LastKeyGame host;MusicLibrary library;AudioSource[] sources;
         int active;float loopStart,loopEnd,fadeStart,fadeSeconds=1,duckUntil,duckDb;
         bool fading,paused,ready;float[] gains={0,0};
+        AudioClip pendingClip;float pendingOffset,pendingStart,pendingEnd,pendingSeconds;
         public void Initialize(LastKeyGame game)
         {
             host=game;library=Resources.Load<MusicLibrary>("Audio/MusicLibrary");
@@ -48,9 +49,11 @@ namespace LastKey
         }
         void OnCue(string cue)
         {
-            if(cue=="null"||cue=="echo")Duck(4,1.1f);
-            else if(cue=="elimination")Duck(8,1.5f);
-            else if(cue=="warning")Duck(3,.8f);
+            if(cue=="null"||cue=="echo")Duck(6,1.1f);
+            else if(cue=="elimination")Duck(10,1.5f);
+            else if(cue=="warning")Duck(5,.8f);
+            else if(cue=="error")Duck(4,.25f);
+            else if(cue=="typing")Duck(2,.1f);
         }
         public void Duck(float db,float seconds){duckDb=Mathf.Max(db,Time.time<duckUntil?duckDb:0);duckUntil=Mathf.Max(duckUntil,Time.time+seconds);}
         void Change(AudioClip clip,float offset,float start,float end,float seconds)
@@ -61,15 +64,40 @@ namespace LastKey
         }
         void Begin(AudioClip clip,float offset,float start,float end,float seconds)
         {
+            // Browser AAC decoding and audio-context resume are asynchronous.
+            // Never seek/play an unloaded clip (its sample count is still zero).
+            bool canPlay=clip.loadState==AudioDataLoadState.Loaded&&clip.samples>0;
+#if UNITY_WEBGL && !UNITY_EDITOR
+            canPlay=canPlay&&LK_AudioReady()!=0;
+#endif
+            if(!canPlay){pendingClip=clip;pendingOffset=offset;pendingStart=start;pendingEnd=end;pendingSeconds=seconds;if(clip.loadState==AudioDataLoadState.Unloaded)clip.LoadAudioData();return;}
+            pendingClip=null;
             int next=1-active;sources[next].Stop();sources[next].clip=clip;
-            sources[next].Play();sources[next].timeSamples=Mathf.Clamp(Mathf.RoundToInt(offset*clip.frequency),0,clip.samples-1);
+            sources[next].timeSamples=Mathf.Clamp(Mathf.RoundToInt(offset*clip.frequency),0,clip.samples-1);sources[next].Play();
             sources[next].volume=0;active=next;loopStart=start;loopEnd=Mathf.Min(end,clip.length-.05f);
             fadeStart=Time.time;fadeSeconds=seconds;fading=true;
+            Debug.Log("MUSIC_CLIP_LOAD "+clip.name+" state="+clip.loadState+" samples="+clip.samples+" playing="+sources[next].isPlaying);
             Debug.Log("MUSIC_TRANSITION "+State+" track="+clip.name+" offset="+offset+" loop="+loopStart+".."+loopEnd);
         }
+        public void EnableBrowserAudio()
+        {
+            if(!ready)return;
+            if(pendingClip!=null)return;
+            if(sources[active].clip==null||sources[active].isPlaying)return;
+            Begin(sources[active].clip,Mathf.Max(0,TrackTime),loopStart,loopEnd,.5f);
+        }
+#if UNITY_WEBGL && !UNITY_EDITOR
+        [System.Runtime.InteropServices.DllImport("__Internal")] static extern void LK_AudioProbe();
+        [System.Runtime.InteropServices.DllImport("__Internal")] static extern int LK_AudioReady();
+        float nextBrowserProbe;
+#endif
         void Update()
         {
             if(!ready)return;
+#if UNITY_WEBGL && !UNITY_EDITOR
+            if(Time.unscaledTime>=nextBrowserProbe){nextBrowserProbe=Time.unscaledTime+2;LK_AudioProbe();}
+#endif
+            if(pendingClip!=null)Begin(pendingClip,pendingOffset,pendingStart,pendingEnd,pendingSeconds);
             if(host.Flow==ExperienceState.Gameplay)
             {
                 float danger=host.Game.Players[host.HumanIndex].Danger;
@@ -78,12 +106,12 @@ namespace LastKey
                     if(next==0)Change(library.IronDominion,16,16,60,1);
                     else Change(library.DeadCurrent,next==2?28:16,next==2?28:16,48,1.2f);}
             }
-            if(!fading&&sources[active].clip!=null&&sources[active].time>=loopEnd-fadeSeconds)Begin(sources[active].clip,loopStart,loopStart,loopEnd,1);
+            if(pendingClip==null&&!fading&&sources[active].clip!=null&&sources[active].time>=loopEnd-fadeSeconds)Begin(sources[active].clip,loopStart,loopStart,loopEnd,1);
             float t=Mathf.Clamp01((Time.time-fadeStart)/fadeSeconds);
             gains[active]=fading?Mathf.Sin(t*Mathf.PI*.5f):1;gains[1-active]=fading?Mathf.Cos(t*Mathf.PI*.5f):0;
             if(fading&&t>=1){fading=false;sources[1-active].Stop();}
             float duck=Time.time<duckUntil?Mathf.Pow(10,-duckDb/20):1;
-            float level=Volume*.45f*(paused?.45f:1)*duck;
+            float level=Volume*.65f*(paused?.45f:1)*duck;
             for(int i=0;i<2;i++)sources[i].volume=Mathf.MoveTowards(sources[i].volume,gains[i]*level,Time.deltaTime*1.5f);
         }
         void OnDestroy(){if(host!=null&&host.Sound!=null)host.Sound.CuePlayed-=OnCue;}

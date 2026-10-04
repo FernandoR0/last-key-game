@@ -3,6 +3,7 @@
   "character_gate": "PASS",
   "camera_gate": "PASS",
   "music_gate": "PENDING_AUDITORY_REVIEW",
+  "music_gain_change_db": 11.2,
   "files": [
     {
       "file": "ASSET_MANIFEST.md",
@@ -51,43 +52,43 @@
     },
     {
       "file": "clips/01_music_menu.mp4",
-      "bytes": 2724505,
-      "sha256": "65d14f3c2de58b2e1fb4e9eb80415d0f7f6c59b9900f0d838c7b5f87aaf713a2"
+      "bytes": 2724514,
+      "sha256": "82ba9a6c0d70b473f3a6a9725c05a15c8af9003afe4f6f1379e7454dd56af3b0"
     },
     {
       "file": "clips/02_music_wakeup_to_type.mp4",
-      "bytes": 5865305,
-      "sha256": "77e8df248b0ad04c84eb9533e65909c37e058e8194c89679d19021d4b756ccbd"
+      "bytes": 5865321,
+      "sha256": "0cd922cbded18cee52fd58485854b1587ffcc4ecb6d82fa61b9c8874874a8904"
     },
     {
       "file": "clips/03_music_gameplay.mp4",
-      "bytes": 1781374,
-      "sha256": "762f5d96dc5dfc4b3424a22439dfb0a1e980adf21a9eaea89d8c3db49f8ea2c9"
+      "bytes": 1781382,
+      "sha256": "1ecc2461bc17b9d33704ec6a983e2e631b43d839b19c37028f960bf4f57ff31d"
     },
     {
       "file": "clips/04_music_danger.mp4",
-      "bytes": 1164931,
-      "sha256": "8f04cd52bd6f1c9dce39cf3db7171dc221a9b6dae7b500be88fa05e1fa70adf7"
+      "bytes": 1164934,
+      "sha256": "b2bf6da0afe56b70adfb66a4e1b3bf72b350b23a0cda7ced8c6e5cd92c2ca6ad"
     },
     {
       "file": "clips/05_music_null_echo.mp4",
-      "bytes": 8401945,
-      "sha256": "86d07c775561b4e396d95c7ab63026f42b752b8e58ce6cd8375e67d4333de065"
+      "bytes": 8402017,
+      "sha256": "ead66078687d822d4662737722e35db78aae3d3df204c4ec9fa8565d4be589b7"
     },
     {
       "file": "clips/06_music_elimination.mp4",
-      "bytes": 1985640,
-      "sha256": "4f514626d1ecfd1612380b5adfdd5064cad353c9312a15513691641f2cf96ddf"
+      "bytes": 1983703,
+      "sha256": "071ab6da567c87d65352f7a4a11b35a40d2a7515bd115afc89a7430ef941ea63"
     },
     {
       "file": "clips/07_music_round_result.mp4",
-      "bytes": 2100516,
-      "sha256": "b54571b33dcad91838c5cb2425e7f013cd177dcc38f36855a263dcce1527b4af"
+      "bytes": 2100515,
+      "sha256": "c4cec973ab6f0623cb95ddacee4f49c15a7dc463dd43cf3c570e486d17d32769"
     },
     {
       "file": "clips/08_music_final_winner.mp4",
-      "bytes": 1824916,
-      "sha256": "2985defa0396e65941f0ec0d9cc5b3be0a8490ddb14f56374914084b9a869713"
+      "bytes": 1824941,
+      "sha256": "8741952f7b106829d1d83224b931dc6e7761908a67ecc9412e0d6e8b9bc3b445"
     },
     {
       "file": "fullbody/00_FOUR_FULL_BODY.png",
@@ -141,13 +142,13 @@
     },
     {
       "file": "IMPLEMENTATION_STATUS.md",
-      "bytes": 5104,
-      "sha256": "24ac573075ccf84e55288bbb1fa6a7c11616db8e165f61a8d5fc482bb72da10e"
+      "bytes": 5537,
+      "sha256": "79281391cd7c850b705a3f444386dbe8b7ddba237a98e393fdea7e15ca9e875c"
     },
     {
       "file": "index.html",
-      "bytes": 5222,
-      "sha256": "5a902f4384ed4de544235af7fefcd872df2138613124d0dc2540db13d9ff8a16"
+      "bytes": 5533,
+      "sha256": "82a3e7947e5a6b88a3904babfb257f0119a16ef8d8d4b7cf9beb937a26390dc3"
     },
     {
       "file": "masters/Dead Current.wav",
@@ -166,8 +167,13 @@
     },
     {
       "file": "MUSIC_INTEGRATION_REPORT.md",
-      "bytes": 4030,
-      "sha256": "21e2c8b73ba26c0b8ba3745ad8e82161e2d0a651d559e86e1d816edd7afdecbc"
+      "bytes": 4896,
+      "sha256": "70e5fefffa47685d6468d8eb0b80be02b3abcc63cb41772aa442fb9111520a1e"
+    },
+    {
+      "file": "MUSIC_PLAYERS.jpg",
+      "bytes": 85068,
+      "sha256": "b9a508d7b588dcff9146eb306ed48299abb47079e1d0222dc9d40504fb357063"
     },
     {
       "file": "poses/CIPHER_seated.png",
@@ -231,13 +237,13 @@
     },
     {
       "file": "QA_REPORT_V3.md",
-      "bytes": 5808,
-      "sha256": "4d1820a50b7a898a078aba9f4d8b0294c000146330726a8cf1b4c2150728e32f"
+      "bytes": 6880,
+      "sha256": "46a6963b8cb59b42929cc53ad410eb4f68a550896c3278d71ced749b6781dcfa"
     },
     {
       "file": "README.md",
-      "bytes": 6012,
-      "sha256": "9c333d54a3772a14bc18c4887a53e4859a381f33fd8177255d4b50c8e19c381a"
+      "bytes": 6189,
+      "sha256": "bd13a23212dec749bceae802f0548a08a952afcf9291aa3fe2750e6feb4239b4"
     },
     {
       "file": "requested-screenshots/01_HERO_ARENA.png",
@@ -401,8 +407,8 @@
     },
     {
       "file": "technical/browser_decode_status.json",
-      "bytes": 701,
-      "sha256": "741570fd73112ad5fbf7ac1d1470ed2e4ef8109ecaa0c199f554d1214c33783f"
+      "bytes": 1086,
+      "sha256": "7c2e9f6ecf22d3373e378950b3d7607696ea738cfab3a77b507ec5edd6a9d24b"
     },
     {
       "file": "technical/capture_states.json",
@@ -412,7 +418,7 @@
     {
       "file": "technical/clip_metadata.json",
       "bytes": 3542,
-      "sha256": "3a97ce59adc3cd60c3f9f1eb2025497b278af8bf6f8cc1073f9cfd08d620f6d6"
+      "sha256": "23ee00df484e6fcbb54b83d8d5dff88e0d22ba289a861c79bfcea3a1bb62970f"
     },
     {
       "file": "technical/decoded_review/browser_00.png",
@@ -556,13 +562,13 @@
     },
     {
       "file": "technical/decoded_review/browser_28.png",
-      "bytes": 1045352,
-      "sha256": "6f06a9569fb45828b6f53763f48fd2972c974b1e21e3755b75e3ef4a423eea85"
+      "bytes": 1046041,
+      "sha256": "87cccd579de6cc12a867e7326c6aa1b49a8431539ff1286b88278156b63a7709"
     },
     {
       "file": "technical/decoded_review/browser_29.png",
-      "bytes": 2528356,
-      "sha256": "8365acaf032af1a644f8aa763a6c28c7e87b34c560c8d9e1f54ed49e05caf954"
+      "bytes": 2529245,
+      "sha256": "714059f5cbdf99a2a453c9f659f72cfbc749bba63c670d40797e5378911990b0"
     },
     {
       "file": "technical/decoded_review/browser_30.png",
@@ -615,9 +621,29 @@
       "sha256": "b7cdab69c7e42c3a89ada9ed5a7102b6b0dee0ffc3a9c607a0994a4b137325e7"
     },
     {
+      "file": "technical/decoded_review/sheet_0.jpg",
+      "bytes": 291135,
+      "sha256": "ab0b0b2be508a479ee04589739ff5988b83b0bbfcd0fc0f7bf804a5ee9d415f2"
+    },
+    {
+      "file": "technical/decoded_review/sheet_1.jpg",
+      "bytes": 350322,
+      "sha256": "bbcaac6d872ba8e8fd29888cdd8d975541c455a3ef85041bb93464b8210a6a70"
+    },
+    {
+      "file": "technical/decoded_review/sheet_2.jpg",
+      "bytes": 343044,
+      "sha256": "09fc3549372d9f35ab0c003988dfaeaf94954e9108c43ca4b130242f9beb907a"
+    },
+    {
+      "file": "technical/decoded_review/sheet_3.jpg",
+      "bytes": 252348,
+      "sha256": "6173317003adfcc5890bbfa88a10098ca291207af861498b45b97c5adba9add3"
+    },
+    {
       "file": "technical/pcm_checks.json",
-      "bytes": 2328,
-      "sha256": "c585e577a724afa9aa9298099813e0e1299f6506a5155c009dee32c1c17b59ab"
+      "bytes": 2327,
+      "sha256": "72e5aee99b4b14430fdf94cd3e319c8514f2e5a29f02496b1c8d04efce71886d"
     },
     {
       "file": "technical/windows-runtime/01_LOADING.png",
@@ -666,8 +692,8 @@
     },
     {
       "file": "WEBGL_V3_MENU.jpg",
-      "bytes": 52739,
-      "sha256": "7a3111dc97baa33dae042c837481be6fc3825ebb6e8da1fbd6b06486cc35f8ff"
+      "bytes": 52831,
+      "sha256": "4ac7f6808711b15df073c5c0c59b391f0131e0a1b1d9d1b7ffcabe462a111c9b"
     }
   ]
 }

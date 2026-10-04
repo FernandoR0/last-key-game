@@ -36,3 +36,7 @@ Git local preparado. Publicación GitHub depende de autenticación; no se afirma
 Checkpoint previo da077c5. Dos builds nuevos (Windows/WebGL) y revisión V3 se documentan en QA_REPORT_V3.md. Tres WAV íntegros, mixer y MusicManager A/B integrados. QA runtime aprobó fuentes persistentes, volumen, intro/skip, pausa/reanudación, ducking NULL y loop por segmento. Ocho clips nuevos con salida MASTER real, sin música añadida después. Los números del replay anterior coinciden con el nuevo replay de cinco rondas; no se fabricaron scores.
 
 No hay handoff V3 final mientras MUSIC GATE siga pendiente de escucha. El handoff V2 es histórico. No se publicó GitHub ni Unity Play. Se preparan archivos de revisión directamente en esta conversación; no se exige traslado manual entre Codex y ChatGPT.
+
+### Corrección de audio WebGL y volumen
+
+Inicio musical diferido hasta AudioClip Loaded con samples positivos y contexto Web Audio running; seek antes de Play. Import default compatible DecompressOnLoad/preload, Windows conserva Streaming. Música +11.2 dB a solicitud de Fernando; ocho clips regrabados y revisados, masters intactos. MUSIC GATE continúa pendiente de aprobación auditiva.

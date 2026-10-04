@@ -19,6 +19,7 @@ namespace LastKey
             while(running)
             {
                 yield return new WaitForEndOfFrame();
+                if(!running)yield break;
                 int count=AudioRenderer.GetSampleCountForCaptureFrame();if(count<=0)continue;
                 using(var samples=new NativeArray<float>(count*2,Allocator.Temp))
                 {

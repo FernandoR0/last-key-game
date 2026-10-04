@@ -98,9 +98,12 @@ namespace LastKey
         bool argsMenuOnly()=>Environment.GetCommandLineArgs().Contains("--music-menu-only");
         void Finish()
         {
+            ready=false;
             if(musicEvidence)GetComponent<MusicCapture>().Stop();else ExportAudio();File.WriteAllText(Path.Combine(root,"capture_states.json"),JsonUtility.ToJson(new Audit{captures=audit.ToArray()},true));Debug.Log("LAST_KEY_V2_EVIDENCE_COMPLETE");
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.Exit(0);
+#else
+            Application.Quit();
 #endif
         }
         [Serializable]class Audit{public State[] captures;}
