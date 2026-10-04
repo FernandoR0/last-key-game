@@ -1,79 +1,28 @@
-# Asset manifest — LAST KEY
+# LAST KEY — assets visuales y de audio activos
 
+Costo adicional: S/0. Las piezas existentes se adaptan, importan y recolorean; no se modeló ropa nueva ni se generaron assets con IA en esta fase.
 
-
-Costo adicional total: **S/0**. No se han contratado suscripciones, créditos ni assets pagos.
-
-
-
-| Recurso | Autor/fuente | URL | Licencia | Archivo utilizado | Uso | Atribución |
-
-|---|---|---|---|---|---|---|
-
-| Metal Office Desk | Ulan Cabanilla / Poly Haven | https://polyhaven.com/a/metal_office_desk | CC0 | `Assets/Resources/PolyHaven/metal_office_desk.fbx`, `metal_office_desk_diff_1k.jpg` | Cuatro estaciones de Arena | No obligatoria; crédito incluido |
-
-| Metal Plate | Rob Tuytel / Poly Haven | https://polyhaven.com/a/metal_plate | CC0 | `Assets/Resources/PolyHaven/metal_plate_diff_1k.jpg` | Piso de Arena | No obligatoria; crédito incluido |
-
-| Arena, paredes, tuberías, racks, PC, teclados, monitores, sillas, collares | Autoría procedural de este proyecto | `Assets/LastKey/Runtime/ArenaFactory.cs` | Código y geometría originales del proyecto | Generados en runtime | Arena | Sin requisito de tercero |
-
-| Universal Base Characters Standard | Quaternius | https://quaternius.com/packs/universalbasecharacters.html | CC0 1.0; License_Standard.txt incluido | Assets/Resources/Quaternius: bases FullBody male/female, cabello, barba, ojos y texturas | Cuatro variantes Humanoid CIPHER/UPLINK/RELAY/VECTOR; vestuario y animación procedural propios | Crédito incluido |
-
-| TextMeshPro Essential Resources y shaders | Unity Technologies | https://docs.unity3d.com/Packages/com.unity.ugui@2.0/manual/TMP.html | Licencias incluidas en el paquete Unity | `Assets/TextMesh Pro/` | HUD y scoreboard | Conservar avisos incluidos |
-
-| Liberation Sans | Google (2010) / Red Hat (2012); distribuido en TMP | Fuente y licencia dentro de `Assets/TextMesh Pro/Fonts/` | SIL Open Font License 1.1 según archivo incluido | `LiberationSans.ttf`, `LiberationSans SDF.asset` y fallback | Texto | Conservar licencia de la fuente |
-
-
-
-Licencia Poly Haven verificada: https://polyhaven.com/license . API pública usada para obtener los enlaces directos de los archivos, sin descargar renders promocionales como gameplay.
-
-
-
-## Recursos preferidos revisados, todavía no integrados
-
-
-
-- MakeHuman: https://www.makehumancommunity.org/ . No se ha usado ningún modelo ni asset adicional; no se atribuyen estos avatares a MakeHuman.
-
-- Mixamo: https://www.mixamo.com/ . Ningún rig/animación descargado; no dependencia de login para el MVP.
-
-- Omie's Office Set: https://omies-assets.itch.io/omies-assets-office-set . Referencia de mobiliario, pack anunciado CC0/name-your-own-price; no archivo del pack incorporado.
-
-- ambientCG: https://ambientcg.com/ . Sin textura incorporada.
-
-- Poly Haven Modular Industrial Pipes y Utility Box: referencias; la tubería y los racks actuales son primitivas propias, no estos modelos.
-
-
-
-Los placeholders primitivos se sustituyeron por dos bases Quaternius y cuatro variantes de piel, proporciones, peinado y vestuario. Animación original sobre huesos Humanoid: sentado, idle seated, typing, error, eliminación y victoria. Mixamo no fue necesario. Las capturas muestran estos modelos reales en Unity; ninguna es generada por IA.
-
-
-## Incorporaciones V2
-
-- Ropa: shader original `Assets/Resources/LastKeyClothing.shader` y colores de vértice sobre las bases Quaternius CC0; no nueva geometría generada por IA.
-- Animaciones originales: IK Humanoid, ocho estados, intro de despertar. Sin clips Mixamo descargados.
-- Sonido original sintetizado en `GameAudio.cs`: ambiente, typing, error, combo, warning, NULL, ECHO, eliminación, ronda y victoria. Sin música de terceros ni costo.
-- Material eléctrico URP referenciado en Resources para que el shader forme parte del build.
-- Sillas con asiento ajustado y apoyo de pies: geometría original del proyecto.
-
-
-## Realistic character evaluation — 2026-10-03 (not final assets)
-
-Renderpeople free rigged/animated samples: https://renderpeople.com/free-3d-people/
-License checked before download: https://renderpeople.com/general-terms-and-conditions/ (version 2024-12-13), sections 2.5, 4.1–4.3. Free license permits games and rendered images, but prohibits redistribution of individual source assets. Evaluation files remain outside Assets and Git. No Renderpeople source files may be added to public GitHub or the handoff ZIP. Compatibility and availability of four suitable distinct characters remain unverified. No character quality PASS is declared.
-
-## Supplied music masters — preserved 2026-10-03
-
-Iron Dominion.wav, Dead Current.wav, Mainframe.wav: supplied by Fernando for this integration. Copies in Assets/Audio/Music/Masters are byte-identical (SHA-256 in work/game/music-analysis.json). No music generation or paid service. No third-party music license inferred from file names. Full auditory verification remains pending.
-
-## Reemplazo realista en evaluación local
-
-| Identidad | Asset original Renderpeople | Ropa existente | Adaptación |
+| Recurso activo | Fuente original | Licencia | Uso real |
 |---|---|---|---|
-| CIPHER / Valeria Rojas | rp_carla_rigged_001_u3d | Chaqueta, pantalón y zapatos del modelo | Acento teal oscuro; altura 1.73 m |
-| UPLINK / Ethan Cole | rp_eric_rigged_001_u3d | Camisa, chaleco, corbata y pantalón | Acento azul; altura 1.81 m |
-| RELAY / Akira Mori | rp_manuel_animated_001_dancing | Camiseta, jeans y zapatillas | Acento verde apagado; altura 1.76 m; masculino |
-| VECTOR / Noah Bennett | rp_nathan_animated_003_walking | Camiseta, jeans y zapatillas | Acento rojo oscuro; altura 1.85 m |
+| Rain v3 | https://studio.blender.org/characters/rain/v3/ | CC BY | CIPHER: cuerpo, vestuario moderno, pelo y expresiones del rig original |
+| Snow v4 | https://studio.blender.org/characters/snow/v4/ | CC BY | UPLINK, RELAY, VECTOR: ropa civil, anatomías adaptadas y expresiones |
+| Cabello y barba Quaternius | https://quaternius.com/packs/universalbasecharacters.html | CC0 | Peinados y barba diferenciados; no prendas medievales |
+| Universal Animation Library Standard | https://quaternius.com/packs/universalanimationlibrary.html | CC0 | Sentado, conversación/gesto corporal, reacción de impacto; versión Standard gratuita |
+| CMU 79/85, typing on a laptop | https://mocap.cs.cmu.edu/search.php?subjectnumber=79 | Uso/modificación/redistribución permitidos: https://mocap.cs.cmu.edu/faqs.php | Base corporal de tecleo, retarget Humanoid. La pierna derecha de la captura carece de movimiento: los contactos y pies se resuelven con IK de la silla. No es mocap individual de cada dedo |
+| amc2bvh | https://github.com/thcopeland/amc2bvh | MIT | Conversión ASF/AMC a BVH con fuente compilada localmente; herramienta de trabajo |
+| Omie's Office Set | https://omies-assets.itch.io/omies-assets-office-set | CC0 | Escritorios y sillas importados. Ningún monitor ni PC se usa en las estaciones |
+| Kenney Space Station Kit | https://kenney.nl/assets/space-station-kit | CC0 | Paredes, puerta y piso modulares; materiales adaptados |
+| Ultimate Modular Sci-Fi Pack | https://quaternius.com/packs/ultimatemodularscifi.html | CC0 | Tuberías, columnas y estantes |
+| Xeno Tracking Collar | https://3dassets.dev/assets/xeno-species-and-alien-creatures-xeno-tracking-collar-215adb28 | CC0 declarada por proveedor | Collar y reutilización de su banda para sujeciones. El proveedor identifica su asset como creado con herramientas de IA; aquí no se generó ni se pagó ninguno |
+| URP Toon Lit Shader Example | https://github.com/ColinLeung-NiloCat/UnityURPToonLitShaderExample | MIT | Personajes estilo historieta; se conserva LICENSE. No se utiliza NiloToon de pago |
+| Interface Sounds | https://kenney.nl/assets/interface-sounds | CC0 | Tecleo, error, combo, confirmaciones y selección |
+| Sci-Fi Sounds | https://kenney.nl/assets/sci-fi-sounds | CC0 | NULL y descarga del collar |
+| aargh3, JohnsonBrandEditing | https://freesound.org/people/JohnsonBrandEditing/sounds/173944/ | CC0 | Grito de eliminación. Solo aargh3: no se distribuyen los otros archivos con licencia CC BY del archivo original |
+| Mainframe / Iron Dominion / Dead Current | Archivos WAV proporcionados por Fernando | Autorización del usuario para LAST KEY | Música original entregada, sin modificar sus archivos de origen |
+| TextMeshPro / URP | Unity | Licencias de los paquetes | Renderizado y texto físico de la pantalla táctil |
 
-Fuente: https://renderpeople.com/free-3d-people/ . Descarga directa oficial FBX de paquetes rigged y animated. Licencia gratuita propietaria Renderpeople, https://renderpeople.com/general-terms-and-conditions/ . Los cuatro Humanoid importan como isValid/isHuman; aproximadamente 11.4k–13.1k vértices por personaje. Ropa incluida, no modelada desde cero. Se conservan piel y cabello; mask01 recolorea la prenda superior y mask02 pantalones. Texturas runtime máximo 2048.
+Atribución requerida de Blender Studio: **Rain Rig (CC) Blender Foundation | studio.blender.org**; **Snow Rig (CC) Blender Foundation | studio.blender.org**. Adaptaciones: skeleton Humanoid ligero, conversión FBX, seis expresiones horneadas desde los controles originales, retirada de superficies interiores de prendas, máscaras de piel cubierta y recolores/variantes. Se conserva la licencia y crédito en Assets/LastKey/Visual/Characters/BlenderStudio/LICENSE.md.
 
-Rig y skinning originales. El juego utiliza su animación procedural existente adaptada a estos rigs: sentado, typing normal/rápido, error, Danger, eliminación, victoria de ronda/final y despertar. No se afirma haber utilizado Mixamo ni mocap descargado para mecanografía. Los modelos animated se usan con sus rigs, sin reproducir baile/caminata en gameplay. No redistribuir fuentes, texturas, prefabs o derivados Renderpeople en GitHub público, bundle fuente ni ZIP de handoff. Assets/PrivateRenderpeople está excluido de Git; el checkpoint anterior permite restaurar el fallback Quaternius.
+Los assets antiguos Poly Haven, modelos privados y candidatos no seleccionados son referencias históricas; no representan los personajes ni las estaciones activos. Los archivos privados de Renderpeople no deben incluirse en un handoff público.
+
+La pantalla táctil y las teclas se componen mediante elementos de renderizado de Unity: es la superficie física del mundo. La interfaz flotante, los menús, controles de interacción y multijugador quedan en la parte asignada a Fernando.

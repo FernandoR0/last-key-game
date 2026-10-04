@@ -25,7 +25,7 @@ namespace LastKey
             host=GetComponent<LastKeyGame>();originalVolume=host.Music.Volume;
             yield return new WaitForSeconds(4);
             Check(Sources().Length==2,"exactly two persistent music sources");
-            Check(host.Music.TrackName=="Mainframe","menu has supplied track");
+            Check(host.Music.TrackName=="Mainframe","menu has supplied track");Check(Sources().Count(s=>s.isPlaying)<=1,"music sources never overlap");
             host.Music.SetVolume(.37f);Check(Mathf.Abs(PlayerPrefs.GetFloat("LAST_KEY_MUSIC_VOLUME")-.37f)<.001f,"volume survives PlayerPrefs save");host.Music.SetVolume(originalVolume);
             host.OpenCharacterSelect();host.ChooseCharacter(0);host.ConfirmCharacter();host.BeginIntro();yield return new WaitForSeconds(1);
             Check(host.Music.TrackName=="Iron Dominion"&&host.Music.TrackTime<3,"wake-up uses intact soft opening");
@@ -40,7 +40,7 @@ namespace LastKey
             Check(Sources().Sum(s=>s.volume)>before*.9f,"duck recovers");
             var source=Sources().First(s=>s.isPlaying);source.timeSamples=Mathf.RoundToInt(59.2f*source.clip.frequency);yield return new WaitForSeconds(1.5f);
             Check(host.Music.TrackTime>=16&&host.Music.TrackTime<20&&Sources().Length==2,"loop crossfade returns to chosen segment with no new sources");
-            host.Music.SetVolume(originalVolume);Debug.Log("LAST_KEY_MUSIC_RUNTIME_QA_COMPLETE");
+            host.Music.SetVolume(0);yield return new WaitForSeconds(.7f);Check(Sources().Sum(s=>s.volume)<.001f,"music volume zero mutes sources");host.Music.SetVolume(originalVolume);host.StopSessionAudio();Check(GetComponentsInChildren<AudioSource>().All(s=>!s.isPlaying),"session shutdown stops every owned audio source");Debug.Log("LAST_KEY_MUSIC_RUNTIME_QA_COMPLETE");
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.Exit(0);
 #endif

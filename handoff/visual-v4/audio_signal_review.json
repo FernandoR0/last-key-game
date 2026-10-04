@@ -1,0 +1,58 @@
+[
+  {
+    "clip": "01_music_menu",
+    "samples": 770048,
+    "peak": 0.3665575683116913,
+    "rms": 0.07420054823160172,
+    "clipped_samples": 0
+  },
+  {
+    "clip": "02_music_wakeup_to_type",
+    "samples": 3078144,
+    "peak": 0.6132453083992004,
+    "rms": 0.11430995166301727,
+    "clipped_samples": 0
+  },
+  {
+    "clip": "03_music_gameplay",
+    "samples": 575488,
+    "peak": 0.5838173031806946,
+    "rms": 0.12898719310760498,
+    "clipped_samples": 0
+  },
+  {
+    "clip": "04_music_danger",
+    "samples": 385024,
+    "peak": 0.5870374441146851,
+    "rms": 0.11302013695240021,
+    "clipped_samples": 0
+  },
+  {
+    "clip": "05_music_null_echo",
+    "samples": 2686976,
+    "peak": 0.6805797219276428,
+    "rms": 0.1281423717737198,
+    "clipped_samples": 0
+  },
+  {
+    "clip": "06_music_elimination",
+    "samples": 575488,
+    "peak": 0.7649890184402466,
+    "rms": 0.10137243568897247,
+    "clipped_samples": 0
+  },
+  {
+    "clip": "07_music_round_result",
+    "samples": 579584,
+    "peak": 0.3644268810749054,
+    "rms": 0.07415938377380371,
+    "clipped_samples": 0
+  },
+  {
+    "clip": "08_music_final_winner",
+    "samples": 1351680,
+    "peak": 0.6300544738769531,
+    "rms": 0.13860632479190826,
+    "clipped_samples": 0
+  }
+]

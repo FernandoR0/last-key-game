@@ -21,7 +21,7 @@ namespace LastKey.Editor
                 mixer=(AudioMixer)type.GetMethod("CreateMixerControllerAtPath",BindingFlags.Public|BindingFlags.Static).Invoke(null,new object[]{path});
                 var master=type.GetProperty("masterGroup").GetValue(mixer);((UnityEngine.Object)master).name="MASTER";
                 var snapshot=type.GetProperty("startSnapshot").GetValue(mixer);
-                string[] names={"MUSIC","SFX","UI","AMBIENCE"};float[] levels={-6,0,-3,-14};
+                string[] names={"MUSIC","SFX","UI","AMBIENCE"};float[] levels={0,0,-3,-14};
                 for(int i=0;i<names.Length;i++)
                 {
                     var group=Call(mixer,"CreateNewGroup",names[i],false);Call(mixer,"AddChildToParent",group,master);
@@ -31,7 +31,7 @@ namespace LastKey.Editor
             }
             // Apply updated levels to existing mixers as well as fresh installations.
             var startSnapshot=mixer.GetType().GetProperty("startSnapshot").GetValue(mixer);
-            Call(mixer.FindMatchingGroups("MUSIC")[0],"SetValueForVolume",mixer,startSnapshot,-6f);
+            Call(mixer.FindMatchingGroups("MUSIC")[0],"SetValueForVolume",mixer,startSnapshot,0f);
             EditorUtility.SetDirty(mixer);
             var library=AssetDatabase.LoadAssetAtPath<MusicLibrary>("Assets/Resources/Audio/MusicLibrary.asset");
             if(library==null){library=ScriptableObject.CreateInstance<MusicLibrary>();AssetDatabase.CreateAsset(library,"Assets/Resources/Audio/MusicLibrary.asset");}

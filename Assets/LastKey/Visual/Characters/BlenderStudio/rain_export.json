@@ -1,0 +1,175 @@
+{
+  "kind": "rain",
+  "bones": [
+    "Hips",
+    "Spine",
+    "Chest",
+    "UpperChest",
+    "Neck",
+    "Head",
+    "LeftShoulder",
+    "LeftUpperArm",
+    "LeftLowerArm",
+    "LeftHand",
+    "LeftUpperLeg",
+    "LeftLowerLeg",
+    "LeftFoot",
+    "LeftToes",
+    "LeftThumbProximal",
+    "LeftThumbIntermediate",
+    "LeftThumbDistal",
+    "LeftIndexProximal",
+    "LeftIndexIntermediate",
+    "LeftIndexDistal",
+    "LeftMiddleProximal",
+    "LeftMiddleIntermediate",
+    "LeftMiddleDistal",
+    "LeftRingProximal",
+    "LeftRingIntermediate",
+    "LeftRingDistal",
+    "LeftLittleProximal",
+    "LeftLittleIntermediate",
+    "LeftLittleDistal",
+    "RightShoulder",
+    "RightUpperArm",
+    "RightLowerArm",
+    "RightHand",
+    "RightUpperLeg",
+    "RightLowerLeg",
+    "RightFoot",
+    "RightToes",
+    "RightThumbProximal",
+    "RightThumbIntermediate",
+    "RightThumbDistal",
+    "RightIndexProximal",
+    "RightIndexIntermediate",
+    "RightIndexDistal",
+    "RightMiddleProximal",
+    "RightMiddleIntermediate",
+    "RightMiddleDistal",
+    "RightRingProximal",
+    "RightRingIntermediate",
+    "RightRingDistal",
+    "RightLittleProximal",
+    "RightLittleIntermediate",
+    "RightLittleDistal"
+  ],
+  "meshes": [
+    {
+      "name": "rain_rain-body",
+      "vertices": 6128,
+      "morphs": {}
+    },
+    {
+      "name": "rain_rain-eyebrows",
+      "vertices": 296,
+      "morphs": {
+        "Basis": 0.0,
+        "Blink": 0.002376442818057408,
+        "Alert": 0.01364518916569179,
+        "Pain": 0.009083714529106784,
+        "Smile": 1.197320124506071e-07,
+        "GazeLeft": 0.0,
+        "GazeRight": 0.0
+      }
+    },
+    {
+      "name": "rain_rain-eyelashes",
+      "vertices": 240,
+      "morphs": {
+        "Basis": 0.0,
+        "Blink": 0.0,
+        "Alert": 0.0,
+        "Pain": 0.0,
+        "Smile": 0.0,
+        "GazeLeft": 1.3675215441922094e-06,
+        "GazeRight": 1.3764027641720162e-06
+      }
+    },
+    {
+      "name": "rain_rain-eyes",
+      "vertices": 1418,
+      "morphs": {
+        "Basis": 0.0,
+        "Blink": 0.0,
+        "Alert": 0.0,
+        "Pain": 0.0,
+        "Smile": 0.0,
+        "GazeLeft": 2.4880624621228007e-05,
+        "GazeRight": 2.4893134598234475e-05
+      }
+    },
+    {
+      "name": "rain_rain-gums_lower",
+      "vertices": 3068,
+      "morphs": {
+        "Basis": 0.0,
+        "Blink": 0.0,
+        "Alert": 0.014743539194120208,
+        "Pain": 0.031347915191594335,
+        "Smile": 0.0,
+        "GazeLeft": 0.0,
+        "GazeRight": 0.0
+      }
+    },
+    {
+      "name": "rain_rain-gums_upper",
+      "vertices": 3069,
+      "morphs": {
+        "Basis": 0.0,
+        "Blink": 0.0,
+        "Alert": 0.0,
+        "Pain": 6.760029542909964e-07,
+        "Smile": 0.0,
+        "GazeLeft": 0.0,
+        "GazeRight": 0.0
+      }
+    },
+    {
+      "name": "rain_rain-hair_main",
+      "vertices": 2204,
+      "morphs": {}
+    },
+    {
+      "name": "rain_rain-head",
+      "vertices": 6395,
+      "morphs": {
+        "Basis": 0.0,
+        "Blink": 0.034621404549756186,
+        "Alert": 0.016822964445257927,
+        "Pain": 0.03576956148830852,
+        "Smile": 0.0167221472330517,
+        "GazeLeft": 1.2372956018847865e-06,
+        "GazeRight": 1.236801989453586e-06
+      }
+    },
+    {
+      "name": "rain_rain-jeans",
+      "vertices": 4280,
+      "morphs": {}
+    },
+    {
+      "name": "rain_rain-shoes",
+      "vertices": 6634,
+      "morphs": {}
+    },
+    {
+      "name": "rain_rain-tongue",
+      "vertices": 275,
+      "morphs": {
+        "Basis": 0.0,
+        "Blink": 0.0,
+        "Alert": 0.013180909508692946,
+        "Pain": 0.028025846015164085,
+        "Smile": 0.0,
+        "GazeLeft": 0.0,
+        "GazeRight": 0.0
+      }
+    },
+    {
+      "name": "rain_rain-top",
+      "vertices": 1632,
+      "morphs": {}
+    }
+  ]
+}

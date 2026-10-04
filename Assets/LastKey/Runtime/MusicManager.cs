@@ -8,7 +8,7 @@ namespace LastKey
     public sealed class MusicManager:MonoBehaviour
     {
         public const float GameplayOffset=16f;
-        public const float IntroSeconds=GameplayOffset-3f;
+        public const float IntroSeconds=26f;
         public MusicState State {get;private set;}
         public float Volume {get;private set;}
         public string TrackName=>sources==null||sources[active].clip==null?"":sources[active].clip.name;
@@ -40,11 +40,11 @@ namespace LastKey
                 case ExperienceState.RoundIntro:State=MusicState.WAKE_UP;Begin(library.IronDominion,0,16,60,1);break;
                 case ExperienceState.Countdown:break; // Continue the soft opening; TYPE arrives at the musical entry.
                 case ExperienceState.Gameplay:State=MusicState.GAMEPLAY;if(TrackName!=library.IronDominion.name||TrackTime<GameplayOffset-.2f)Begin(library.IronDominion,GameplayOffset,16,60,.5f);break;
-                case ExperienceState.RoundResult:State=MusicState.ROUND_RESULT;Change(library.Mainframe,0,0,16,1);break;
+                case ExperienceState.RoundResult:State=MusicState.ROUND_RESULT;Change(library.Mainframe,0,0,library.Mainframe.length-.05f,1);break;
                 case ExperienceState.FinalResult:State=MusicState.VICTORY;Change(library.IronDominion,40,40,60,1.2f);break;
-                case ExperienceState.CharacterSelect:State=MusicState.CHARACTER_SELECT;Change(library.Mainframe,0,0,16,1);break;
-                case ExperienceState.MatchSetup:State=MusicState.ROUND_PREPARE;Change(library.Mainframe,0,0,16,1);break;
-                case ExperienceState.Boot:case ExperienceState.Loading:case ExperienceState.MainMenu:case ExperienceState.ModeSelect:State=MusicState.MENU;Change(library.Mainframe,0,0,16,1);break;
+                case ExperienceState.CharacterSelect:State=MusicState.CHARACTER_SELECT;Change(library.Mainframe,0,0,library.Mainframe.length-.05f,1);break;
+                case ExperienceState.MatchSetup:State=MusicState.ROUND_PREPARE;Change(library.Mainframe,0,0,library.Mainframe.length-.05f,1);break;
+                case ExperienceState.Boot:case ExperienceState.Loading:case ExperienceState.MainMenu:case ExperienceState.ModeSelect:State=MusicState.MENU;Change(library.Mainframe,0,0,library.Mainframe.length-.05f,1);break;
             }
         }
         void OnCue(string cue)
@@ -72,6 +72,7 @@ namespace LastKey
 #endif
             if(!canPlay){pendingClip=clip;pendingOffset=offset;pendingStart=start;pendingEnd=end;pendingSeconds=seconds;if(clip.loadState==AudioDataLoadState.Unloaded)clip.LoadAudioData();return;}
             pendingClip=null;
+            sources[active].Stop();sources[active].volume=0;
             int next=1-active;sources[next].Stop();sources[next].clip=clip;
             sources[next].timeSamples=Mathf.Clamp(Mathf.RoundToInt(offset*clip.frequency),0,clip.samples-1);sources[next].Play();
             sources[next].volume=0;active=next;loopStart=start;loopEnd=Mathf.Min(end,clip.length-.05f);
@@ -108,12 +109,14 @@ namespace LastKey
             }
             if(pendingClip==null&&!fading&&sources[active].clip!=null&&sources[active].time>=loopEnd-fadeSeconds)Begin(sources[active].clip,loopStart,loopStart,loopEnd,1);
             float t=Mathf.Clamp01((Time.time-fadeStart)/fadeSeconds);
-            gains[active]=fading?Mathf.Sin(t*Mathf.PI*.5f):1;gains[1-active]=fading?Mathf.Cos(t*Mathf.PI*.5f):0;
+            gains[active]=fading?Mathf.Sin(t*Mathf.PI*.5f):1;gains[1-active]=0;
             if(fading&&t>=1){fading=false;sources[1-active].Stop();}
             float duck=Time.time<duckUntil?Mathf.Pow(10,-duckDb/20):1;
-            float level=Volume*.65f*(paused?.45f:1)*duck;
+            float level=Volume*.9f*(paused?.45f:1)*duck;
             for(int i=0;i<2;i++)sources[i].volume=Mathf.MoveTowards(sources[i].volume,gains[i]*level,Time.deltaTime*1.5f);
         }
-        void OnDestroy(){if(host!=null&&host.Sound!=null)host.Sound.CuePlayed-=OnCue;}
+        public void StopSessionAudio(){pendingClip=null;if(sources!=null)foreach(var source in sources)source.Stop();ready=false;}
+        void OnApplicationQuit(){StopSessionAudio();}
+        void OnDestroy(){StopSessionAudio();if(host!=null&&host.Sound!=null)host.Sound.CuePlayed-=OnCue;}
     }
 }

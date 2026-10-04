@@ -2,7 +2,7 @@
 
 namespace LastKey {public sealed class WardrobeShow:MonoBehaviour {
 
-IEnumerator Start(){var host=GetComponent<LastKeyGame>();host.enabled=false;host.Canvas.enabled=false;host.Sound.enabled=false;host.Arena.Root.SetActive(false);foreach(var cam in FindObjectsByType<Camera>(FindObjectsSortMode.None))cam.enabled=false;
+IEnumerator Start(){var host=GetComponent<LastKeyGame>();host.enabled=false;host.Canvas.enabled=false;host.Sound.enabled=false;host.StopSessionAudio();host.Music.enabled=false;host.Arena.Root.SetActive(false);foreach(var cam in FindObjectsByType<Camera>(FindObjectsSortMode.None))cam.enabled=false;
 
 foreach(var oldLight in FindObjectsByType<Light>(FindObjectsSortMode.None))oldLight.enabled=false;var camera=new GameObject("Wardrobe review camera").AddComponent<Camera>();camera.clearFlags=CameraClearFlags.SolidColor;camera.backgroundColor=new Color(.045f,.055f,.07f);camera.orthographic=true;camera.orthographicSize=1.45f;camera.transform.position=new Vector3(0,1,7);camera.transform.LookAt(new Vector3(0,1,0));camera.fieldOfView=40;
 
@@ -32,7 +32,7 @@ UnityEditor.EditorApplication.Exit(0);
 
 }
 
-static void Relax(Animator a){foreach(var side in new[]{0,1}){var u=a.GetBoneTransform(side==0?HumanBodyBones.LeftUpperArm:HumanBodyBones.RightUpperArm);var l=a.GetBoneTransform(side==0?HumanBodyBones.LeftLowerArm:HumanBodyBones.RightLowerArm);var h=a.GetBoneTransform(side==0?HumanBodyBones.LeftHand:HumanBodyBones.RightHand);var handRotation=h.rotation;u.rotation=Quaternion.FromToRotation(l.position-u.position,new Vector3(Mathf.Sign(u.position.x-a.GetBoneTransform(HumanBodyBones.Hips).position.x)*.32f,-1,.08f))*u.rotation;l.rotation=Quaternion.FromToRotation(h.position-l.position,new Vector3(Mathf.Sign(u.position.x-a.GetBoneTransform(HumanBodyBones.Hips).position.x)*.12f,-1,.02f))*l.rotation;h.rotation=Quaternion.FromToRotation(h.GetComponentsInChildren<Transform>().First(t=>t.name.Contains("middle_01")).position-h.position,Vector3.down)*h.rotation;
+static void Relax(Animator a){foreach(var side in new[]{0,1}){var u=a.GetBoneTransform(side==0?HumanBodyBones.LeftUpperArm:HumanBodyBones.RightUpperArm);var l=a.GetBoneTransform(side==0?HumanBodyBones.LeftLowerArm:HumanBodyBones.RightLowerArm);var h=a.GetBoneTransform(side==0?HumanBodyBones.LeftHand:HumanBodyBones.RightHand);var handRotation=h.rotation;u.rotation=Quaternion.FromToRotation(l.position-u.position,new Vector3(Mathf.Sign(u.position.x-a.GetBoneTransform(HumanBodyBones.Hips).position.x)*.32f,-1,.08f))*u.rotation;l.rotation=Quaternion.FromToRotation(h.position-l.position,new Vector3(Mathf.Sign(u.position.x-a.GetBoneTransform(HumanBodyBones.Hips).position.x)*.12f,-1,.02f))*l.rotation;h.rotation=Quaternion.FromToRotation(h.GetComponentsInChildren<Transform>().First(t=>t.name.Contains("middle_01")||t.name.Contains("MiddleProximal")).position-h.position,Vector3.down)*h.rotation;
 
 var t=a.GetBoneTransform(side==0?HumanBodyBones.LeftUpperLeg:HumanBodyBones.RightUpperLeg);var c=a.GetBoneTransform(side==0?HumanBodyBones.LeftLowerLeg:HumanBodyBones.RightLowerLeg);var f=a.GetBoneTransform(side==0?HumanBodyBones.LeftFoot:HumanBodyBones.RightFoot);var footRotation=f.rotation;t.rotation=Quaternion.FromToRotation(c.position-t.position,Vector3.down)*t.rotation;c.rotation=Quaternion.FromToRotation(f.position-c.position,Vector3.down)*c.rotation;f.rotation=footRotation;}
 

@@ -12,13 +12,17 @@ namespace LastKey
         public TMP_Text Board;
         public Transform[] Stations=new Transform[4];
         public TMP_Text[] Screens=new TMP_Text[4];
+        public Renderer[] Displays=new Renderer[4];
+        public TouchKeyboardVisual[] TouchKeys=new TouchKeyboardVisual[4];
+        readonly int[] priorErrors=new int[4],priorCombos=new int[4];
+        readonly float[] errorUntil=new float[4],comboUntil=new float[4];
         public int HumanIndex;
         readonly Color metal = new Color(.11f,.14f,.17f);
         readonly Color cyan = new Color(.1f,.7f,.72f);
-        public readonly Color[] Colors = {new Color(.1f,.65f,.7f),new Color(.25f,.43f,.72f),new Color(.40f,.51f,.30f),new Color(.62f,.22f,.25f)};
+        public readonly Color[] Colors = {new Color(.20f,.84f,.81f),new Color(.30f,.55f,1f),new Color(.71f,.55f,1f),new Color(.96f,.71f,.33f)};
         Material Mat(Color c, bool glow=false)
         {
-            var m = new Material(Shader.Find("Universal Render Pipeline/Lit")); m.color=c;
+            var m = glow?VisualProps.Surface(c,true):VisualProps.EnvironmentSurface(c);
             if(glow) {m.EnableKeyword("_EMISSION");m.SetColor("_EmissionColor",c*1.8f);} return m;
         }
         GameObject Shape(string name, PrimitiveType type, Transform parent, Vector3 p, Vector3 scale, Color c, bool glow=false)
@@ -36,64 +40,60 @@ namespace LastKey
         {
             Root=new GameObject("Arena");var env=Group("Environment",Root.transform);
             var floor=Box("Floor",env,new Vector3(0,-.13f,0),new Vector3(13,.25f,10),metal);
-            var floorTex=Resources.Load<Texture2D>("PolyHaven/metal_plate_diff_1k");
-            if(floorTex!=null){floor.GetComponent<Renderer>().material.mainTexture=floorTex;floor.GetComponent<Renderer>().material.mainTextureScale=new Vector2(13,10);floor.GetComponent<Renderer>().material.color=new Color(.45f,.47f,.5f);}
-            for(int x=-6;x<=6;x++) Box("Floor seam",env,new Vector3(x,.005f,0),new Vector3(.015f,.01f,10),new Color(.2f,.23f,.25f));
+            for(int x=-5;x<=5;x+=2)for(int z=-4;z<=4;z+=2)
+                VisualProps.Fit("kenney-floor-panel",env,new Vector3(x,.022f,z),new Vector3(1.98f,.045f,1.98f),new Color(.12f,.16f,.22f));
             Box("Rear wall",env,new Vector3(0,2.1f,4.8f),new Vector3(13,4.3f,.2f),metal);
             Box("Left wall",env,new Vector3(-6.5f,2,0),new Vector3(.2f,4.2f,10),metal);
             Box("Right wall",env,new Vector3(6.5f,2,0),new Vector3(.2f,4.2f,10),metal);
-            for(int x=-6;x<=6;x+=2) Box("Wall rib",env,new Vector3(x,2.1f,4.62f),new Vector3(.12f,4.2f,.15f),new Color(.23f,.26f,.28f));
-            var pipes=Group("Pipes",env);
-            for(int i=0;i<3;i++) Limb("Modular pipe",pipes,new Vector3(-6,3.3f+i*.23f,4.4f),new Vector3(6,3.3f+i*.23f,4.4f),.1f,new Color(.35f,.37f,.39f));
-            Limb("Down pipe",pipes,new Vector3(-5.8f,.4f,4.4f),new Vector3(-5.8f,3.8f,4.4f),.13f,new Color(.35f,.37f,.39f));
+            for(int x=-5;x<=5;x+=2)
+                VisualProps.Fit(x==-1||x==1?"kenney-wall-detail":"kenney-wall",env,new Vector3(x,2.1f,4.62f),new Vector3(1.98f,4.2f,.22f),new Color(.30f,.36f,.43f));
+            var door=VisualProps.Fit("kenney-door-double-closed",env,new Vector3(5.35f,1.45f,4.36f),new Vector3(1.5f,2.9f,.18f),new Color(.42f,.48f,.55f));
+            for(int side=-1;side<=1;side+=2)for(int z=-3;z<=3;z+=2)
+            {
+                var wall=VisualProps.Fit("kenney-wall-detail",env,new Vector3(side*6.36f,2,z),new Vector3(1.98f,4,.22f),new Color(.24f,.31f,.39f));
+                wall.transform.RotateAround(new Vector3(side*6.36f,2,z),Vector3.up,side*90);
+            }
+            VisualProps.Fit("Pipes",env,new Vector3(-4.6f,2.5f,4.48f),new Vector3(2.6f,2.2f,.18f),new Color(.22f,.29f,.35f));
             for(int side=-1;side<=1;side+=2)
             {
-                var rack=Group("ServerRack_"+side,env); rack.localPosition=new Vector3(side*5.4f,0,3.5f);
-                Box("Cabinet",rack,new Vector3(0,1.2f,0),new Vector3(.8f,2.4f,.7f),new Color(.045f,.06f,.075f));
-                for(int row=0;row<8;row++) {Box("Server",rack,new Vector3(0,.35f+row*.25f,-.39f),new Vector3(.66f,.18f,.08f),metal);Box("Status LED",rack,new Vector3(.25f,.35f+row*.25f,-.44f),new Vector3(.04f,.03f,.01f),cyan,true);}
+                VisualProps.Fit("Props_Shelf_Tall",env,new Vector3(side*5.25f,1.3f,3.9f),new Vector3(.9f,2.6f,.75f),new Color(.065f,.1f,.15f));
+                VisualProps.Fit("Column_Slim",env,new Vector3(side*6.2f,2,3.9f),new Vector3(.32f,4,.35f),new Color(.16f,.22f,.29f));
                 Box("Emergency light",env,new Vector3(side*5.2f,3,4.48f),new Vector3(.6f,.13f,.07f),new Color(.9f,.32f,.12f),true);
             }
             var stations=Group("Stations",Root.transform);
             for(int i=0;i<4;i++)
             {
                 var station=Group("Station_P"+(i+1),stations);Stations[i]=station;
-                var deskAsset=Resources.Load<GameObject>("PolyHaven/metal_office_desk");
-                if(deskAsset!=null)
-                {
-                    var desk=Object.Instantiate(deskAsset,station);desk.name="PolyHaven metal_office_desk";
-                    var renderers=desk.GetComponentsInChildren<Renderer>();var bounds=renderers[0].bounds;
-                    foreach(var r in renderers)bounds.Encapsulate(r.bounds);
-                    desk.transform.localScale=new Vector3(2.05f/bounds.size.x,.84f/bounds.size.y,1.1f/bounds.size.z);
-                    bounds=renderers[0].bounds;foreach(var r in renderers)bounds.Encapsulate(r.bounds);
-                    desk.transform.position+=station.position-new Vector3(bounds.center.x,bounds.min.y,bounds.center.z);
-                    var deskMat=Mat(new Color(.65f,.68f,.7f));deskMat.mainTexture=Resources.Load<Texture2D>("PolyHaven/metal_office_desk_diff_1k");foreach(var r in renderers)r.sharedMaterial=deskMat;
-                }
-                else
-                {
-                    Box("Desktop",station,new Vector3(0,1.0f,0),new Vector3(2.05f,.13f,1.1f),new Color(.22f,.25f,.27f));
-                    for(int side=-1;side<=1;side+=2) Box("Desk leg",station,new Vector3(side*.85f,.48f,0),new Vector3(.1f,.97f,.85f),metal);
-                }
-                Box("PC tower",station,new Vector3(.68f,.45f,.1f),new Vector3(.3f,.7f,.55f),metal);
-                Box("Monitor stand",station,new Vector3(0,1.01f,.37f),new Vector3(.12f,.35f,.09f),metal);
-                Box("Monitor",station,new Vector3(0,1.27f,.3f),new Vector3(1.12f,.65f,.09f),new Color(.02f,.035f,.04f));
-                Box("Screen",station,new Vector3(0,1.27f,.245f),new Vector3(1.02f,.54f,.01f),new Color(.012f,.07f,.085f));
-                var screenText=new GameObject("Live monitor text",typeof(TextMeshPro));screenText.transform.SetParent(station,false);screenText.transform.localPosition=new Vector3(0,1.28f,.23f);
-                Screens[i]=screenText.GetComponent<TextMeshPro>();Screens[i].font=font;Screens[i].fontSize=.72f;Screens[i].color=new Color(.8f,1,1);Screens[i].alignment=TextAlignmentOptions.Center;Screens[i].rectTransform.sizeDelta=new Vector2(.96f,.47f);Screens[i].text="LAST KEY\nESTACIÓN LISTA";
-                Box("Keyboard",station,new Vector3(0,.86f,-.32f),new Vector3(.65f,.055f,.24f),new Color(.07f,.08f,.1f));
-                for(int row=0;row<3;row++)for(int col=0;col<10;col++) Box("Key",station,new Vector3(-.27f+col*.06f,.893f,-.39f+row*.06f),new Vector3(.043f,.012f,.041f),new Color(.35f,.38f,.4f));
-                Box("Chair seat",station,new Vector3(0,.53f,-1.05f),new Vector3(.65f,.10f,.42f),metal);
+                VisualProps.Fit("SM_Desk",station,new Vector3(0,.42f,0),new Vector3(2.05f,.84f,1.1f),new Color(.45f,.52f,.59f));
+                // The player's display and input surface are built into the desktop.
+                // No upright monitor, stand, separate keyboard or tower obstructs rivals.
+                var terminal=Group("Integrated touch terminal",station);
+                terminal.localPosition=new Vector3(0,.840f,-.20f);
+                Box("Touchscreen bezel",terminal,Vector3.zero,new Vector3(1.53f,.008f,.72f),new Color(.025f,.035f,.05f));
+                var glass=Box("Integrated display glass",terminal,new Vector3(0,.004f,0),new Vector3(1.45f,.002f,.70f),new Color(.012f,.07f,.085f));
+                Displays[i]=glass.GetComponent<Renderer>();
+                var screenText=new GameObject("Live touchscreen text",typeof(TextMeshPro));
+                screenText.transform.SetParent(terminal,false);screenText.transform.localPosition=new Vector3(0,.007f,.18f);screenText.transform.localRotation=Quaternion.Euler(90,0,0);
+                Screens[i]=screenText.GetComponent<TextMeshPro>();Screens[i].font=font;Screens[i].richText=false;Screens[i].fontSize=.55f;Screens[i].enableAutoSizing=true;Screens[i].fontSizeMin=.22f;Screens[i].fontSizeMax=.55f;Screens[i].textWrappingMode=TextWrappingModes.Normal;Screens[i].overflowMode=TextOverflowModes.Truncate;Screens[i].color=new Color(.8f,1,1);Screens[i].alignment=TextAlignmentOptions.Center;Screens[i].rectTransform.sizeDelta=new Vector2(1.32f,.28f);Screens[i].text="LAST KEY\nESTACIÓN LISTA";
+                TouchKeys[i]=terminal.gameObject.AddComponent<TouchKeyboardVisual>();TouchKeys[i].Create(font,Colors[i]);
+                VisualProps.Fit("SM_Chair",station,new Vector3(0,.60f,-1.08f),new Vector3(.72f,1.20f,.72f),new Color(.17f,.23f,.31f));
                 Box("Chair footrest",station,new Vector3(0,.18f,-.72f),new Vector3(.56f,.045f,.30f),metal);
-                Box("Chair back",station,new Vector3(0,.95f,-1.29f),new Vector3(.65f,.65f,.1f),metal);
-                Limb("Chair pedestal",station,new Vector3(0,.05f,-1),new Vector3(0,.5f,-1),.12f,metal);
-                for(int side=-1;side<=1;side+=2)Box("Competition restraint",station,new Vector3(side*.34f,.71f,-1.0f),new Vector3(.055f,.08f,.29f),new Color(.24f,.28f,.31f));
+                VisualProps.Restraint(station,new Vector3(0,.74f,-.99f),new Vector3(.46f,.065f,.30f));
+                VisualProps.Restraint(station,new Vector3(0,.41f,-.80f),new Vector3(.47f,.045f,.21f));
                 Characters[i]=CharacterFactory.Create(station,i,Colors[i],out Collars[i]);
             }
             Box("Scoreboard frame",env,new Vector3(0,2.55f,4.43f),new Vector3(4.5f,1.18f,.12f),new Color(.015f,.027f,.037f));
             var board=new GameObject("Scoreboard",typeof(TextMeshPro));board.transform.SetParent(env,false);board.transform.localPosition=new Vector3(0,2.55f,4.34f);board.transform.localRotation=Quaternion.identity;
             Board=board.GetComponent<TextMeshPro>();Board.font=font;Board.fontSize=2.3f;Board.alignment=TextAlignmentOptions.Center;Board.color=cyan;Board.rectTransform.sizeDelta=new Vector2(4.3f,1.1f);Board.text="LAST KEY\n4 PARTICIPANTES · 5 RONDAS";
-            RenderSettings.ambientLight=new Color(.3f,.36f,.43f);RenderSettings.fog=true;RenderSettings.fogColor=new Color(.028f,.042f,.06f);RenderSettings.fogDensity=.022f;
-            var lighting=Group("Lighting",Root.transform);var lightObj=new GameObject("Main",typeof(Light));lightObj.transform.SetParent(lighting);lightObj.transform.rotation=Quaternion.Euler(48,-25,0);var light=lightObj.GetComponent<Light>();light.type=LightType.Directional;light.intensity=1.7f;light.color=new Color(.75f,.85f,1);light.shadows=LightShadows.Soft;
-            var fillObj=new GameObject("Face fill",typeof(Light));fillObj.transform.SetParent(lighting);fillObj.transform.rotation=Quaternion.Euler(30,180,0);var fill=fillObj.GetComponent<Light>();fill.type=LightType.Directional;fill.intensity=1.0f;fill.color=new Color(1,.93f,.84f);
+            RenderSettings.ambientMode=UnityEngine.Rendering.AmbientMode.Trilight;RenderSettings.ambientSkyColor=new Color(.33f,.40f,.52f);RenderSettings.ambientEquatorColor=new Color(.20f,.26f,.35f);RenderSettings.ambientGroundColor=new Color(.10f,.13f,.18f);RenderSettings.ambientLight=new Color(.22f,.29f,.38f);RenderSettings.fog=true;RenderSettings.fogColor=new Color(.028f,.042f,.06f);RenderSettings.fogDensity=.022f;
+            var lighting=Group("Lighting",Root.transform);var lightObj=new GameObject("Main",typeof(Light));lightObj.transform.SetParent(lighting);lightObj.transform.rotation=Quaternion.Euler(48,-25,0);var light=lightObj.GetComponent<Light>();light.type=LightType.Directional;light.intensity=1.6f;light.color=new Color(.93f,.96f,1);light.shadowBias=.035f;light.shadowNormalBias=.35f;light.shadows=LightShadows.Soft;
+            var fillObj=new GameObject("Face fill",typeof(Light));fillObj.transform.SetParent(lighting);fillObj.transform.rotation=Quaternion.Euler(30,180,0);var fill=fillObj.GetComponent<Light>();fill.type=LightType.Directional;fill.intensity=.8f;fill.color=new Color(1,.93f,.84f);
+            for(int i=0;i<4;i++)
+            {
+                var spot=new GameObject("Station practical light",typeof(Light));spot.transform.SetParent(Stations[i],false);spot.transform.localPosition=new Vector3(0,3,-.7f);spot.transform.localRotation=Quaternion.Euler(82,0,0);
+                var lamp=spot.GetComponent<Light>();lamp.type=LightType.Spot;lamp.range=6;lamp.spotAngle=75;lamp.intensity=5;lamp.color=Color.Lerp(Color.white,Colors[i],.12f);
+                Box("Desk accent inset",Stations[i],new Vector3(0,.73f,-.557f),new Vector3(1.65f,.016f,.005f),Colors[i]*.7f,true);
+            }
             var cameraObj=new GameObject("Cam_Main",typeof(Camera),typeof(AudioListener));cameraObj.transform.SetParent(Root.transform);Camera=cameraObj.GetComponent<Camera>();Camera.fieldOfView=49;Camera.clearFlags=CameraClearFlags.SolidColor;Camera.backgroundColor=RenderSettings.fogColor;Camera.nearClipPlane=.05f;SetCamera(0);
             Arrange(0);
         }
@@ -109,19 +109,35 @@ namespace LastKey
             else if(view==1) {Camera.transform.position=new Vector3(-4.3f,2.3f,-2.6f);Camera.transform.LookAt(new Vector3(-3.8f,1.2f,.7f));}
             else {int i=view-2;float x=(i-1.5f)*2.55f;Camera.transform.position=new Vector3(x+1.05f,1.75f,.3f);Camera.transform.LookAt(new Vector3(x,1.3f,-.94f));}
         }
+        public void ShowOpening(float seconds)
+        {
+            string text=seconds<16?"":seconds<18?"[ NULL ]\nSISTEMA DE COMPETENCIA":seconds<22?"4 PARTICIPANTES · PUNTOS POR RONDAS\nVELOCIDAD + PRECISIÓN + COMBO":seconds<25?"DANGER 100%: FUERA SOLO DE ESTA RONDA\nGANA LA MAYOR PUNTUACIÓN TOTAL":"[ NULL ]\nINICIANDO COMPETENCIA";
+            for(int i=0;i<4;i++){
+                TouchKeys[i].Power(seconds>=16);Screens[i].text=text;Screens[i].color=new Color(.72f,.95f,1);
+                Displays[i].material.SetColor("_BaseColor",seconds<16?new Color(.006f,.008f,.012f):new Color(.015f,.06f,.09f));
+            }
+            Board.text=seconds<16?"":"[ NULL ]\nDIRECTIVAS OFICIALES / LAST KEY";
+        }
         public void Animate(float time, LastKey.Core.Competition game)
         {
             for(int i=0;i<4;i++)
             {
-                var p=game.Players[i];Color color=p.Danger>=75?new Color(.9f,.07f,.08f):p.Danger>=40?new Color(1,.55f,.06f):cyan;
-                Collars[i].material.color=color;Collars[i].material.SetColor("_EmissionColor",color*1.5f);
+                var p=game.Players[i];TouchKeys[i].Power(true);
+                if(p.Errors>priorErrors[i])errorUntil[i]=time+.32f;
+                if(p.Combo/20>priorCombos[i]/20)comboUntil[i]=time+.7f;
+                priorErrors[i]=p.Errors;priorCombos[i]=p.Combo;
+                Color surface=time<errorUntil[i]?new Color(.35f,.025f,.045f):time<comboUntil[i]?Colors[i]*.38f:new Color(.015f,.04f,.06f);
+                Displays[i].material.SetColor("_BaseColor",surface);Displays[i].material.SetFloat("_UseEmission",1);Displays[i].material.SetColor("_EmissionColor",surface*.45f);
+                Color color=p.Danger>=80?new Color(.9f,.07f,.08f):p.Danger>=50?new Color(1,.55f,.06f):cyan;
+                Collars[i].GetComponentInParent<CollarVisual>().SetDanger(color);
                 Characters[i].GetComponent<CharacterMotion>().SetCompetition(game);
                 var target=p.EchoAccepted&&!p.EchoResolved?Core.Competition.EchoText:game.Target(i);
                 int cursor=p.EchoAccepted&&!p.EchoResolved?p.EchoCursor:p.Cursor;
-                Screens[i].text=p.Name+"  "+(p.Eliminated?"FUERA DE RONDA":p.Wpm.ToString("0")+" WPM")+"\n"+(target.Length==0?"LISTO":game.Mode==Core.RoundMode.Memory&&game.Elapsed>=p.MemoryRevealUntil?"MEMORIA / TEXTO OCULTO":target.Substring(Mathf.Min(cursor,target.Length-1),Mathf.Min(42,target.Length-Mathf.Min(cursor,target.Length-1))))+"\n"+cursor+" / "+target.Length+"   "+p.RoundScore+" PTS";
-                Screens[i].color=p.Eliminated?new Color(1,.2f,.2f):new Color(.75f,1,1);
+                Screens[i].text=p.Name+"  "+(p.Eliminated?"FUERA DE RONDA":p.Wpm.ToString("0")+" WPM")+"\n"+(target.Length==0?"LISTO":game.Mode==Core.RoundMode.Memory&&game.Elapsed>=p.MemoryRevealUntil?"MEMORIA / TEXTO OCULTO":target.Substring(Mathf.Min(cursor,target.Length-1),Mathf.Min(72,target.Length-Mathf.Min(cursor,target.Length-1))))+"\n"+cursor+" / "+target.Length+"   "+p.RoundScore+" PTS";
+                Screens[i].color=p.Eliminated||time<errorUntil[i]?new Color(1,.65f,.65f):time<comboUntil[i]?new Color(.015f,.025f,.04f):new Color(.75f,1,1);
             }
             Board.text=game.Round==0?"LAST KEY\n4 PARTICIPANTES · 5 RONDAS":"LAST KEY / RONDA "+game.Round+"\n"+game.Players[0].Name+" "+(game.Players[0].TotalScore+(game.Phase==Core.Phase.Running?game.Players[0].RoundScore:0))+"   "+game.Players[1].Name+" "+(game.Players[1].TotalScore+(game.Phase==Core.Phase.Running?game.Players[1].RoundScore:0))+"\n"+game.Players[2].Name+" "+(game.Players[2].TotalScore+(game.Phase==Core.Phase.Running?game.Players[2].RoundScore:0))+"   "+game.Players[3].Name+" "+(game.Players[3].TotalScore+(game.Phase==Core.Phase.Running?game.Players[3].RoundScore:0));
+            if(game.Phase==Core.Phase.Finished){var winner=game.Winners()[0];Board.text="THE LAST KEY\n"+winner.Name+" / "+winner.TotalScore+" PUNTOS";}
         }
     }
 }

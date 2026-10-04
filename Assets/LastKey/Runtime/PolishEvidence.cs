@@ -24,7 +24,7 @@ namespace LastKey
         }
         void LateUpdate()
         {
-            if(!ready)return;var g=host.Game;var p=g.Players[host.HumanIndex];string next=null;
+            if(!ready)return;if(Environment.GetCommandLineArgs().Contains("--visual-evidence"))host.Canvas.enabled=false;var g=host.Game;var p=g.Players[host.HumanIndex];string next=null;
             switch(host.Flow)
             {
                 case ExperienceState.Loading:Once("01_LOADING",host.StateTime>.7f);next="01_loading_to_menu";break;
@@ -36,10 +36,10 @@ namespace LastKey
                 case ExperienceState.Countdown:if(g.Round==1)next="03_round_wakeup_intro";break;
                 case ExperienceState.Gameplay:
                     credit+=Time.deltaTime*(musicEvidence&&g.Round==1&&g.Elapsed>=22&&g.Elapsed<30?1.5f:4.5f);
-                    while(credit>=1&&!p.Eliminated){credit--;g.Input(host.HumanIndex,g.Round==1&&g.Elapsed>=22&&g.Elapsed<30?'#':p.EchoAccepted&&!p.EchoResolved?Competition.EchoText[p.EchoCursor]:p.Prompt[p.Cursor]);}
+                    while(credit>=1&&!p.Eliminated){credit--;char input=g.Round==1&&g.Elapsed>=22&&g.Elapsed<30?'#':p.EchoAccepted&&!p.EchoResolved?Competition.EchoText[p.EchoCursor]:p.Prompt[p.Cursor];host.Arena.TouchKeys[host.HumanIndex].Press(input);g.Input(host.HumanIndex,input);}
                     if(g.Round==2&&g.EchoOffered&&!p.EchoAccepted&&!p.EchoResolved)host.RespondEcho(true);
                     host.Refresh();Once("06_GAMEPLAY_WIDE",g.Round==1&&g.Elapsed>7);Once("07_GAMEPLAY_COMPOSITION_PROOF",g.Round==1&&g.Elapsed>8);Once("08_HUD_DETAIL",g.Round==1&&g.Elapsed>9);Once("09_FOUR_PLAYERS",g.Round==1&&g.Elapsed>10);
-                    Once("10_DANGER_WARNING",p.Danger>=40&&p.Danger<75);Once("11_DANGER_CRITICAL",p.Danger>=75&&!p.Eliminated);Once("12_ELIMINATION",p.Eliminated&&host.Cameras.Role=="EliminationCamera");
+                    Once("10_DANGER_WARNING",p.Danger>=40&&p.Danger<75);Once("11_DANGER_CRITICAL",p.Danger>=75&&!p.Eliminated);Once("12_ELIMINATION",p.Eliminated&&host.Cameras.Role=="GameplayPlayerCamera");
                     Once("13_NULL_DIRECTIVE",g.ActiveDirective!=Directive.None&&g.Elapsed>14);Once("14_ECHO_INTERCEPT",p.EchoAccepted&&!p.EchoResolved&&p.EchoCursor>2);
                     next=g.Round==1&&g.Elapsed>=7&&g.Elapsed<17?"04_gameplay_typing_with_rivals":g.Round==1&&g.Elapsed>=21&&g.Elapsed<30?"05_danger_elimination":g.Round==1&&g.Elapsed>=13&&g.Elapsed<19?"06_null_directive":g.Round==2&&g.Elapsed>=33&&g.Elapsed<40?"07_echo_intercept":null;
                     // NULL clip overlaps gameplay; separate window after typing clip.
@@ -64,7 +64,7 @@ namespace LastKey
         IEnumerator Portraits()
         {
             clip=null;host.Canvas.enabled=false;
-            for(int i=0;i<4;i++){host.Cameras.Portrait(i);yield return new WaitForEndOfFrame();Save("characters/"+(17+i)+"_"+LastKeyGame.Aliases[i]+".png");}
+            for(int i=0;i<4;i++){for(int n=0;n<60;n++){host.Cameras.Portrait(i);yield return null;}yield return new WaitForEndOfFrame();Save("characters/"+(17+i)+"_"+LastKeyGame.Aliases[i]+".png");}
             host.Canvas.enabled=true;Finish();
         }
         void Once(string name,bool condition){if(condition&&captured.Add(name))StartCoroutine(Snap("screenshots/"+name+".png"));}

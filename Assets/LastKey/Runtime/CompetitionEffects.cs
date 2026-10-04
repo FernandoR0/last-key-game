@@ -29,7 +29,7 @@ namespace LastKey
                 if(p.Eliminated&&!eliminated[i]){eliminated[i]=true;eventAt[i]=Time.time;LastEliminated=i;LastEliminationTime=Time.time;sound.Cue("elimination");}
                 if(p.Errors>priorErrors[i]){eventAt[i]=Time.time;if(i==g.HumanIndex)sound.Cue("error");}priorErrors[i]=p.Errors;
                 arcs[i].enabled=p.Eliminated&&Time.time-eventAt[i]<1.3f;
-                if(arcs[i].enabled){var center=arena.Collars[i].transform.position;for(int n=0;n<9;n++)arcs[i].SetPosition(n,center+new Vector3(Mathf.Cos(n*.9f)*.2f,Mathf.Sin(n*2.5f+Time.time*30)*.085f,Mathf.Sin(n*.9f)*.2f));}
+                if(arcs[i].enabled){var center=arena.Collars[i].bounds.center;for(int n=0;n<9;n++)arcs[i].SetPosition(n,center+new Vector3(Mathf.Cos(n*.9f)*.2f,Mathf.Sin(n*2.5f+Time.time*30)*.085f,Mathf.Sin(n*.9f)*.2f));}
             }
         }
     }

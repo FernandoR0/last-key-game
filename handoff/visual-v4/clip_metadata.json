@@ -1,0 +1,178 @@
+[
+  {
+    "file": "01_music_menu.mp4",
+    "bytes": 2393320,
+    "tracks": [
+      {
+        "codec": "avc1",
+        "width": 1920,
+        "height": 1080,
+        "samples": 241,
+        "duration": 8.0333,
+        "fps": 30.000124481844324
+      },
+      {
+        "codec": "mp4a",
+        "width": 0,
+        "height": 0,
+        "samples": 377,
+        "duration": 8.042666666666667,
+        "fps": null
+      }
+    ]
+  },
+  {
+    "file": "02_music_wakeup_to_type.mp4",
+    "bytes": 10925058,
+    "tracks": [
+      {
+        "codec": "avc1",
+        "width": 1920,
+        "height": 1080,
+        "samples": 962,
+        "duration": 32.066633333333336,
+        "fps": 30.0000311850636
+      },
+      {
+        "codec": "mp4a",
+        "width": 0,
+        "height": 0,
+        "samples": 1504,
+        "duration": 32.08533333333333,
+        "fps": null
+      }
+    ]
+  },
+  {
+    "file": "03_music_gameplay.mp4",
+    "bytes": 1754805,
+    "tracks": [
+      {
+        "codec": "avc1",
+        "width": 1920,
+        "height": 1080,
+        "samples": 180,
+        "duration": 6.0,
+        "fps": 30.0
+      },
+      {
+        "codec": "mp4a",
+        "width": 0,
+        "height": 0,
+        "samples": 282,
+        "duration": 6.016,
+        "fps": null
+      }
+    ]
+  },
+  {
+    "file": "04_music_danger.mp4",
+    "bytes": 1209393,
+    "tracks": [
+      {
+        "codec": "avc1",
+        "width": 1920,
+        "height": 1080,
+        "samples": 120,
+        "duration": 4.0,
+        "fps": 30.0
+      },
+      {
+        "codec": "mp4a",
+        "width": 0,
+        "height": 0,
+        "samples": 188,
+        "duration": 4.010666666666666,
+        "fps": null
+      }
+    ]
+  },
+  {
+    "file": "05_music_null_echo.mp4",
+    "bytes": 8383755,
+    "tracks": [
+      {
+        "codec": "avc1",
+        "width": 1920,
+        "height": 1080,
+        "samples": 840,
+        "duration": 28.0,
+        "fps": 30.0
+      },
+      {
+        "codec": "mp4a",
+        "width": 0,
+        "height": 0,
+        "samples": 1313,
+        "duration": 28.010666666666665,
+        "fps": null
+      }
+    ]
+  },
+  {
+    "file": "06_music_elimination.mp4",
+    "bytes": 1896756,
+    "tracks": [
+      {
+        "codec": "avc1",
+        "width": 1920,
+        "height": 1080,
+        "samples": 180,
+        "duration": 6.0,
+        "fps": 30.0
+      },
+      {
+        "codec": "mp4a",
+        "width": 0,
+        "height": 0,
+        "samples": 282,
+        "duration": 6.016,
+        "fps": null
+      }
+    ]
+  },
+  {
+    "file": "07_music_round_result.mp4",
+    "bytes": 1783981,
+    "tracks": [
+      {
+        "codec": "avc1",
+        "width": 1920,
+        "height": 1080,
+        "samples": 181,
+        "duration": 6.0333,
+        "fps": 30.000165746772083
+      },
+      {
+        "codec": "mp4a",
+        "width": 0,
+        "height": 0,
+        "samples": 283,
+        "duration": 6.037333333333334,
+        "fps": null
+      }
+    ]
+  },
+  {
+    "file": "08_music_final_winner.mp4",
+    "bytes": 1732326,
+    "tracks": [
+      {
+        "codec": "avc1",
+        "width": 1920,
+        "height": 1080,
+        "samples": 182,
+        "duration": 6.066633333333334,
+        "fps": 30.000164836070528
+      },
+      {
+        "codec": "mp4a",
+        "width": 0,
+        "height": 0,
+        "samples": 285,
+        "duration": 6.08,
+        "fps": null
+      }
+    ]
+  }
+]

@@ -1,0 +1,1295 @@
+{
+  "status": "technical_review_ready_artistic_approval_pending",
+  "assets": [
+    {
+      "path": "Assets/LastKey/Visual/Animations/LICENSE.txt",
+      "bytes": 332,
+      "sha256": "6d01f55c6e4c49a2c9963e147e561945ae2c83958c8ca667d90a6bffdbfac061"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Animations/LICENSE.txt.meta",
+      "bytes": 158,
+      "sha256": "edbbdaa7be8d4adb0432fffeca6e8c592c224d6590bf1a5816ab3cc1f870a5fd"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Animations/README.txt",
+      "bytes": 702,
+      "sha256": "ccd02718886b5a57f10f0a8911a38cfe10c36880e1d6dfa3445923fba32d2a72"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Animations/README.txt.meta",
+      "bytes": 158,
+      "sha256": "b994648b1b02fa3d5034326d0bcf5e69d6c936533178214c6c6538cd919a5eb9"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Animations/Typing_CMU.fbx",
+      "bytes": 611196,
+      "sha256": "64aed13442d56dfbb5a18566f6a55843a9001aa28f2deff108b39d9ec740ac87"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Animations/Typing_CMU.fbx.meta",
+      "bytes": 7461,
+      "sha256": "16beddac9d04733c58ace5359d38be790da05ddb7c29d9759fde695594940808"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Animations/UAL1_Standard.fbx",
+      "bytes": 23754684,
+      "sha256": "21b32d912da3cb93426d974fb945e86f5b2e86970acd2ce89905e0fbf9f1dcc2"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Animations/UAL1_Standard.fbx.meta",
+      "bytes": 31048,
+      "sha256": "b5aa100743d766834f64a4bfdc65a00cd29a977251481873571e78b6c2201abd"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Animations.meta",
+      "bytes": 172,
+      "sha256": "20eeb58eecee6f349fea70368778ad55e428a53dd67819f67a154281dc4098c5"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/LICENSE.md",
+      "bytes": 598,
+      "sha256": "d939a41b2bda8513f46c36bcab980a7295ee44805c18eaf94fce0d96d4a4737d"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/LICENSE.md.meta",
+      "bytes": 158,
+      "sha256": "a4846041fd5fcab2c9b7e9ba88da91d9c26b8319e89bc3e841a8649f4f39a2b0"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/rain_export.json",
+      "bytes": 3980,
+      "sha256": "b02a8698ccabe721c8c66f46516e6bf5958ec5bdb966f6e9c87925b4597b410a"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/rain_export.json.meta",
+      "bytes": 158,
+      "sha256": "fb9d5c5954588bc06421d5910345bd9022fd42cf75a460c5e74b4348dd744efd"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/rain_unity.fbm/TEX-rain_jeans_diffuse.png",
+      "bytes": 16706644,
+      "sha256": "863b131b700ba189808c66970ad3abfcfa63b3d017676cd7dc5646f20f23305b"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/rain_unity.fbm/TEX-rain_jeans_diffuse.png.meta",
+      "bytes": 3069,
+      "sha256": "a8b34f89ed211fb34d00d7a01c91140334e6f4833d97eda361c61f34ee39a18b"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/rain_unity.fbm/TEX-rain_jeans_normal.png",
+      "bytes": 8588143,
+      "sha256": "e09126c3f5283e772bfe04a08daa0fa20688878a755abd5e88b9e0bf471e1337"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/rain_unity.fbm/TEX-rain_jeans_normal.png.meta",
+      "bytes": 3069,
+      "sha256": "568aeae7003ac6aaeb423d36769fdc90309b62fb68ff520316dbcc82f54e6650"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/rain_unity.fbm/TEX-rain_jeans_roughness.png",
+      "bytes": 8465185,
+      "sha256": "d509abb985ec1d1b6571955f8596bc629cf03938c385536c2f992bfcd57e3a74"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/rain_unity.fbm/TEX-rain_jeans_roughness.png.meta",
+      "bytes": 3069,
+      "sha256": "355fbc197c7678e0fd4819429e01be9f33e1523804ed115dc964e11c42201a16"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/rain_unity.fbm/TEX-rain_socks_roughness.png",
+      "bytes": 100710,
+      "sha256": "fe9f0876fa41391091e91d6aa7c9cf40681a7544128d71519ef6fff0413e2f1c"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/rain_unity.fbm/TEX-rain_socks_roughness.png.meta",
+      "bytes": 3069,
+      "sha256": "866f2a95c1add4d322ee1c1f03598938ce2393e0df296aeb9d054dd369d72198"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/rain_unity.fbm.meta",
+      "bytes": 172,
+      "sha256": "91a2d95ead58b5c3f7c60d4762233ff5baf5013be77035247a72347173b4a00a"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/rain_unity.fbx",
+      "bytes": 3271948,
+      "sha256": "cbdab437009f0316c5729b21b282d26583eb46998d166ed0d58f2c26d5b5e821"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/rain_unity.fbx.meta",
+      "bytes": 31116,
+      "sha256": "a550b5336146e3e8e955877ca5f7d15a2682c2887acbb6d68c4ee7fb7aec607a"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/snow_export.json",
+      "bytes": 4331,
+      "sha256": "0818b94eed37edb22bcf01fffe7d2703687a459adf114db49a3559f667da7dd7"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/snow_export.json.meta",
+      "bytes": 158,
+      "sha256": "aae5dd87b3cfe9cf2a97a8ce759e75a9982c5b6cd4641391733fb4bd16103d3b"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/snow_unity.fbm/eyes_diffuse.png",
+      "bytes": 1286452,
+      "sha256": "7ec88aa8ddb70b7cad01fe96d82179c1b440ddfa4fb91f413d0cae71f9cd746f"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/snow_unity.fbm/eyes_diffuse.png.meta",
+      "bytes": 3069,
+      "sha256": "7c00482634f02e53cd6986df038a8ae1a79b90cf5fec6e45bb2edd73384fc8cd"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/snow_unity.fbm/eyes_metalic.png",
+      "bytes": 13572,
+      "sha256": "917d508ea8820f519380046faeae19fec954d76f6972d5a8ef4e447f4ce786a2"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/snow_unity.fbm/eyes_metalic.png.meta",
+      "bytes": 3069,
+      "sha256": "58695e3a801db8192b2f298e614295ea7fcb1854bc6091177634c934e60ebaae"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/snow_unity.fbm/eyes_normal.png",
+      "bytes": 322608,
+      "sha256": "f0908a7026ee93b73abbf1aed8d344f6c20cbd3b90e1bac421003dd3f51051ee"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/snow_unity.fbm/eyes_normal.png.meta",
+      "bytes": 3069,
+      "sha256": "9d6320b94d67d566b1abdf64a27c36473e9faaf338a08375599e5f02ddbf2e20"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/snow_unity.fbm/eyes_specular.png",
+      "bytes": 141770,
+      "sha256": "e58894b7f3542070bf19b75e884b7a878c615c3928960c4864355f83a0938589"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/snow_unity.fbm/eyes_specular.png.meta",
+      "bytes": 3069,
+      "sha256": "ccc72553ad107abd8f00962d03fa37cdd391f86856eba0de8a65d138021a2305"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/snow_unity.fbm/hair_roughness.png",
+      "bytes": 522116,
+      "sha256": "ef1e5883f0b44ca074da92e6b73e6c15b0b8b1a2bb82650fa3226d787cae50e2"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/snow_unity.fbm/hair_roughness.png.meta",
+      "bytes": 3069,
+      "sha256": "69bd929025a405cb7d8623d6556d90eff35cca3d2c988f1871e864a163aa3612"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/snow_unity.fbm/hair_specular.png",
+      "bytes": 791790,
+      "sha256": "cdf5014b23dca5c4f550f199a9068f2f6ac0a91ac17d46531f8be21e1730158e"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/snow_unity.fbm/hair_specular.png.meta",
+      "bytes": 3069,
+      "sha256": "1b86ed41c38f6ae75614bdc5be2fdcfc747143dc898be29df22a764098cff85a"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/snow_unity.fbm.meta",
+      "bytes": 172,
+      "sha256": "50132d7722c3a2db9c3d67b879c37275e6bdd2bed74d126fa18e5d8a617dc1b4"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/snow_unity.fbx",
+      "bytes": 2820748,
+      "sha256": "a309c8c694948e9309d46291d53376aed9e1b6c04f88e7d4171039dd388107da"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/snow_unity.fbx.meta",
+      "bytes": 30794,
+      "sha256": "8ceff6aa888c8a09668abee0498707e5105cf9550525d2c8f6bd9ae88d3898be"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/TEX-rain_eyes.png",
+      "bytes": 327295,
+      "sha256": "fb2d509abe4bfa3aa4093272e81a25ddd9bbc3e4d03248fe7f213f9cda38a005"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio/TEX-rain_eyes.png.meta",
+      "bytes": 3069,
+      "sha256": "3e603ed68b65a030092eecd308e6bc2e7625ee7e30922c98ba6644e36a2713f7"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters/BlenderStudio.meta",
+      "bytes": 172,
+      "sha256": "602ad8bf9f24bc2f2d9b8d7ac2532db2068ba5d40005d7d189cf8096e82319be"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Characters.meta",
+      "bytes": 172,
+      "sha256": "515eecec7cc4e89d23b60f5e2f5be004db0d937f2cd23844d60a2e8ad70b6f75"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Shaders/LICENSE",
+      "bytes": 1075,
+      "sha256": "8028c86e474c0f80ff06f8cc2efd486c12aa602dbaa8b541e8a440a4e5de42df"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Shaders/LICENSE.meta",
+      "bytes": 155,
+      "sha256": "85a9cc690a228ff21440afd4dec4a1142d6ff33ef286dc1977bfdb8dbca86917"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Shaders/NiloInvLerpRemap.hlsl",
+      "bytes": 774,
+      "sha256": "283750708ee17ee85ef89664cf8dd4e032cc5e7a1e3692cf8b08bab1641af890"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Shaders/NiloInvLerpRemap.hlsl.meta",
+      "bytes": 161,
+      "sha256": "4836995c15c5cdbdc7e641d3097116cca12fb3f3fe68073db001b28e10b07442"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Shaders/NiloOutlineUtil.hlsl",
+      "bytes": 2112,
+      "sha256": "32fedd40f5cb29ec198711c5c207396e61958dddeb3413e1619aabbfb7e3d5ee"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Shaders/NiloOutlineUtil.hlsl.meta",
+      "bytes": 161,
+      "sha256": "9002d02661d0e9275abf5ed78b4585d9333eb47eb6ce4f8a1697e794905ae530"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Shaders/NiloZOffset.hlsl",
+      "bytes": 1580,
+      "sha256": "e05e35a0a41cdaef3642e940945af906f438ec8a0f28fc6876363f8c439ab757"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Shaders/NiloZOffset.hlsl.meta",
+      "bytes": 161,
+      "sha256": "0f57a3ac6922887cf7aaf41faedb3a717e573dc9ad0e1fe61199475c3776bc71"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Shaders/README.md",
+      "bytes": 220304,
+      "sha256": "f66cf9c80d348877bfb0b894e23905cbba8db0e1b7c84541b0d81b0fcf2637ab"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Shaders/README.md.meta",
+      "bytes": 158,
+      "sha256": "fe041d8e48ec53aa46b25138e58a4262143f480c909f4c762bd25e40db5cfce4"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Shaders/SimpleURPToonLitOutlineExample.shader",
+      "bytes": 34001,
+      "sha256": "a086f3977d35a466137c3b3898b5dd3fc44e4326d61bab4959d5983620d64964"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Shaders/SimpleURPToonLitOutlineExample.shader.meta",
+      "bytes": 204,
+      "sha256": "93ce295565d0526b0126ed3d1fde04be5a22829cf4165aa6bb145309b5b468aa"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Shaders/SimpleURPToonLitOutlineExample_LightingEquation.hlsl",
+      "bytes": 3666,
+      "sha256": "45412660ee157bfe5415e9c4a74a80eb8d95bf47af73ef3c572fef24cc02cf5f"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Shaders/SimpleURPToonLitOutlineExample_LightingEquation.hlsl.meta",
+      "bytes": 161,
+      "sha256": "0c5fef696090744672c23116688429b11763f428176c1a67348ed8763914b80d"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Shaders/SimpleURPToonLitOutlineExample_Shared.hlsl",
+      "bytes": 22594,
+      "sha256": "1cad4488789c107b4d2be1130159d4d653a3626c7497f679967066f735129cb5"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Shaders/SimpleURPToonLitOutlineExample_Shared.hlsl.meta",
+      "bytes": 161,
+      "sha256": "e6d8df2c5df595cf4c3f56fad4fa1c05a942160cc2cfa341e7322a86fab9029a"
+    },
+    {
+      "path": "Assets/LastKey/Visual/Shaders.meta",
+      "bytes": 172,
+      "sha256": "1b72b4d00ddfa6416156142a9d7b25864f16a730024e40974689fabba940f956"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain.prefab",
+      "bytes": 109707,
+      "sha256": "56dc5738e756c8efe8b1403f285d73e986a0cbc39fad6ccf5ed66402020a829f"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain.prefab.meta",
+      "bytes": 154,
+      "sha256": "085468c7aa8d9b3d07b9e35c49c4670242ef2c76c2e2b51b76b0786f0666c4e0"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_body.mat",
+      "bytes": 2232,
+      "sha256": "0e8ddbb80fe6c9f8b55786622d452882c05bc2d03f5fe39818574a95df5df8c5"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_body.mat.meta",
+      "bytes": 188,
+      "sha256": "9bd385aa86a01b856c1cb9b4a5a86fedbdb0f8a9e248c87357f1f090da91e5d6"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_eyebrows.mat",
+      "bytes": 2233,
+      "sha256": "b9548a53fc440f49c565b0c1970be2fa7db6fb7a8ed00383a1464859f132205c"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_eyebrows.mat.meta",
+      "bytes": 188,
+      "sha256": "26adb6f2b210437e8a7b07865d4572e87022f96e721d93b5b0f244239dc957dc"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_eyelashes.mat",
+      "bytes": 2234,
+      "sha256": "2edeebb0629756090bf7b6150e3f672568da2028c3c3ca42f1f4a9056db56746"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_eyelashes.mat.meta",
+      "bytes": 188,
+      "sha256": "c0418fcbf024fd1858a09ff24b51eaa7c0d33136c555baff4623906307e92ec7"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_eyes.mat",
+      "bytes": 2278,
+      "sha256": "5ac2a9cdb9d5f30a201bc5949ac9ca555d411f5d2610506f15a44841cedcdc0a"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_eyes.mat.meta",
+      "bytes": 188,
+      "sha256": "dde183ab0a499fe0d500eb6b5bd389d9b0442585a0f1d18ab67720e9d531df1d"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_gums.mat",
+      "bytes": 2232,
+      "sha256": "27bc6fdf4a57bda637e7bda100de7e94f314c3bec124b775d185ab3f970c663b"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_gums.mat.meta",
+      "bytes": 188,
+      "sha256": "64d094a196c8ffd8c17142aed682fa22070901fa6bd33d8b0dd34905b39144a0"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_hair.mat",
+      "bytes": 2234,
+      "sha256": "77fc5f9d024548c950f1d76b809c9aac84096946f0b4ff2b9bb32a2c317564fb"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_hair.mat.meta",
+      "bytes": 188,
+      "sha256": "12899acf31839430b028016fe3f64e5af5625a5a53d36995eff48572542d0567"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_hairband.mat",
+      "bytes": 2238,
+      "sha256": "8756d86b33e1d776305aca5dbf8afadfbce548324836a9cf33276df4e0e58faf"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_hairband.mat.meta",
+      "bytes": 188,
+      "sha256": "eec86e5c5383a5de766b7df44c77808d6a5196be88e6f32dadc8541d9b931e73"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_jeans.mat",
+      "bytes": 2233,
+      "sha256": "e8010f3c58c047c3039f53f12b79254bdbea8aea74a1f5ff0f0390b3f720cba5"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_jeans.mat.meta",
+      "bytes": 188,
+      "sha256": "5e904ae5ebebcc8a0ebd3ce36bc084126629d79dfa6be3d0953096ee3f198aee"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_laces.mat",
+      "bytes": 2232,
+      "sha256": "eb61c3d73cd1fa8c86e5d2d9d2612b70a9d14e945035fe84ac5d2ecfd716f133"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_laces.mat.meta",
+      "bytes": 188,
+      "sha256": "75f21de26e208037530fbe2ca9b49d20dc71b6aaa9ad65eb3964dd8916fc46e5"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_metal.mat",
+      "bytes": 2233,
+      "sha256": "3f22417535b68e0ad43e1affd6bfcd83fb4bae10c2af534e70708dca9fbe744f"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_metal.mat.meta",
+      "bytes": 188,
+      "sha256": "09cd0201f24219fb0aa777ef756651751938ecad0abad90106596aa3f971af26"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_shoes.mat",
+      "bytes": 2232,
+      "sha256": "2da1c2bcff3a2ebb0e7b012bd43600996af3d5de099bdfc717eb4fabe6cdf459"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_shoes.mat.meta",
+      "bytes": 188,
+      "sha256": "d13134d93e1cbea8ed3257551855c45adb11c084170c70bbf99b5580b9f1bfd9"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_socks.mat",
+      "bytes": 2233,
+      "sha256": "24e351eab9f648684e6b62a77e46466936fe627f204330f2b4f137d44e25dad2"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_socks.mat.meta",
+      "bytes": 188,
+      "sha256": "89142a0488159e862be8bcf9c40d7bcf389997a4da7fd97098e04d73628f996b"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_teeth.mat",
+      "bytes": 2233,
+      "sha256": "764edeb1b74e2f37866ecf7563e4b1adf0c81f499465a176680d55a5f7bb1c08"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_teeth.mat.meta",
+      "bytes": 188,
+      "sha256": "0d4ef4beca31eff7dc23164a08cff1bb84f2184a54180c448bbaa524dc14da79"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_tongue.mat",
+      "bytes": 2234,
+      "sha256": "a812c1ac823a83ac4f453cd27b3b3424bb6a313a6c929e32f785779babc362a9"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_tongue.mat.meta",
+      "bytes": 188,
+      "sha256": "4a61c6a6dfac94f280e955c083f315c1c5e78acced26a2467d97c990456fbeac"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_top.mat",
+      "bytes": 2231,
+      "sha256": "24ad9b7cfdc9ba8983379d5d84ca2fa8bf992d583c91181f6d42b01cd734a45e"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_mat-rain_top.mat.meta",
+      "bytes": 188,
+      "sha256": "280f4d7ad1f5096ab3569ad7835aa794914e1ef0db85048ece05a22957a79d76"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-body_mat-rain_body.mat",
+      "bytes": 2247,
+      "sha256": "8705403276a16633c3393eda99583176f884e68fba752909f7dfc26313566fc7"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-body_mat-rain_body.mat.meta",
+      "bytes": 188,
+      "sha256": "666fdf5230160d2491e09e483bd0d317af8681e80b2907426cfeed528916085c"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-eyebrows_mat-rain_eyebrows.mat",
+      "bytes": 2257,
+      "sha256": "0dafcd93e8a455b9b00ba13c5b2e5027d01acb214f56455d1651a9526b74b866"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-eyebrows_mat-rain_eyebrows.mat.meta",
+      "bytes": 188,
+      "sha256": "b326979938c28571ebc4c4285d20d1fc31f62271894781c5961a6cf04b427ba3"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-eyelashes_mat-rain_eyelashes.mat",
+      "bytes": 2254,
+      "sha256": "e14c0ceca366ed36974a096050d3022a8d648180fde81b0daadd5c6f7cd6fcf4"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-eyelashes_mat-rain_eyelashes.mat.meta",
+      "bytes": 188,
+      "sha256": "e01a28446925c58c40b238fe7d2270e346d85dedff41fc405312843f505c48ca"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-eyes_mat-rain_eyes.mat",
+      "bytes": 2293,
+      "sha256": "48c80f8f4d323dc75478eba93a3a9d8299ac5cd97516229c025bfc5799e9db4b"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-eyes_mat-rain_eyes.mat.meta",
+      "bytes": 188,
+      "sha256": "cf9359caadd6c7043f9df0d50ba7434aae700615a8a0b62eed1c7d746adea87f"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-gums_lower_mat-rain_gums.mat",
+      "bytes": 2253,
+      "sha256": "2e2546e3ae258b4e1d00ff0fe75e7ddac240a2b12bb668fd31459ab1a1990f27"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-gums_lower_mat-rain_gums.mat.meta",
+      "bytes": 188,
+      "sha256": "f0ca55a53601c800d121f2d6e89a837910b3df2876153dd2f0e71117d99b7821"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-gums_lower_mat-rain_teeth.mat",
+      "bytes": 2254,
+      "sha256": "7704e9cbdca2d71f4000e2c4deeabfde6f8aec6d2be3e29c9d94b28d896fbfe9"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-gums_lower_mat-rain_teeth.mat.meta",
+      "bytes": 188,
+      "sha256": "2cc5d3f34da3c142b1cee504d9e78df2100429631de7d106429fbc13155e4304"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-gums_upper_mat-rain_gums.mat",
+      "bytes": 2253,
+      "sha256": "6b84da72b7f3de46d49186c9fad99561d8fec62b30c63c3f2b131cb611bcfb1e"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-gums_upper_mat-rain_gums.mat.meta",
+      "bytes": 188,
+      "sha256": "d632bc4f1dc9fa274f0041c4f189735e1fa540fad4d93cb527bf95e8a78e4377"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-gums_upper_mat-rain_teeth.mat",
+      "bytes": 2254,
+      "sha256": "5591dc52ff923b270e253678b7feb121bc2ba4c558f6468ed36757168706374d"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-gums_upper_mat-rain_teeth.mat.meta",
+      "bytes": 188,
+      "sha256": "466ba9c5b14a2e9594c563d0447e62ce3b96d9681850e133ddd6973d21fbae78"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-hair_main_mat-rain_hair.mat",
+      "bytes": 2254,
+      "sha256": "5efa644878f00c8ac11532eb12e7ccc4a462c0621e5c10a67226d9859e4da36b"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-hair_main_mat-rain_hair.mat.meta",
+      "bytes": 188,
+      "sha256": "6fc9f0a8feed6d738d1f018e1963e63a97eb3ffcf31445b945dfb6346130be5f"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-hair_ponytail_mat-rain_hair.mat",
+      "bytes": 2258,
+      "sha256": "be79805843ace68b5095486a9a2fae93fd7af356522d667fe4a501963512a649"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-hair_ponytail_mat-rain_hair.mat.meta",
+      "bytes": 188,
+      "sha256": "50d338382e83b7ed3e80ca2caad28d924bb92ff5de47d6dbd9bfb179109e1c47"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-hair_strand_mat-rain_hair.mat",
+      "bytes": 2256,
+      "sha256": "4070a9bf018643a070bb668e23948f0241c665a8128b5d242b2f3e89bbf67392"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-hair_strand_mat-rain_hair.mat.meta",
+      "bytes": 188,
+      "sha256": "59d94e582b73f93ec6a51677e9c38320fd0fe11fe0ce8747268d99302be9e442"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-hairband_mat-rain_hairband.mat",
+      "bytes": 2257,
+      "sha256": "379f12ca4faff2a8ccb90c82bf9e1bb30e8d80a523451a5bfca3e805ef614a17"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-hairband_mat-rain_hairband.mat.meta",
+      "bytes": 188,
+      "sha256": "e5222bf477064bdf07412d29c825326edfbddfabf5c55f90449e4b1e9a8ac6eb"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-head_mat-rain_body.mat",
+      "bytes": 2247,
+      "sha256": "5fe9fa130dce1edcbdcca4a7a19cc8c6fa804b70f48f9a0de65ad04f27ece717"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-head_mat-rain_body.mat.meta",
+      "bytes": 188,
+      "sha256": "1fba3cc469ff7339503c2c2dc215f6286c4985037ae750ee31db0f35a3ab7ab8"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-jeans_mat-rain_jeans.mat",
+      "bytes": 2249,
+      "sha256": "b4afaf14f6d0afbf7d4e38e1d71a45924c1f2280edfdcbb0d5fc2b9986bda53e"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-jeans_mat-rain_jeans.mat.meta",
+      "bytes": 188,
+      "sha256": "af794157ccf7f3843c2420030a05c1e46ccaee0931a438f0260ce864f56a9d62"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-shoes_mat-rain_laces.mat",
+      "bytes": 2248,
+      "sha256": "f2f8fcd470c53d0e9876db91d84b09c3ebd69c9f1a8536ea0b2c8477c3e8ed54"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-shoes_mat-rain_laces.mat.meta",
+      "bytes": 188,
+      "sha256": "4199030f0f39ef32a42fd66b31268cc750e2c23a3b49262453d177add0e8160e"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-shoes_mat-rain_metal.mat",
+      "bytes": 2248,
+      "sha256": "2083883c21a9f10b65d1aa9b8c0538b4ba038d43a5fdc2377b2bf87dc9fd16da"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-shoes_mat-rain_metal.mat.meta",
+      "bytes": 188,
+      "sha256": "b55ba988fcbe7cfa9c86dbb34741dad9de195fc579ea1647ab981e493a07c77f"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-shoes_mat-rain_shoes.mat",
+      "bytes": 2248,
+      "sha256": "463d3868419730480915db711131c12df939129ca52482b786c22c862abfc8ed"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-shoes_mat-rain_shoes.mat.meta",
+      "bytes": 188,
+      "sha256": "2439724e04fd2d37b851f0f1e5b60e759ace7b1934d30b8822f2beac91a7a627"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-shoes_mat-rain_socks.mat",
+      "bytes": 2248,
+      "sha256": "33bf67a55b9f2a1d108d93a01db036ee8fc81a69b20c098233a41678b32890a2"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-shoes_mat-rain_socks.mat.meta",
+      "bytes": 188,
+      "sha256": "7dddc3d63c5447af13622581eb1b783e55293181e0c093b5bef92b56d0a02c5a"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-tongue_mat-rain_tongue.mat",
+      "bytes": 2251,
+      "sha256": "e2aee8dc0d96b98f1576bde78812754c295d1a9912fe3ce675502ee95c67fb9d"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-tongue_mat-rain_tongue.mat.meta",
+      "bytes": 188,
+      "sha256": "558c31456c33c5f5f7e7e99a48d6ea4306ed475609b38c2b0cc5a5f7c7c08c3a"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-top_mat-rain_top.mat",
+      "bytes": 2245,
+      "sha256": "217ba18f088d6c81028477c9b694828da2e81ee8182015810e50c3382e6f62d3"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/rain_rain_rain-top_mat-rain_top.mat.meta",
+      "bytes": 188,
+      "sha256": "4253fe6e9a908c33cba9fbe8dbc1ea861d51fb24b67f8e98695a516a7b9dc1e1"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow.prefab",
+      "bytes": 120056,
+      "sha256": "38fe87a98d77e42f4806fc5bc06116cc01355667de50671333d29731b8fd2e62"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow.prefab.meta",
+      "bytes": 154,
+      "sha256": "0db72373041dc86d100e2d41fa54cc07822286cf9f59303b4e37440d18993f21"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_no_name.mat",
+      "bytes": 2226,
+      "sha256": "3817a24b5f91f6a32ff2fd92e185a6075d1884c03bef86fdc2361966c3f6092a"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_no_name.mat.meta",
+      "bytes": 188,
+      "sha256": "e1261d56ff0f503cfd3742a4159d83b956d651885faf98bceda4c3d45ff297a0"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_eyes.mat",
+      "bytes": 2274,
+      "sha256": "d50b3d2e56fe6aaa12f18bc1dc5310c069563be67eb024212937cd0c39e3e4eb"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_eyes.mat.meta",
+      "bytes": 188,
+      "sha256": "a49068da4d93cbfc8357dd8d5896354074bee068e065938668e093e9fb96e023"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_gums.mat",
+      "bytes": 2228,
+      "sha256": "cb85154087a3a453a1c3c60ebc7361587979f102372ae057cd9abb3206ced40d"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_gums.mat.meta",
+      "bytes": 188,
+      "sha256": "e1887914eca860a280c2cfd0c87e78936f8fe7e5a5707987da1966dc0fd4a6be"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_hair.mat",
+      "bytes": 2230,
+      "sha256": "0c42765bb50af10c58c164cf80952b2ab4bec5694e5e4fb0f11c901ca390dae8"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_hair.mat.meta",
+      "bytes": 188,
+      "sha256": "c9f529c569f6e8de9acc9a43943d1ceb890c6d9140c3c4700828be6cb0cb9d24"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-body_no_name.mat",
+      "bytes": 2241,
+      "sha256": "fce8440992903488284c007585876d5fe626d0f49fc06b1eb6f4c8966cd5102d"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-body_no_name.mat.meta",
+      "bytes": 188,
+      "sha256": "4b758902a2e122468ce08fee771e0bb4c025281718b0d6f1fb3d91ef0e90a5a8"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-eyebrows_snow_hair.mat",
+      "bytes": 2249,
+      "sha256": "2ac5befcaa30a71c75fd2869e4d096f4363134fec5eb9e53a45dbfcd52b8e3b1"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-eyebrows_snow_hair.mat.meta",
+      "bytes": 188,
+      "sha256": "dec9b247df468dcd02cd846ad650383e7b6e31b5dad17afc18006daccf9248fc"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-eyes_snow_eyes.mat",
+      "bytes": 2289,
+      "sha256": "fcee8888070f1c90cc9bf6b8522a3cd3f6c1bd9c07f6d63f7afa8b3718491839"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-eyes_snow_eyes.mat.meta",
+      "bytes": 188,
+      "sha256": "1579c1a7d6c89d9ccc8079df2776a860195fc28380c59024d844eee36ac67def"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-gums_lower_snow_gums.mat",
+      "bytes": 2249,
+      "sha256": "3a1938f7203b9449da63695001a19a6faf0044570f678ebd4856762f83ad66ee"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-gums_lower_snow_gums.mat.meta",
+      "bytes": 188,
+      "sha256": "8e0e9e3e61a78bc688a539d4cade5fc73f84536ff6752db278f20e105f115d88"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-gums_upper_snow_gums.mat",
+      "bytes": 2249,
+      "sha256": "9883a73e1a43a80be7940c6759b9bf13bed5d6c644549bd07e9c92627464be01"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-gums_upper_snow_gums.mat.meta",
+      "bytes": 188,
+      "sha256": "a35b37a7e6c10572931824c9bf52a53950e9f6d342e03fe3ba0c933c124ff5fe"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-hair_base_snow_hair.mat",
+      "bytes": 2250,
+      "sha256": "dfaaf384fa0111af883ddbcf25468174531bad0808f48894d3156923c3c9aba6"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-hair_base_snow_hair.mat.meta",
+      "bytes": 188,
+      "sha256": "256577cf629ae46c9ca941526112d246ad0a190288899e8acef4a0ee34772ceb"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-head_no_name.mat",
+      "bytes": 2241,
+      "sha256": "5b4a14a178ae4c81d248b7f5395115802928b365dcf5d8a05d06a734bba3a23a"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-head_no_name.mat.meta",
+      "bytes": 188,
+      "sha256": "2cfe5aed2e9351a622d42c2e72a36579b9a26b83ae7cb9bc5aba25bc2fda1813"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-pants_no_name.mat",
+      "bytes": 2242,
+      "sha256": "74ac37cecfdba0332f38caefb4ba62a4a8a93e4eda5389ad1ccc64e6d832d736"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-pants_no_name.mat.meta",
+      "bytes": 188,
+      "sha256": "80f3650b88612ec7eace75228d31123f8a80d862b99a616043a880eea63c8376"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-shirt_no_name.mat",
+      "bytes": 2242,
+      "sha256": "2ed8bb6832d63b8cc9bfa15479621c13d28c94fd9231836ddf22142aa7f2b85e"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-shirt_no_name.mat.meta",
+      "bytes": 188,
+      "sha256": "103d219a32a64b01da5ee957bfe663d80f2436df49256cd3f11473eca63ae650"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-shoes_base_no_name.mat",
+      "bytes": 2246,
+      "sha256": "fb49cd196200a6711bb63b09b3027636447f67f430021861c3ee18e028f49642"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-shoes_base_no_name.mat.meta",
+      "bytes": 188,
+      "sha256": "6230b23e0d1dabdb8a4e4b8c7dd9ec24f445491e59653e3a5e857c014e7c9e4c"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-shoes_bottom_no_name.mat",
+      "bytes": 2248,
+      "sha256": "8d76e939c5330ed7504782a4a9d2a7e1bf49765ac75ffb25210342468fd755b0"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-shoes_bottom_no_name.mat.meta",
+      "bytes": 188,
+      "sha256": "4d815910213534e38f8c634da7f2b5f4a7bdbb40772ff99ab527188b0dfb3488"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-shoes_parts_no_name.mat",
+      "bytes": 2247,
+      "sha256": "0cd3b04f5973af42b6c628af5934533ef2cda3fea20dda5f337632d5e3087508"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-shoes_parts_no_name.mat.meta",
+      "bytes": 188,
+      "sha256": "a965c8e051c9455fe41fa21ee58a81c53a0a4629f1cef0c9927c6ee276a29d70"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-teeth_lower_snow_teeth.mat",
+      "bytes": 2251,
+      "sha256": "8d39d4f7ca9157e9ab1c80ceb3da3d21d774d73a831ee9780cd5c7981db4f432"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-teeth_lower_snow_teeth.mat.meta",
+      "bytes": 188,
+      "sha256": "b71dbbb53587d2992cf2de0e0fa9a0b07f27abb8aee11f9b2a97d053a242f012"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-teeth_upper_snow_teeth.mat",
+      "bytes": 2251,
+      "sha256": "2541a0654f3a2f3374f37e989567c49a49ba85ab42842f747c735658020b66e5"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-teeth_upper_snow_teeth.mat.meta",
+      "bytes": 188,
+      "sha256": "fcf36efe2a7714c9e592e4c8693838a499d0f3ac5646d2785a397519171afba8"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-tongue_snow_tongue.mat",
+      "bytes": 2247,
+      "sha256": "7254224fd4983fbc24cefb80bffc3633a7fd987eb6364b2195ed70d911488fda"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_snow-tongue_snow_tongue.mat.meta",
+      "bytes": 188,
+      "sha256": "eb78420970c31434bb556f70e1d53d5a6c9a59131ed9dea642b717bc16d5cefc"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_teeth.mat",
+      "bytes": 2229,
+      "sha256": "72ee41dadab6b14adfc48996ab60077674f51684ed79b66006aec29d73a9c859"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_teeth.mat.meta",
+      "bytes": 188,
+      "sha256": "7e9592d57bbf668c4f78dc0ddbe61e1759e0d614f0e9d9e5162e570ab9fedf4f"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_tongue.mat",
+      "bytes": 2230,
+      "sha256": "fd24f81e1335394e66ada4c2a7016b95555829b5563de494e65bc29e6be9beaf"
+    },
+    {
+      "path": "Assets/Resources/VisualCharacters/snow_snow_tongue.mat.meta",
+      "bytes": 188,
+      "sha256": "54d20b654457a30a253936ee01978dfe39f9f2caefa170a937a9038dffbbdedc"
+    },
+    {
+      "path": "Assets/Resources/VisualMotion/Hit_Chest.anim",
+      "bytes": 212020,
+      "sha256": "960aab5bcc8fa769b7b7364e9e01a16a7ff73b801834d8df1647bfd8bfc76675"
+    },
+    {
+      "path": "Assets/Resources/VisualMotion/Hit_Chest.anim.meta",
+      "bytes": 188,
+      "sha256": "8addc21ba6dec7a07f0a9d24ac5bca0c705d323c28c179ac8bad38233ee9b501"
+    },
+    {
+      "path": "Assets/Resources/VisualMotion/Hit_Head.anim",
+      "bytes": 212202,
+      "sha256": "75acb53eb36d91b291adf1eb3575d1470e19b3cc70d29ff1795a7ec71541906f"
+    },
+    {
+      "path": "Assets/Resources/VisualMotion/Hit_Head.anim.meta",
+      "bytes": 188,
+      "sha256": "8bd142d3b8ec04d6ecf28afc6699071de992d69d404fbb4499e02bfabc381e32"
+    },
+    {
+      "path": "Assets/Resources/VisualMotion/Interact.anim",
+      "bytes": 259540,
+      "sha256": "d343fcef8f35d6f43ebe674191c620cee54246551b6ff71640895e5ad03e8a88"
+    },
+    {
+      "path": "Assets/Resources/VisualMotion/Interact.anim.meta",
+      "bytes": 188,
+      "sha256": "cd2c50d54bbe3ccddbb5da796f53d9e2582ac2c1ed6a93afa55bd4dc64d0153d"
+    },
+    {
+      "path": "Assets/Resources/VisualMotion/PickUp_Table.anim",
+      "bytes": 302676,
+      "sha256": "bcc1d7a70d34aa3f353703d0410ccb4e4505e6dae33a477d3bed64bf9fa64b4d"
+    },
+    {
+      "path": "Assets/Resources/VisualMotion/PickUp_Table.anim.meta",
+      "bytes": 188,
+      "sha256": "c77f1ce89cf8611adcdd9f5ba440b87efa70d37c7e83c6e692bbeec5433ff057"
+    },
+    {
+      "path": "Assets/Resources/VisualMotion/Sitting_Idle_Loop.anim",
+      "bytes": 120164,
+      "sha256": "11564c14e73d7fcd3ad1d2d3a8a663a5c7ea638ee1cf3b5126b9018149a4f1ba"
+    },
+    {
+      "path": "Assets/Resources/VisualMotion/Sitting_Idle_Loop.anim.meta",
+      "bytes": 188,
+      "sha256": "52236fa4664cfaf5fc5b289e09ea031baa5bf4256b5b17eb528e73e5cb946ae4"
+    },
+    {
+      "path": "Assets/Resources/VisualMotion/Sitting_Talking_Loop.anim",
+      "bytes": 405613,
+      "sha256": "1d539a9facfaed739e8096eb627a1e463613d248a491a87667d0fd99d131c6a9"
+    },
+    {
+      "path": "Assets/Resources/VisualMotion/Sitting_Talking_Loop.anim.meta",
+      "bytes": 188,
+      "sha256": "b095859734603bc6d6d0b7c031656209429c686e6f19fad9e4d9eae8fb3b2c57"
+    },
+    {
+      "path": "Assets/Resources/VisualMotion/Typing_CMU.anim",
+      "bytes": 7086885,
+      "sha256": "8e45d76a92980d5b39e103e59fc866b112042c180586807c7162646e224dbde3"
+    },
+    {
+      "path": "Assets/Resources/VisualMotion/Typing_CMU.anim.meta",
+      "bytes": 188,
+      "sha256": "3f12c67fdd0df6145c7a9dfd8a88dc83d3fb89847278c88144d72a30172f551c"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/chair.fbx",
+      "bytes": 19356,
+      "sha256": "43d7ccd60aae677d64ec4bb70a3122f0c7a4fdc722bcbfcbd5c2aa8235c53a8b"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/chair.fbx.meta",
+      "bytes": 3063,
+      "sha256": "6b5637929396a2c162180590b2490f5887af2aa90665dd197d6e0038b98d92dc"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/collar.fbx",
+      "bytes": 92300,
+      "sha256": "fd9d00a95cc52795332264eed0117673311bd8162ca6ec041955e76a8b27fb80"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/collar.fbx.meta",
+      "bytes": 3063,
+      "sha256": "22d87a88444819bf8314aeb3659b9c0947c5838b4bedcc6e9787b7392e9b2136"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/Column_Slim.fbx",
+      "bytes": 22396,
+      "sha256": "8397a0e53085ce219afe958cec8fd99eb17441824e637a3c3ac8cc91c6732813"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/Column_Slim.fbx.meta",
+      "bytes": 3063,
+      "sha256": "34dd99eb365b80423f98468b84b49cef663e9bae619092f135ae7a332c70ba55"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/FloorTile_Basic2.fbx",
+      "bytes": 25532,
+      "sha256": "1400dc29b6d02ff884cd266a66c830e3252d09f3fa4ac1dcad1efaa6f1e91be0"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/FloorTile_Basic2.fbx.meta",
+      "bytes": 3063,
+      "sha256": "d5aa8f7a196957d24c47af4fb9c0c92bfe00cedec777b22bc2f8142f6b9cac3d"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/Hair_Beard.fbx",
+      "bytes": 48444,
+      "sha256": "675541ea0dfc95fe125264bc8c59eee543269469b4793ba7c20e6df58709f4c0"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/Hair_Beard.fbx.meta",
+      "bytes": 3063,
+      "sha256": "9f0dcd23b41c75a2b716d9c249641f628defb1086a4aaa78dd024bde68775837"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/Hair_Buzzed.fbx",
+      "bytes": 45036,
+      "sha256": "45cfb65bedb6984510b15cadf12e55c872961380228d971d1e434af438e70f8b"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/Hair_Buzzed.fbx.meta",
+      "bytes": 3063,
+      "sha256": "1657484d4cf18f8663fc55b3645461dff3d6045cf9e0b7f462dde24ecb3328ee"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/Hair_SimpleParted.fbx",
+      "bytes": 62668,
+      "sha256": "7612975d40a7520f5a3ca4df19685a88da37ecd3e5c7d10b198a2265baf98047"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/Hair_SimpleParted.fbx.meta",
+      "bytes": 3063,
+      "sha256": "47ca6ba0eeeb90178994cc945758d16abc96ff929339b0082a776fb84beb9c41"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/kenney-chair-armrest-headrest.fbx",
+      "bytes": 28880,
+      "sha256": "f9d0046f2b0df87a33546cea360b85a7634f574d7e032e79b4cda1efc6294d84"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/kenney-chair-armrest-headrest.fbx.meta",
+      "bytes": 3063,
+      "sha256": "bd473d74cbcabaa8413746e8486cf2635c9917f5426da86a05f0b8a176442625"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/kenney-container-flat.fbx",
+      "bytes": 28512,
+      "sha256": "718a5918774ae532efad996bd2922cfa681e758e76f9782da3cc86849190beb3"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/kenney-container-flat.fbx.meta",
+      "bytes": 3063,
+      "sha256": "dd29ce6434625aed629fa064cb8bc56b9c0f67ad40f2fa0302eb4382e43ce2ed"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/kenney-door-double-closed.fbx",
+      "bytes": 32368,
+      "sha256": "8b1a9f54054a8f8b9fc776181f37d3dd2d8d040a8382e18aa2cf8b9d446b83c6"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/kenney-door-double-closed.fbx.meta",
+      "bytes": 3063,
+      "sha256": "65039aa923cc0bd2875a569f9a32b927a6a67a3acb7e2a7720cd32aece6259ce"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/kenney-floor-panel.fbx",
+      "bytes": 25728,
+      "sha256": "45aab8752b91249905990b81c0698745c08b4fdc2602db4248d7d3b9d7b6c2f0"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/kenney-floor-panel.fbx.meta",
+      "bytes": 3063,
+      "sha256": "407ff1bb8b14a29ec1e76af5f9f4221dfe3e5e62756055ed371e649106154b17"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/kenney-wall-detail.fbx",
+      "bytes": 41312,
+      "sha256": "24cfebfa67304cf327662d6f1d9f87d8bb73cdc6742f70fcfd55f5d9445a6037"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/kenney-wall-detail.fbx.meta",
+      "bytes": 3063,
+      "sha256": "ed30f7da63c2440af120d0411a5f640b2f770607589240ec6f61446c504a47e0"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/kenney-wall-window.fbx",
+      "bytes": 25856,
+      "sha256": "8779ca0bc043d116d63cc68174bcd68ee1dd7eafaceca6b6f4a448abced6acae"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/kenney-wall-window.fbx.meta",
+      "bytes": 3063,
+      "sha256": "a79c6c0a7167d3b59b60eefa4499538a46b9a846e3b4fe909ced8b7f8b025fd5"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/kenney-wall.fbx",
+      "bytes": 25472,
+      "sha256": "2ba38eab4c12a09edf68509ec7ef2d1878b7d863225b7edf0be9e2729446c5af"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/kenney-wall.fbx.meta",
+      "bytes": 3063,
+      "sha256": "7abcfbeee6ce3ce24f66a9a18448471a07af0a021e21ae70f63e4e4ebea3efec"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/KENNEY_LICENSE.txt",
+      "bytes": 720,
+      "sha256": "e8de83b5cb2f01810e32f07691cb1dcf9494dc4a7f8cce0ec8175dfb8c5d98d9"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/KENNEY_LICENSE.txt.meta",
+      "bytes": 158,
+      "sha256": "babb54fc02836eba6d657086ac08cefacca75f3c39fdb88208afe6f29a13e84b"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/LICENSE.md",
+      "bytes": 845,
+      "sha256": "8065ef408c9c1b60616d4482064fd463573ef32c7ea1439531a399fe27cf7440"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/LICENSE.md.meta",
+      "bytes": 158,
+      "sha256": "bd6beaeda2796eeb4df57131c92be4ddafdf26a26cd84c74daaf709e05cfa84d"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/office-chair.fbx",
+      "bytes": 95516,
+      "sha256": "dc63dddded6ec82893d959608bcd39cdf05fb5814e3dabfbc3ab808230edc477"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/office-chair.fbx.meta",
+      "bytes": 3063,
+      "sha256": "c00d7a20d17d2f0882ba78f10c4cd18ef280169ccaa3dc6faa94011beb81cd12"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/Pipes.fbx",
+      "bytes": 19244,
+      "sha256": "448279e773d7fac627f42877739cc1d38428babc554846cb668cef6993cbff6e"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/Pipes.fbx.meta",
+      "bytes": 3063,
+      "sha256": "1b31e71e62bfbbd8b964ef6f36dd095dc89635d9b895ab97688c080c174da4b6"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/Props_ComputerSmall.fbx",
+      "bytes": 29708,
+      "sha256": "7cf7feebea75bf415608083ef8701669474fab51e838d09682f65a22a74c794d"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/Props_ComputerSmall.fbx.meta",
+      "bytes": 3063,
+      "sha256": "b3c54a9c628007e226d5ea92fc5ed4e8d7ba29d4e3b4375603c61eb4dfe9502b"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/Props_Shelf_Tall.fbx",
+      "bytes": 22540,
+      "sha256": "69fb100fb3566344e6437e802a624951a21adca722a9cec28d68942e795e2943"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/Props_Shelf_Tall.fbx.meta",
+      "bytes": 3063,
+      "sha256": "c08f5aaf5abb547529495873d31d1697d9a2113ce3efbeb90392302bcbe9daba"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/SM_Chair.fbx",
+      "bytes": 332124,
+      "sha256": "0898fde596aaf7f443577fcfd82c6421ab5a44251c58ca55c7eb84395298d23b"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/SM_Chair.fbx.meta",
+      "bytes": 3063,
+      "sha256": "f00b4b355f77395961a9f8671b94b4fd992dc150b0af2aa7afc5ae3083c68adb"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/SM_Desk.fbx",
+      "bytes": 34460,
+      "sha256": "7619d270d8df0cf8cbfa34eb78032070fe0263fe7e8b7a7f365b6b620aa31556"
+    },
+    {
+      "path": "Assets/Resources/VisualProps/SM_Desk.fbx.meta",
+      "bytes": 3063,
+      "sha256": "ddd15840aa581e7f86cac68da721094ad648cfe297d0d3ff91aecdbff93192de"
+    },
+    {
+      "path": "Assets/Resources/Audio/VisualSfx/combo.ogg",
+      "bytes": 14169,
+      "sha256": "33b17a9a9a2397c62b285c52c33a907fdffb476909c99e42dde603f6a7a8b12c"
+    },
+    {
+      "path": "Assets/Resources/Audio/VisualSfx/combo.ogg.meta",
+      "bytes": 485,
+      "sha256": "c343f67c1ce0a554cb46ecb551d9d81e5c75d18a92cc89b93761e99d4509ee29"
+    },
+    {
+      "path": "Assets/Resources/Audio/VisualSfx/echo.ogg",
+      "bytes": 5463,
+      "sha256": "4cc6ac5341b9b2c86fef80c347de028e9ab9f2e037586ac7d9fa59a403a1c012"
+    },
+    {
+      "path": "Assets/Resources/Audio/VisualSfx/echo.ogg.meta",
+      "bytes": 485,
+      "sha256": "ab1da131d689e6de52f752580eeea617df2a8e4912b5c8a0a9249660bf07b081"
+    },
+    {
+      "path": "Assets/Resources/Audio/VisualSfx/elimination.ogg",
+      "bytes": 28947,
+      "sha256": "5574e69dd04e5f59322c5ddffde5978f077b09170ae5e29cec0bd9901828cd90"
+    },
+    {
+      "path": "Assets/Resources/Audio/VisualSfx/elimination.ogg.meta",
+      "bytes": 485,
+      "sha256": "aafc10381bbd437ec573223e2a3203cf2e2ddd49c771ddd26ad2420493c56494"
+    },
+    {
+      "path": "Assets/Resources/Audio/VisualSfx/error.ogg",
+      "bytes": 12256,
+      "sha256": "885b28175c7b511118bcffab95675b48bbac9005cf6514656ebdad979276b3ab"
+    },
+    {
+      "path": "Assets/Resources/Audio/VisualSfx/error.ogg.meta",
+      "bytes": 485,
+      "sha256": "af8db7efa14a3dd38f924c4ba6f07f77016d6cb5417c8672e7e9ed87d0f00762"
+    },
+    {
+      "path": "Assets/Resources/Audio/VisualSfx/LICENSE.md",
+      "bytes": 305,
+      "sha256": "513a7489dfe7d7378fe25384c7d8eebd11484d19ba59113a9446bc3a1cd1e79b"
+    },
+    {
+      "path": "Assets/Resources/Audio/VisualSfx/LICENSE.md.meta",
+      "bytes": 158,
+      "sha256": "59d6d7b811cddb77f8cea8c1f5f31a0ea51d75bffe3e168ec32b12dc7bf8c3da"
+    },
+    {
+      "path": "Assets/Resources/Audio/VisualSfx/null.ogg",
+      "bytes": 130861,
+      "sha256": "6ae9bb261c6536d1699972da0cdbf6e0762cf7e9b925adb64a06ff375255cb71"
+    },
+    {
+      "path": "Assets/Resources/Audio/VisualSfx/null.ogg.meta",
+      "bytes": 485,
+      "sha256": "358ca1b508ca8b1859de256d9caad0750d3df9ff0be9ca6c121c5a429a51f0fa"
+    },
+    {
+      "path": "Assets/Resources/Audio/VisualSfx/round.ogg",
+      "bytes": 8968,
+      "sha256": "063564703b6094d70718a3e787a55cc9141611e4ecd6b6637f8828f79b4a8c3a"
+    },
+    {
+      "path": "Assets/Resources/Audio/VisualSfx/round.ogg.meta",
+      "bytes": 485,
+      "sha256": "1eb6db772508b44f78dcd659843dea4bdec6f3064697e8eb9213d3b94cde0061"
+    },
+    {
+      "path": "Assets/Resources/Audio/VisualSfx/scream.ogg",
+      "bytes": 9305,
+      "sha256": "492c5d9521752db8df2ab9620923dd19aa3de7a9ab303184fc015eaaedb58107"
+    },
+    {
+      "path": "Assets/Resources/Audio/VisualSfx/scream.ogg.meta",
+      "bytes": 485,
+      "sha256": "033245dec9f6dc44538bb2a5ccf803f36a1a2a8788d433e895c19be78895a67a"
+    },
+    {
+      "path": "Assets/Resources/Audio/VisualSfx/typing.ogg",
+      "bytes": 4275,
+      "sha256": "adcd1f4adc35f1b41bc1b5bbefeff7aa44f2f3f0d96d3199b544140c7c1e761c"
+    },
+    {
+      "path": "Assets/Resources/Audio/VisualSfx/typing.ogg.meta",
+      "bytes": 485,
+      "sha256": "0a0aa5f682152411a68c39f01b7cc11ddede5c5fbd10e20c3e267a3340706079"
+    },
+    {
+      "path": "Assets/Resources/Audio/VisualSfx/ui.ogg",
+      "bytes": 4876,
+      "sha256": "ccfb7fa0cccdd9faec0eb16033c732b1e308d139d80f799161495d58f7adcdb9"
+    },
+    {
+      "path": "Assets/Resources/Audio/VisualSfx/ui.ogg.meta",
+      "bytes": 485,
+      "sha256": "4cdafa04ca2a1384541acec465102e977ff540110b8fe23be6816c58ea611d7e"
+    },
+    {
+      "path": "Assets/Resources/Audio/VisualSfx/victory.ogg",
+      "bytes": 12391,
+      "sha256": "568967a3d9f8a8f6af54ea01729c4882284308f2a27d78c07ffd7ee0d6951661"
+    },
+    {
+      "path": "Assets/Resources/Audio/VisualSfx/victory.ogg.meta",
+      "bytes": 485,
+      "sha256": "ac9069733b5a9f1b25e0cd1fd28a54fb806d1f6defe896bc41caf0ef1cd55ba1"
+    }
+  ]
+}

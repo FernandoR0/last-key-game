@@ -1,0 +1,196 @@
+{
+  "kind": "snow",
+  "bones": [
+    "Hips",
+    "Spine",
+    "Chest",
+    "UpperChest",
+    "Neck",
+    "Head",
+    "LeftShoulder",
+    "LeftUpperArm",
+    "LeftLowerArm",
+    "LeftHand",
+    "LeftUpperLeg",
+    "LeftLowerLeg",
+    "LeftFoot",
+    "LeftThumbProximal",
+    "LeftThumbIntermediate",
+    "LeftThumbDistal",
+    "LeftIndexProximal",
+    "LeftIndexIntermediate",
+    "LeftIndexDistal",
+    "LeftMiddleProximal",
+    "LeftMiddleIntermediate",
+    "LeftMiddleDistal",
+    "LeftRingProximal",
+    "LeftRingIntermediate",
+    "LeftRingDistal",
+    "LeftLittleProximal",
+    "LeftLittleIntermediate",
+    "LeftLittleDistal",
+    "RightShoulder",
+    "RightUpperArm",
+    "RightLowerArm",
+    "RightHand",
+    "RightUpperLeg",
+    "RightLowerLeg",
+    "RightFoot",
+    "RightThumbProximal",
+    "RightThumbIntermediate",
+    "RightThumbDistal",
+    "RightIndexProximal",
+    "RightIndexIntermediate",
+    "RightIndexDistal",
+    "RightMiddleProximal",
+    "RightMiddleIntermediate",
+    "RightMiddleDistal",
+    "RightRingProximal",
+    "RightRingIntermediate",
+    "RightRingDistal",
+    "RightLittleProximal",
+    "RightLittleIntermediate",
+    "RightLittleDistal"
+  ],
+  "meshes": [
+    {
+      "name": "snow_snow-body",
+      "vertices": 3379,
+      "morphs": {}
+    },
+    {
+      "name": "snow_snow-eyebrows",
+      "vertices": 806,
+      "morphs": {
+        "Basis": 0.0,
+        "Blink": 0.0,
+        "Alert": 0.013000530903398241,
+        "Pain": 0.00914657213585131,
+        "Smile": 0.0,
+        "GazeLeft": 0.0,
+        "GazeRight": 0.0
+      }
+    },
+    {
+      "name": "snow_snow-eyes",
+      "vertices": 1418,
+      "morphs": {
+        "Basis": 0.0,
+        "Blink": 0.0,
+        "Alert": 0.0,
+        "Pain": 0.0,
+        "Smile": 0.0,
+        "GazeLeft": 0.0,
+        "GazeRight": 0.0
+      }
+    },
+    {
+      "name": "snow_snow-gums_lower",
+      "vertices": 927,
+      "morphs": {
+        "Basis": 0.0,
+        "Blink": 0.0,
+        "Alert": 0.01662782811037923,
+        "Pain": 0.03535482509882367,
+        "Smile": 0.0,
+        "GazeLeft": 0.0,
+        "GazeRight": 0.0
+      }
+    },
+    {
+      "name": "snow_snow-gums_upper",
+      "vertices": 927,
+      "morphs": {
+        "Basis": 0.0,
+        "Blink": 0.0,
+        "Alert": 0.0,
+        "Pain": 0.0,
+        "Smile": 0.0,
+        "GazeLeft": 0.0,
+        "GazeRight": 0.0
+      }
+    },
+    {
+      "name": "snow_snow-hair_base",
+      "vertices": 3418,
+      "morphs": {}
+    },
+    {
+      "name": "snow_snow-head",
+      "vertices": 3719,
+      "morphs": {
+        "Basis": 0.0,
+        "Blink": 0.03385864008870507,
+        "Alert": 0.01957574986631937,
+        "Pain": 0.041622548367685766,
+        "Smile": 0.017184302573788262,
+        "GazeLeft": 0.0002125732462011107,
+        "GazeRight": 0.00021258049947243805
+      }
+    },
+    {
+      "name": "snow_snow-pants",
+      "vertices": 2631,
+      "morphs": {}
+    },
+    {
+      "name": "snow_snow-shirt",
+      "vertices": 1679,
+      "morphs": {}
+    },
+    {
+      "name": "snow_snow-shoes_base",
+      "vertices": 2286,
+      "morphs": {}
+    },
+    {
+      "name": "snow_snow-shoes_bottom",
+      "vertices": 1048,
+      "morphs": {}
+    },
+    {
+      "name": "snow_snow-shoes_parts",
+      "vertices": 2956,
+      "morphs": {}
+    },
+    {
+      "name": "snow_snow-teeth_lower",
+      "vertices": 2141,
+      "morphs": {
+        "Basis": 0.0,
+        "Blink": 0.0,
+        "Alert": 0.016617758140739607,
+        "Pain": 0.035333227240348264,
+        "Smile": 0.0,
+        "GazeLeft": 0.0,
+        "GazeRight": 0.0
+      }
+    },
+    {
+      "name": "snow_snow-teeth_upper",
+      "vertices": 2142,
+      "morphs": {
+        "Basis": 0.0,
+        "Blink": 0.0,
+        "Alert": 0.0,
+        "Pain": 0.0,
+        "Smile": 0.0,
+        "GazeLeft": 0.0,
+        "GazeRight": 0.0
+      }
+    },
+    {
+      "name": "snow_snow-tongue",
+      "vertices": 275,
+      "morphs": {
+        "Basis": 0.0,
+        "Blink": 0.0,
+        "Alert": 0.014937485283291982,
+        "Pain": 0.03176065038370393,
+        "Smile": 0.0,
+        "GazeLeft": 0.0,
+        "GazeRight": 0.0
+      }
+    }
+  ]
+}

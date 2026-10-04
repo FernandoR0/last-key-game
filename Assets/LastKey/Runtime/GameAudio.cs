@@ -2,7 +2,7 @@
 using UnityEngine;
 namespace LastKey
 {
-    // Small original synthesised cues; no downloads, licensing service or paid dependency.
+    // Reused free CC0 cues, with synthesised fallback for missing optional cues.
     public sealed class GameAudio:MonoBehaviour
     {
         public event System.Action<AudioClip> Emitted;
@@ -18,6 +18,7 @@ namespace LastKey
             ambient=gameObject.AddComponent<AudioSource>();ambient.loop=true;ambient.volume=.09f;
             var cues=new[]{"typing","error","combo","warning","null","echo","elimination","round","victory","menu","ui"};
             for(int i=0;i<cues.Length;i++)clips[cues[i]]=Synth(cues[i],i==9?4:i==8?1.2f:i==6?.7f:.12f+i*.03f,130+i*65);
+            foreach(var name in cues){var imported=Resources.Load<AudioClip>("Audio/VisualSfx/"+name);if(imported!=null)clips[name]=imported;}
             ambient.clip=clips["menu"];ambient.Play();
         }
         AudioClip Synth(string name,float duration,float frequency)
@@ -31,7 +32,9 @@ namespace LastKey
             }
             var clip=AudioClip.Create(name,samples.Length,1,rate,false);clip.SetData(samples,0);return clip;
         }
-        public void Cue(string name){if(effects!=null&&clips.ContainsKey(name)){(name=="ui"?ui:effects).PlayOneShot(clips[name]);Emitted?.Invoke(clips[name]);CuePlayed?.Invoke(name);}}
+        public void Cue(string name){if(effects!=null&&clips.ContainsKey(name)){(name=="ui"?ui:effects).PlayOneShot(clips[name],name=="typing"?.8f:1.3f);if(name=="elimination"){var scream=Resources.Load<AudioClip>("Audio/VisualSfx/scream");if(scream!=null)effects.PlayOneShot(scream,1.45f);}Emitted?.Invoke(clips[name]);CuePlayed?.Invoke(name);}}
+        public void StopSessionAudio(){foreach(var source in new[]{effects,ambient,ui})if(source!=null)source.Stop();}
+        void OnApplicationQuit(){StopSessionAudio();}
         public void Menu(bool active){if(ambient!=null)ambient.volume=active?.09f:.025f;}
     }
 }
