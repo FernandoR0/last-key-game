@@ -73,9 +73,11 @@ namespace LastKey
                 var glass=Box("Integrated display glass",terminal,new Vector3(0,.004f,0),new Vector3(1.45f,.002f,.70f),new Color(.012f,.07f,.085f));
                 Displays[i]=glass.GetComponent<Renderer>();
                 var screenText=new GameObject("Live touchscreen text",typeof(TextMeshPro));
-                screenText.transform.SetParent(terminal,false);screenText.transform.localPosition=new Vector3(0,.007f,.18f);screenText.transform.localRotation=Quaternion.Euler(90,0,0);
+                screenText.transform.SetParent(terminal,false);screenText.transform.localPosition=new Vector3(0,.007f,.145f);screenText.transform.localRotation=Quaternion.Euler(90,0,0);
                 Screens[i]=screenText.GetComponent<TextMeshPro>();Screens[i].font=font;Screens[i].richText=false;Screens[i].fontSize=.55f;Screens[i].enableAutoSizing=true;Screens[i].fontSizeMin=.22f;Screens[i].fontSizeMax=.55f;Screens[i].textWrappingMode=TextWrappingModes.Normal;Screens[i].overflowMode=TextOverflowModes.Truncate;Screens[i].color=new Color(.8f,1,1);Screens[i].alignment=TextAlignmentOptions.Center;Screens[i].rectTransform.sizeDelta=new Vector2(1.32f,.28f);Screens[i].text="LAST KEY\nESTACIÓN LISTA";
                 TouchKeys[i]=terminal.gameObject.AddComponent<TouchKeyboardVisual>();TouchKeys[i].Create(font,Colors[i]);
+                Screens[i].fontSize=.85f;Screens[i].fontSizeMin=.55f;Screens[i].fontSizeMax=.85f;
+                Screens[i].rectTransform.sizeDelta=new Vector2(1.32f,.39f);
                 VisualProps.Fit("SM_Chair",station,new Vector3(0,.60f,-1.08f),new Vector3(.72f,1.20f,.72f),new Color(.17f,.23f,.31f));
                 Box("Chair footrest",station,new Vector3(0,.18f,-.72f),new Vector3(.56f,.045f,.30f),metal);
                 VisualProps.Restraint(station,new Vector3(0,.74f,-.99f),new Vector3(.46f,.065f,.30f));

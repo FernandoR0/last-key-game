@@ -28,3 +28,9 @@
 
 __pycache__/
 *.pyc
+
+/Assets/PrivateActorCore/
+/Assets/PrivateActorCore.meta
+
+/Assets/PrivateMixamo/
+/Assets/PrivateMixamo.meta

@@ -49,6 +49,13 @@ public static Transform Create(Transform station,int index,Color accent,out Rend
 
 var root=CreateStanding(station,index,accent,out var animator);var hips=animator.GetBoneTransform(HumanBodyBones.Hips);root.localPosition+=station.InverseTransformVector(station.TransformPoint(new Vector3(0,.66f,-.97f))-hips.position);
 
+collar=AttachCollar(root,animator,station,index,accent);
+
+var motion=root.gameObject.AddComponent<CharacterMotion>();motion.Initialize(animator,index,station);return root;
+
+}
+
+public static Renderer AttachCollar(Transform root,Animator animator,Transform station,int index,Color accent){
 var neckBone=animator.GetBoneTransform(HumanBodyBones.Neck)??animator.GetBoneTransform(HumanBodyBones.Head);
 var hardware=UnityEngine.Object.Instantiate(Resources.Load<GameObject>("VisualProps/collar"),station);
 hardware.name="Imported tracking collar / Danger";
@@ -89,9 +96,8 @@ foreach(var r in renderers){var mats=r.sharedMaterials;for(int j=0;j<mats.Length
  if(light)indicator=mats[j];
 }r.sharedMaterials=mats;}
 if(indicator==null){indicator=renderers[renderers.Length-1].material;indicator.SetFloat("_UseEmission",1);}
-var collarVisual=hardware.AddComponent<CollarVisual>();collarVisual.Initialize(indicator);collar=ring;
+var collarVisual=hardware.AddComponent<CollarVisual>();collarVisual.Initialize(indicator);return ring;
 
-var motion=root.gameObject.AddComponent<CharacterMotion>();motion.Initialize(animator,index,station);return root;
 
 }
 

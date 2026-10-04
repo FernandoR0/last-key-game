@@ -41,6 +41,9 @@ namespace LastKey
                 }
             }
             CombineStaticSurface();
+            // Standard laptop-sized touch layout, leaving the upper display for the prompt.
+            surface.transform.localScale=new Vector3(.38f,1,.55f);
+            surface.transform.localPosition=new Vector3(0,0,-.12f);
             foreach(char c in "ABCDEFGHIJKLMNOPQRSTUVWXYZÑÁÉÍÓÚÜ0123456789.,;:?!¿¡´¨@#^~`%&$€¬[]{}\\|+-*/=_()<> ")Debug.Assert(keys.ContainsKey(c),"Touch key missing: "+c);
             Debug.Assert(KeyFor('A')=="Touch key A"&&KeyFor('B')=="Touch key B"&&KeyFor('R')=="Touch key R"&&KeyFor(' ')=="Touch key ESPACIO","Touch key label mapping");
         }
