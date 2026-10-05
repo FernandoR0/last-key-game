@@ -67,7 +67,13 @@ namespace LastKey
                 if(Game.Phase==Phase.Results)Switch(ExperienceState.RoundResult);else if(Game.Phase==Phase.Finished)Switch(ExperienceState.FinalResult);
             }
             else if(Flow==ExperienceState.Paused&&Input.GetKeyDown(KeyCode.Escape))Switch(ExperienceState.Gameplay);
-            Arena.Animate(Time.time,Game);if(Flow==ExperienceState.RoundIntro)Arena.ShowOpening(StateTime);foreach(var c in Arena.Characters)c.GetComponent<MatchCharacterVisual>().Present(Game,Flow,StateTime);Refresh();if(visualPreview)Canvas.enabled=Flow==ExperienceState.RoundResult||Flow==ExperienceState.FinalResult||Flow==ExperienceState.Paused||Flow==ExperienceState.MainMenu;
+            Arena.Animate(Time.time,Game);if(Flow==ExperienceState.RoundIntro)Arena.ShowOpening(StateTime);Refresh();if(visualPreview)Canvas.enabled=Flow==ExperienceState.RoundResult||Flow==ExperienceState.FinalResult||Flow==ExperienceState.Paused||Flow==ExperienceState.MainMenu;
+        }
+        void LateUpdate()
+        {
+            if(Arena==null||Game==null)return;
+            // Final animation/contact corrections must run after Unity evaluates Animator streams.
+            foreach(var c in Arena.Characters)c.GetComponent<MatchCharacterVisual>().Present(Game,Flow,StateTime);
             if(Flow==ExperienceState.RoundIntro){Cameras.Intro(Mathf.Clamp01(StateTime/MusicManager.IntroSeconds));intro.SetActive(false);}
         }
         public void StopSessionAudio(){Music.StopSessionAudio();Sound.StopSessionAudio();}

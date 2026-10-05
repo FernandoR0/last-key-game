@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LAST KEY — Personaje · revisión 23</title>
+<style>body{margin:0;background:#f5f3ef;color:#252b30;font:17px system-ui}main{max-width:1400px;padding:24px;margin:auto}h1{font-weight:500;font-size:28px;margin:0 0 16px}video{display:block;width:100%;max-height:78vh;background:#000}nav{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}button{font:inherit;border:1px solid #9ca5aa;background:transparent;padding:10px 16px;border-radius:6px;color:inherit;cursor:pointer}p{color:#596168;font-size:15px}</style>
+<main><h1>LAST KEY · Personaje · revisión 23</h1>
+<video id="film" controls autoplay muted playsinline preload="auto" src="character-23.mp4"></video>
+<nav aria-label="Momentos de la animación"><button data-time="0">Desde el inicio</button><button data-time="6">Despertar</button><button data-time="10">Inspección</button><button data-time="18">Mirar abajo</button><button data-time="22">Entrada al collar · 22 s</button><button data-time="26">Forcejeo original</button><button data-time="31">Soltar el collar</button><button data-time="35">Paso al tecleo · 35 s</button></nav>
+<nav aria-label="Velocidad de revisión"><button data-speed="1">Velocidad normal</button><button data-speed="0.5">Cámara lenta · 0,5×</button></nav>
+<p>Captura real de Unity · 46 segundos · 1920×1080 / 30 fps · Sin audio. Revisión del personaje y sus transiciones. El juego WebGL publicado aún conserva la versión anterior.</p></main>
+<script>const film=document.querySelector('#film');document.querySelectorAll('[data-time]').forEach(b=>b.onclick=()=>{film.currentTime=Number(b.dataset.time);film.play();});document.querySelectorAll('[data-speed]').forEach(b=>b.onclick=()=>{film.playbackRate=Number(b.dataset.speed);film.play();});</script></html>

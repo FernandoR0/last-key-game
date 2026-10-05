@@ -46,4 +46,5 @@ Original GLB SHA256: 02f939ed883f06209a7c2cd9ae52549b6a1bd9f8b2d6e57dba77d8e4e36
 ## Imported character and motions used in the integrated match
 ActorCore Party-M-0001, official free character downloaded through Fernando’s account. Four temporary copies of the approved pilot; no four distinct final identities claimed. Source: https://actorcore.reallusion.com/3d-character/free?asset=party-m-0001
 Mixamo: SittingIdleBreathing, WakingSeated, BeingStrangled, Typing, BeingElectrocuted, SittingVictory. Downloaded official free motions; private source files, embedded gameplay use. https://helpx.adobe.com/creative-cloud/faq/mixamo-faq.html
+Character cinematic revision 23 additionally uses SittingLookAround (head channel), Looking Down (downloaded again from the official Mixamo library on 2026-10-05 at 60 fps), Sit To Type, and Type To Sit. No paid motion pack was obtained. Looking Down source is stored privately as `Assets/PrivateMixamo/LookingDown.fbx`; raw Adobe and ActorCore assets are not published in the repository.
 No Fernando voice recording or rejected synthetic scream included in game builds. Cost: S/0.

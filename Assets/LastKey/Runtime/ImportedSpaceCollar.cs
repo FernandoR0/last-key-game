@@ -48,9 +48,9 @@ public sealed class ImportedSpaceCollar:MonoBehaviour {
   return contact;
  }
  public void SamplePose(){
-  if(bound)return;
   var neck=rig.GetBoneTransform(HumanBodyBones.Neck);var head=rig.GetBoneTransform(HumanBodyBones.Head);
-  var up=Vector3.Slerp(station.up,(head.position-neck.position).normalized,.85f).normalized;var forward=Vector3.ProjectOnPlane(station.forward,up).normalized;
+  // Follow the anatomical neck axis after the final blended pose, not its initial bone rotation.
+  var up=(head.position-neck.position).normalized;var forward=Vector3.ProjectOnPlane(station.forward,up).normalized;
   transform.rotation=Quaternion.LookRotation(forward,up);
   transform.position=Vector3.Lerp(neck.position,head.position,.32f)-transform.TransformVector(paddingLocalCenter);
  }

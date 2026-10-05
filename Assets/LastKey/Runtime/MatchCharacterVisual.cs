@@ -12,7 +12,7 @@ public sealed class MatchCharacterVisual:MonoBehaviour {
    if(local<10){stage=0;local=Mathf.Max(0,local-4)*.55f;}
    else if(local<18){stage=8;local-=10;}
    else if(local<23){stage=9;local-=18;}
-   else if(local<32){stage=1;local=(local-23)*.45f;}
+   else if(local<32){stage=1;local=(local-23)*.80f;}
    else if(local<36){stage=7;local-=32;}
    else {stage=2;local-=36;}
   }else if(flow==ExperienceState.Gameplay||flow==ExperienceState.Countdown||flow==ExperienceState.Paused){
