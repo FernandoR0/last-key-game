@@ -42,3 +42,8 @@ Adaptations: GLB-to-FBX conversion, graphite/steel materials, emissive Danger di
 Current integration: one-character animation pilot. The previous playable build still uses the previous assets. No claims of final four-character integration.
 
 Original GLB SHA256: 02f939ed883f06209a7c2cd9ae52549b6a1bd9f8b2d6e57dba77d8e4e36e8761
+
+## Imported character and motions used in the integrated match
+ActorCore Party-M-0001, official free character downloaded through Fernando’s account. Four temporary copies of the approved pilot; no four distinct final identities claimed. Source: https://actorcore.reallusion.com/3d-character/free?asset=party-m-0001
+Mixamo: SittingIdleBreathing, WakingSeated, BeingStrangled, Typing, BeingElectrocuted, SittingVictory. Downloaded official free motions; private source files, embedded gameplay use. https://helpx.adobe.com/creative-cloud/faq/mixamo-faq.html
+No Fernando voice recording or rejected synthetic scream included in game builds. Cost: S/0.

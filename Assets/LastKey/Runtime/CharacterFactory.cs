@@ -47,11 +47,11 @@ return root.transform;
 
 public static Transform Create(Transform station,int index,Color accent,out Renderer collar){
 
-var root=CreateStanding(station,index,accent,out var animator);var hips=animator.GetBoneTransform(HumanBodyBones.Hips);root.localPosition+=station.InverseTransformVector(station.TransformPoint(new Vector3(0,.66f,-.97f))-hips.position);
-
-collar=AttachCollar(root,animator,station,index,accent);
-
-var motion=root.gameObject.AddComponent<CharacterMotion>();motion.Initialize(animator,index,station);return root;
+var prefab=Resources.Load<GameObject>("MatchVisuals/ApprovedCharacter");
+if(prefab==null)throw new InvalidOperationException("Approved visual prefab missing. Run ProductionVisualSetup.Prepare.");
+var body=UnityEngine.Object.Instantiate(prefab,station);body.name=LastKeyGame.Aliases[index]+" / approved character";
+var rig=body.GetComponentInChildren<Animator>();var motion=body.AddComponent<ImportedMotionPilot>();motion.Initialize(rig,station,body.GetComponent<ImportedMotionLibrary>().Clips,index);
+var visual=body.AddComponent<MatchCharacterVisual>();visual.Motion=motion;visual.Identity=index;motion.Sample(0,7,0);collar=motion.Collar;return body.transform;
 
 }
 

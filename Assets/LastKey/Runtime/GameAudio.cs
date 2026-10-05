@@ -32,7 +32,7 @@ namespace LastKey
             }
             var clip=AudioClip.Create(name,samples.Length,1,rate,false);clip.SetData(samples,0);return clip;
         }
-        public void Cue(string name){if(effects!=null&&clips.ContainsKey(name)){(name=="ui"?ui:effects).PlayOneShot(clips[name],name=="typing"?.8f:1.3f);if(name=="elimination"){var scream=Resources.Load<AudioClip>("Audio/VisualSfx/scream");if(scream!=null)effects.PlayOneShot(scream,1.45f);}Emitted?.Invoke(clips[name]);CuePlayed?.Invoke(name);}}
+        public void Cue(string name){if(effects!=null&&clips.ContainsKey(name)){(name=="ui"?ui:effects).PlayOneShot(clips[name],name=="typing"?.8f:1.3f);Emitted?.Invoke(clips[name]);CuePlayed?.Invoke(name);}}
         public void StopSessionAudio(){foreach(var source in new[]{effects,ambient,ui})if(source!=null)source.Stop();}
         void OnApplicationQuit(){StopSessionAudio();}
         public void Menu(bool active){if(ambient!=null)ambient.volume=active?.09f:.025f;}

@@ -14,7 +14,7 @@ public sealed class ImportedMotionPilot : MonoBehaviour {
  PlayableGraph graph; AnimationMixerPlayable bodyMixer; AnimationLayerMixerPlayable layers;
  AnimationClipPlayable idle,action,gesture,electric; AnimationClip[] clips; int prior=-1;
  public float CollarSourceTime=-1;
- sealed class HandSurface {public SkinnedMeshRenderer skin;public Mesh baked;public int[][] indices;}
+ sealed class HandSurface {public SkinnedMeshRenderer skin;public Vector3[] vertices; public BoneWeight[] weights; public Matrix4x4[] bind,matrices; public int[][] indices;}
  readonly List<HandSurface> handSurfaces=new List<HandSurface>();
  Quaternion jawRest; Transform jaw; LineRenderer arc; Material arcMaterial;
  public string Stage {get;private set;} public int Intensity {get;private set;}
@@ -31,11 +31,11 @@ public sealed class ImportedMotionPilot : MonoBehaviour {
   var obj=new GameObject("Collar discharge preview",typeof(LineRenderer));obj.transform.SetParent(station,false);arc=obj.GetComponent<LineRenderer>();arc.positionCount=12;arc.loop=false;arc.useWorldSpace=true;arc.numCornerVertices=2;arc.numCapVertices=2;arc.widthCurve=AnimationCurve.Linear(0,1,1,1);
   arcMaterial=new Material(Shader.Find("Universal Render Pipeline/Unlit"));arcMaterial.color=new Color(.55f,.9f,1);arc.sharedMaterial=arcMaterial;arc.enabled=false;
  }
- public void Sample(float t){
+ public void Sample(float t,int overrideStage=-1,float overrideSeconds=0){
   // Source order: idle, waking seated, disbelief, typing, electrocuted, victory.
-  int stage=t<5?0:t<10?1:t<18?2:t<21?3:t<24?4:t<30?5:6;
-  float start=new[]{0f,5,10,18,21,24,30}[stage],s=t-start;
-  Stage=new[]{"DESPERTAR / MOCAP SENTADO","COLLAR / ADAPTACIÓN DE CONTACTO","TECLEO / PANTALLA INTEGRADA","DESCARGA DÉBIL / DANGER 40%","DESCARGA MEDIA / DANGER 70%","ELIMINACIÓN / SOLO ESTA RONDA","VICTORIA / MOCAP SENTADO"}[stage];
+  int stage=overrideStage>=0?overrideStage:t<5?0:t<10?1:t<18?2:t<21?3:t<24?4:t<30?5:6;
+  float start=new[]{0f,5,10,18,21,24,30,0}[stage],s=overrideStage>=0?overrideSeconds:t-start;
+  Stage=new[]{"DESPERTAR / MOCAP SENTADO","COLLAR / ADAPTACIÓN DE CONTACTO","TECLEO / PANTALLA INTEGRADA","DESCARGA DÉBIL / DANGER 40%","DESCARGA MEDIA / DANGER 70%","ELIMINACIÓN / SOLO ESTA RONDA","VICTORIA / MOCAP SENTADO","ESPERA / MOCAP SENTADO"}[stage];
   Intensity=stage>=3&&stage<=5?stage-2:0;
   int clip=stage==0?1:stage==1?2:stage==2||stage==3||stage==4?3:stage==6?5:0;
   if(prior!=clip){if(action.IsValid()){graph.Disconnect(bodyMixer,1);graph.Disconnect(layers,2);action.Destroy();gesture.Destroy();}action=AnimationClipPlayable.Create(graph,clips[clip]);gesture=AnimationClipPlayable.Create(graph,clips[clip]);if(!graph.Connect(action,0,bodyMixer,1)||!graph.Connect(gesture,0,layers,2))throw new InvalidOperationException("Downloaded motion graph connection failed");prior=clip;}
@@ -69,9 +69,11 @@ public sealed class ImportedMotionPilot : MonoBehaviour {
     var allowed=new HashSet<int>();for(int b=0;b<skin.bones.Length;b++)if(skin.bones[b]!=null&&(skin.bones[b]==hand||skin.bones[b].IsChildOf(hand)))allowed.Add(b);
     for(int i=0;i<weights.Length;i++){var v=weights[i];float sum=(allowed.Contains(v.boneIndex0)?v.weight0:0)+(allowed.Contains(v.boneIndex1)?v.weight1:0)+(allowed.Contains(v.boneIndex2)?v.weight2:0)+(allowed.Contains(v.boneIndex3)?v.weight3:0);if(sum>.5f)indices[side].Add(i);}
    }
-   if(indices[0].Count+indices[1].Count>0)handSurfaces.Add(new HandSurface{skin=skin,baked=new Mesh(),indices=new[]{indices[0].ToArray(),indices[1].ToArray()}});
+   if(indices[0].Count+indices[1].Count>0)handSurfaces.Add(new HandSurface{skin=skin,vertices=skin.sharedMesh.vertices,weights=weights,bind=skin.sharedMesh.bindposes,matrices=new Matrix4x4[skin.bones.Length],indices=new[]{indices[0].ToArray(),indices[1].ToArray()}});
   }
  }
+ void UpdateMatrices(HandSurface surface){for(int i=0;i<surface.matrices.Length;i++)surface.matrices[i]=surface.skin.bones[i].localToWorldMatrix*surface.bind[i];}
+ Vector3 WorldVertex(HandSurface surface,int index){var v=surface.vertices[index];var w=surface.weights[index];return surface.matrices[w.boneIndex0].MultiplyPoint3x4(v)*w.weight0+surface.matrices[w.boneIndex1].MultiplyPoint3x4(v)*w.weight1+surface.matrices[w.boneIndex2].MultiplyPoint3x4(v)*w.weight2+surface.matrices[w.boneIndex3].MultiplyPoint3x4(v)*w.weight3;}
  void ContactHand(bool right){
   var hand=Rig.GetBoneTransform(right?HumanBodyBones.RightHand:HumanBodyBones.LeftHand);var finger=Rig.GetBoneTransform(right?HumanBodyBones.RightMiddleDistal:HumanBodyBones.LeftMiddleDistal);
   if(finger==null)return;
@@ -82,7 +84,7 @@ public sealed class ImportedMotionPilot : MonoBehaviour {
   var correction=Station.TransformVector(new Vector3(0,0,Mathf.Clamp(point.z,terminal.localPosition.z-.27f,terminal.localPosition.z-.17f)-point.z));SolveArm(right,hand.position+correction);
   for(int pass=0;pass<2;pass++){
    float lowest=float.PositiveInfinity;
-   foreach(var surface in handSurfaces){surface.skin.BakeMesh(surface.baked);var vertices=surface.baked.vertices;foreach(int i in surface.indices[right?1:0])lowest=Mathf.Min(lowest,Station.InverseTransformPoint(surface.skin.transform.TransformPoint(vertices[i])).y);}
+   foreach(var surface in handSurfaces){UpdateMatrices(surface);foreach(int i in surface.indices[right?1:0])lowest=Mathf.Min(lowest,Station.InverseTransformPoint(WorldVertex(surface,i)).y);}
    if(float.IsInfinity(lowest))return;float delta=terminal.localPosition.y+.012f-lowest;
    if(Mathf.Abs(delta)<.001f)return;SolveArm(right,hand.position+Station.up*delta);
   }
@@ -95,7 +97,7 @@ public sealed class ImportedMotionPilot : MonoBehaviour {
   // Match the rendered fingers to the imported metal surface, rather than an arbitrary wrist offset.
   for(int pass=0;pass<2;pass++){
    Vector3 closest=knuckle.position;float best=float.PositiveInfinity;
-   foreach(var surface in handSurfaces){surface.skin.BakeMesh(surface.baked);var vertices=surface.baked.vertices;foreach(int i in surface.indices[right?1:0]){var point=surface.skin.transform.TransformPoint(vertices[i]);float distance=(point-anchor).sqrMagnitude;if(distance<best){best=distance;closest=point;}}}
+   foreach(var surface in handSurfaces){UpdateMatrices(surface);foreach(int i in surface.indices[right?1:0]){var point=WorldVertex(surface,i);float distance=(point-anchor).sqrMagnitude;if(distance<best){best=distance;closest=point;}}}
    SolveArm(right,Vector3.Lerp(hand.position,hand.position+anchor-closest,weight));
   }
  }
@@ -105,6 +107,6 @@ public sealed class ImportedMotionPilot : MonoBehaviour {
   Vector3 pole=lower.position-(a+end.position)*.5f;Vector3 bend=Vector3.ProjectOnPlane(pole,direction).normalized;if(bend.sqrMagnitude<.01f)bend=Station.right*(right?1:-1);Vector3 elbow=a+direction*along+bend*height;
   upper.rotation=Quaternion.FromToRotation(lower.position-upper.position,elbow-upper.position)*upper.rotation;lower.rotation=Quaternion.FromToRotation(end.position-lower.position,target-lower.position)*lower.rotation;end.rotation=wrist;
  }
- void OnDestroy(){if(graph.IsValid())graph.Destroy();if(arcMaterial!=null)Destroy(arcMaterial);if(arc!=null)Destroy(arc.gameObject);foreach(var surface in handSurfaces)Destroy(surface.baked);}
+ void OnDestroy(){if(graph.IsValid())graph.Destroy();if(arcMaterial!=null)Destroy(arcMaterial);if(arc!=null)Destroy(arc.gameObject);}
 }
 }

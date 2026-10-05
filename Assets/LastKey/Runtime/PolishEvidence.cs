@@ -32,9 +32,10 @@ namespace LastKey
                 case ExperienceState.ModeSelect:Once("03_MODE_SELECT",host.StateTime>.4f);if(host.StateTime>1.5f)host.OpenCharacterSelect();break;
                 case ExperienceState.CharacterSelect:Once("04_CHARACTER_SELECT",host.StateTime>.6f);next="02_character_select";if(host.StateTime>3)host.ConfirmCharacter();break;
                 case ExperienceState.MatchSetup:if(host.StateTime>1)host.BeginIntro();break;
-                case ExperienceState.RoundIntro:credit=0;Once("05_ROUND_WAKEUP_INTRO",g.Round==1&&host.StateTime>.7f);if(g.Round==1)next="03_round_wakeup_intro";break;
-                case ExperienceState.Countdown:if(g.Round==1)next="03_round_wakeup_intro";break;
+                case ExperienceState.RoundIntro:credit=0;Once("05_ROUND_WAKEUP_INTRO",g.Round==1&&host.StateTime>.7f);Once("05B_COLLAR_CONTACT",g.Round==1&&host.StateTime>7&&host.StateTime<8);Once("05C_OTHER_PLAYERS_WAKE",g.Round==1&&host.StateTime>13&&host.StateTime<14);Once("05D_NULL_RULES",g.Round==1&&host.StateTime>21&&host.StateTime<22);if(g.Round==1)next="03_round_wakeup_intro";break;
+                case ExperienceState.Countdown:Once("05B_COLLAR_CONTACT",g.Round==1&&host.StateTime>7&&host.StateTime<8);Once("05C_OTHER_PLAYERS_WAKE",g.Round==1&&host.StateTime>13&&host.StateTime<14);Once("05D_NULL_RULES",g.Round==1&&host.StateTime>21&&host.StateTime<22);if(g.Round==1)next="03_round_wakeup_intro";break;
                 case ExperienceState.Gameplay:
+                    Once("15B_RETURN_NEXT_ROUND",g.Round==2&&g.Elapsed>1&&!p.Eliminated);
                     credit+=Time.deltaTime*(musicEvidence&&g.Round==1&&g.Elapsed>=22&&g.Elapsed<30?1.5f:4.5f);
                     while(credit>=1&&!p.Eliminated){credit--;char input=g.Round==1&&g.Elapsed>=22&&g.Elapsed<30?'#':p.EchoAccepted&&!p.EchoResolved?Competition.EchoText[p.EchoCursor]:p.Prompt[p.Cursor];host.Arena.TouchKeys[host.HumanIndex].Press(input);g.Input(host.HumanIndex,input);}
                     if(g.Round==2&&g.EchoOffered&&!p.EchoAccepted&&!p.EchoResolved)host.RespondEcho(true);
@@ -45,8 +46,8 @@ namespace LastKey
                     // NULL clip overlaps gameplay; separate window after typing clip.
                     if(g.Round==1&&g.Elapsed>=17&&g.Elapsed<21)next="06_null_directive";
                     if(Environment.GetCommandLineArgs().Contains("--polish-smoke")&&g.Elapsed>12){Finish();return;}break;
-                case ExperienceState.RoundResult:Once("15_ROUND_RESULTS",g.Round==1&&host.StateTime>.7f);next=g.Round==1&&host.StateTime<6?"08_round_result":null;if(host.StateTime>6)host.BeginIntro();break;
-                case ExperienceState.FinalResult:Once("16_FINAL_WINNER",host.StateTime>.7f);next=host.StateTime<6?"09_final_winner":null;if(host.StateTime>6&&!framePending){ready=false;StartCoroutine(Portraits());}break;
+                case ExperienceState.RoundResult:credit=0;Once("15_ROUND_RESULTS",g.Round==1&&host.StateTime>.7f);next=g.Round==1&&host.StateTime<6?"08_round_result":null;if(host.StateTime>6)host.BeginIntro();break;
+                case ExperienceState.FinalResult:Once("16_FINAL_WINNER",host.StateTime>3.5f);next=host.StateTime<6?"09_final_winner":null;if(host.StateTime>6&&!framePending){ready=false;StartCoroutine(Portraits());}break;
             }
             if(musicEvidence)
             {
@@ -71,7 +72,7 @@ namespace LastKey
         IEnumerator Snap(string path){yield return new WaitForEndOfFrame();Save(path);}
         void SetClip(string name)
         {
-            clip=name;if(name==null||framePending)return;if(!frameCounts.ContainsKey(name))frameCounts[name]=0;Directory.CreateDirectory(Path.Combine(root,"frames",name));StartCoroutine(Frame(name));
+            clip=name;if(Environment.GetCommandLineArgs().Contains("--screenshots-only")){clip=null;return;}if(name==null||framePending)return;if(!frameCounts.ContainsKey(name))frameCounts[name]=0;Directory.CreateDirectory(Path.Combine(root,"frames",name));StartCoroutine(Frame(name));
         }
         IEnumerator Frame(string name){framePending=true;yield return new WaitForEndOfFrame();Save("frames/"+name+"/"+(frameCounts[name]++).ToString("D5")+".jpg");framePending=false;}
         void RecordSound(AudioClip sound)
@@ -93,7 +94,7 @@ namespace LastKey
         void Save(string path)
         {
             var tex=ScreenCapture.CaptureScreenshotAsTexture();File.WriteAllBytes(Path.Combine(root,path),path.EndsWith(".jpg")?tex.EncodeToJPG(88):tex.EncodeToPNG());Destroy(tex);
-            if(path.EndsWith(".png")){var p=host.Game.Players[host.HumanIndex];audit.Add(new State{file=path,flow=host.Flow.ToString(),camera=host.Cameras.Role,round=host.Game.Round,danger=p.Danger,total=p.TotalScore,score=p.RoundScore,prompt=p.Prompt,motions=host.Arena.Characters.Select(t=>t.GetComponent<CharacterMotion>().State).ToArray()});Debug.Log("V2_CAPTURE "+path+" "+host.Flow);}
+            if(path.EndsWith(".png")){var p=host.Game.Players[host.HumanIndex];audit.Add(new State{file=path,flow=host.Flow.ToString(),camera=host.Cameras.Role,round=host.Game.Round,danger=p.Danger,total=p.TotalScore,score=p.RoundScore,prompt=p.Prompt,motions=host.Arena.Characters.Select(t=>t.GetComponent<ImportedMotionPilot>().Stage).ToArray()});Debug.Log("V2_CAPTURE "+path+" "+host.Flow);}
         }
         bool argsMenuOnly()=>Environment.GetCommandLineArgs().Contains("--music-menu-only");
         void Finish()

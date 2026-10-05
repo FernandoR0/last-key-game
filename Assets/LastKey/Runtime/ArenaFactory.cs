@@ -64,19 +64,19 @@ namespace LastKey
             for(int i=0;i<4;i++)
             {
                 var station=Group("Station_P"+(i+1),stations);Stations[i]=station;
-                VisualProps.Fit("SM_Desk",station,new Vector3(0,.42f,0),new Vector3(2.05f,.84f,1.1f),new Color(.45f,.52f,.59f));
+                VisualProps.Fit("SM_Desk",station,new Vector3(0,.56f,-.13f),new Vector3(2.05f,.84f,1.1f),new Color(.45f,.52f,.59f));
                 // The player's display and input surface are built into the desktop.
                 // No upright monitor, stand, separate keyboard or tower obstructs rivals.
                 var terminal=Group("Integrated touch terminal",station);
-                terminal.localPosition=new Vector3(0,.840f,-.20f);
+                terminal.localPosition=new Vector3(0,.980f,-.33f);
                 Box("Touchscreen bezel",terminal,Vector3.zero,new Vector3(1.53f,.008f,.72f),new Color(.025f,.035f,.05f));
                 var glass=Box("Integrated display glass",terminal,new Vector3(0,.004f,0),new Vector3(1.45f,.002f,.70f),new Color(.012f,.07f,.085f));
-                Displays[i]=glass.GetComponent<Renderer>();
+                Displays[i]=glass.GetComponent<Renderer>(); var displayMaterial=new Material(Shader.Find("Universal Render Pipeline/Unlit"));displayMaterial.color=new Color(.012f,.07f,.085f);Displays[i].sharedMaterial=displayMaterial;
                 var screenText=new GameObject("Live touchscreen text",typeof(TextMeshPro));
                 screenText.transform.SetParent(terminal,false);screenText.transform.localPosition=new Vector3(0,.007f,.145f);screenText.transform.localRotation=Quaternion.Euler(90,0,0);
                 Screens[i]=screenText.GetComponent<TextMeshPro>();Screens[i].font=font;Screens[i].richText=false;Screens[i].fontSize=.55f;Screens[i].enableAutoSizing=true;Screens[i].fontSizeMin=.22f;Screens[i].fontSizeMax=.55f;Screens[i].textWrappingMode=TextWrappingModes.Normal;Screens[i].overflowMode=TextOverflowModes.Truncate;Screens[i].color=new Color(.8f,1,1);Screens[i].alignment=TextAlignmentOptions.Center;Screens[i].rectTransform.sizeDelta=new Vector2(1.32f,.28f);Screens[i].text="LAST KEY\nESTACIÓN LISTA";
                 TouchKeys[i]=terminal.gameObject.AddComponent<TouchKeyboardVisual>();TouchKeys[i].Create(font,Colors[i]);
-                Screens[i].fontSize=.85f;Screens[i].fontSizeMin=.55f;Screens[i].fontSizeMax=.85f;
+                Screens[i].fontSize=.60f;Screens[i].fontSizeMin=.35f;Screens[i].fontSizeMax=.60f;
                 Screens[i].rectTransform.sizeDelta=new Vector2(1.32f,.39f);
                 VisualProps.Fit("SM_Chair",station,new Vector3(0,.60f,-1.08f),new Vector3(.72f,1.20f,.72f),new Color(.17f,.23f,.31f));
                 Box("Chair footrest",station,new Vector3(0,.18f,-.72f),new Vector3(.56f,.045f,.30f),metal);
@@ -88,13 +88,13 @@ namespace LastKey
             var board=new GameObject("Scoreboard",typeof(TextMeshPro));board.transform.SetParent(env,false);board.transform.localPosition=new Vector3(0,2.55f,4.34f);board.transform.localRotation=Quaternion.identity;
             Board=board.GetComponent<TextMeshPro>();Board.font=font;Board.fontSize=2.3f;Board.alignment=TextAlignmentOptions.Center;Board.color=cyan;Board.rectTransform.sizeDelta=new Vector2(4.3f,1.1f);Board.text="LAST KEY\n4 PARTICIPANTES · 5 RONDAS";
             RenderSettings.ambientMode=UnityEngine.Rendering.AmbientMode.Trilight;RenderSettings.ambientSkyColor=new Color(.33f,.40f,.52f);RenderSettings.ambientEquatorColor=new Color(.20f,.26f,.35f);RenderSettings.ambientGroundColor=new Color(.10f,.13f,.18f);RenderSettings.ambientLight=new Color(.22f,.29f,.38f);RenderSettings.fog=true;RenderSettings.fogColor=new Color(.028f,.042f,.06f);RenderSettings.fogDensity=.022f;
-            var lighting=Group("Lighting",Root.transform);var lightObj=new GameObject("Main",typeof(Light));lightObj.transform.SetParent(lighting);lightObj.transform.rotation=Quaternion.Euler(48,-25,0);var light=lightObj.GetComponent<Light>();light.type=LightType.Directional;light.intensity=1.6f;light.color=new Color(.93f,.96f,1);light.shadowBias=.035f;light.shadowNormalBias=.35f;light.shadows=LightShadows.Soft;
-            var fillObj=new GameObject("Face fill",typeof(Light));fillObj.transform.SetParent(lighting);fillObj.transform.rotation=Quaternion.Euler(30,180,0);var fill=fillObj.GetComponent<Light>();fill.type=LightType.Directional;fill.intensity=.8f;fill.color=new Color(1,.93f,.84f);
+            var lighting=Group("Lighting",Root.transform);var lightObj=new GameObject("Main",typeof(Light));lightObj.transform.SetParent(lighting);lightObj.transform.rotation=Quaternion.Euler(48,-25,0);var light=lightObj.GetComponent<Light>();light.type=LightType.Directional;light.intensity=1.2f;light.color=new Color(.93f,.96f,1);light.shadowBias=.035f;light.shadowNormalBias=.35f;light.shadows=LightShadows.Soft;
+            var fillObj=new GameObject("Face fill",typeof(Light));fillObj.transform.SetParent(lighting);fillObj.transform.rotation=Quaternion.Euler(30,180,0);var fill=fillObj.GetComponent<Light>();fill.type=LightType.Directional;fill.intensity=.45f;fill.color=new Color(1,.93f,.84f);
             for(int i=0;i<4;i++)
             {
                 var spot=new GameObject("Station practical light",typeof(Light));spot.transform.SetParent(Stations[i],false);spot.transform.localPosition=new Vector3(0,3,-.7f);spot.transform.localRotation=Quaternion.Euler(82,0,0);
-                var lamp=spot.GetComponent<Light>();lamp.type=LightType.Spot;lamp.range=6;lamp.spotAngle=75;lamp.intensity=5;lamp.color=Color.Lerp(Color.white,Colors[i],.12f);
-                Box("Desk accent inset",Stations[i],new Vector3(0,.73f,-.557f),new Vector3(1.65f,.016f,.005f),Colors[i]*.7f,true);
+                var lamp=spot.GetComponent<Light>();lamp.type=LightType.Spot;lamp.range=6;lamp.spotAngle=75;lamp.intensity=2.2f;lamp.color=Color.Lerp(Color.white,Colors[i],.12f);
+                Box("Desk accent inset",Stations[i],new Vector3(0,.87f,-.687f),new Vector3(1.65f,.016f,.005f),Colors[i]*.7f,true);
             }
             var cameraObj=new GameObject("Cam_Main",typeof(Camera),typeof(AudioListener));cameraObj.transform.SetParent(Root.transform);Camera=cameraObj.GetComponent<Camera>();Camera.fieldOfView=49;Camera.clearFlags=CameraClearFlags.SolidColor;Camera.backgroundColor=RenderSettings.fogColor;Camera.nearClipPlane=.05f;SetCamera(0);
             Arrange(0);
@@ -128,15 +128,15 @@ namespace LastKey
                 if(p.Errors>priorErrors[i])errorUntil[i]=time+.32f;
                 if(p.Combo/20>priorCombos[i]/20)comboUntil[i]=time+.7f;
                 priorErrors[i]=p.Errors;priorCombos[i]=p.Combo;
-                Color surface=time<errorUntil[i]?new Color(.35f,.025f,.045f):time<comboUntil[i]?Colors[i]*.38f:new Color(.015f,.04f,.06f);
+                Color surface=time<errorUntil[i]?new Color(.35f,.025f,.045f):time<comboUntil[i]?Colors[i]*.12f:new Color(.015f,.04f,.06f);
                 Displays[i].material.SetColor("_BaseColor",surface);Displays[i].material.SetFloat("_UseEmission",1);Displays[i].material.SetColor("_EmissionColor",surface*.45f);
                 Color color=p.Danger>=80?new Color(.9f,.07f,.08f):p.Danger>=50?new Color(1,.55f,.06f):cyan;
-                Collars[i].GetComponentInParent<CollarVisual>().SetDanger(color);
-                Characters[i].GetComponent<CharacterMotion>().SetCompetition(game);
+                Collars[i].GetComponentInParent<ImportedSpaceCollar>().SetDanger(color);
+
                 var target=p.EchoAccepted&&!p.EchoResolved?Core.Competition.EchoText:game.Target(i);
                 int cursor=p.EchoAccepted&&!p.EchoResolved?p.EchoCursor:p.Cursor;
                 Screens[i].text=p.Name+"  "+(p.Eliminated?"FUERA DE RONDA":p.Wpm.ToString("0")+" WPM")+"\n"+(target.Length==0?"LISTO":game.Mode==Core.RoundMode.Memory&&game.Elapsed>=p.MemoryRevealUntil?"MEMORIA / TEXTO OCULTO":target.Substring(Mathf.Min(cursor,target.Length-1),Mathf.Min(72,target.Length-Mathf.Min(cursor,target.Length-1))))+"\n"+cursor+" / "+target.Length+"   "+p.RoundScore+" PTS";
-                Screens[i].color=p.Eliminated||time<errorUntil[i]?new Color(1,.65f,.65f):time<comboUntil[i]?new Color(.015f,.025f,.04f):new Color(.75f,1,1);
+                Screens[i].color=p.Eliminated||time<errorUntil[i]?new Color(1,.65f,.65f):time<comboUntil[i]?Color.white:new Color(.75f,1,1);
             }
             Board.text=game.Round==0?"LAST KEY\n4 PARTICIPANTES · 5 RONDAS":"LAST KEY / RONDA "+game.Round+"\n"+game.Players[0].Name+" "+(game.Players[0].TotalScore+(game.Phase==Core.Phase.Running?game.Players[0].RoundScore:0))+"   "+game.Players[1].Name+" "+(game.Players[1].TotalScore+(game.Phase==Core.Phase.Running?game.Players[1].RoundScore:0))+"\n"+game.Players[2].Name+" "+(game.Players[2].TotalScore+(game.Phase==Core.Phase.Running?game.Players[2].RoundScore:0))+"   "+game.Players[3].Name+" "+(game.Players[3].TotalScore+(game.Phase==Core.Phase.Running?game.Players[3].RoundScore:0));
             if(game.Phase==Core.Phase.Finished){var winner=game.Winners()[0];Board.text="THE LAST KEY\n"+winner.Name+" / "+winner.TotalScore+" PUNTOS";}

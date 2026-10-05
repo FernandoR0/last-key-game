@@ -6,11 +6,13 @@ Competencia de mecanografía por rondas: cuatro participantes, una persona y tre
 
 Unity 6000.6.0f1 / URP 17.6.0. Escena Assets/LastKey/Scenes/LastKey.unity. Builds: Builds/Windows/LAST_KEY.exe y Builds/WebGL/.
 
-Para WebGL: servir Builds/WebGL por HTTP en 127.0.0.1:8765 y abrir http://127.0.0.1:8765/?visual=1. Pulsar COMENZAR CON SONIDO. Esta vista inicia directamente la revisión física: intro de 26 segundos, cuenta atrás y primera persona. Resultados conservan UI provisional para avanzar. El enlace es local a esta PC.
+Para WebGL: servir Builds/WebGL por HTTP en 127.0.0.1:8765 y abrir http://127.0.0.1:8765/?design=19. El enlace es local a esta PC. Iniciar desde el menú para conservar el HUD completo. La opción histórica visual=1 oculta parte del HUD y no sirve para revisar esta integración.
 
-## Revisión visual V4
+## Diseño integrado — revisión 19
 
-Mesas/sillas importadas, pantalla táctil integrada, teclado español extendido completo, arena modular iluminada, personajes 3D de historieta con ropa existente y expresiones. Animaciones sentadas retargeteadas, typing CMU + adaptación IK, despertar/collar/sujeción/rivales/NULL solo primera ronda, reacciones y victoria suavizadas. Sin monitores de sobremesa. Las teclas muestran entradas físicas; no son botones táctiles funcionales. Fuentes/licencias/atribuciones: ASSET_MANIFEST.md. Separación de funciones: VISUAL_HANDOFF_FOR_UI.md.
+Cuatro copias temporales del ActorCore Party-M-0001 aprobado en el piloto, con las identidades y estaciones CIPHER/UPLINK/RELAY/VECTOR. Se sustituyen los personajes anteriores en la partida. Se reutilizan seis motions Mixamo: despertar sentado, gesto de collar, tecleo, idle, descarga y victoria. Collar metálico importado ajustado al cuello y contacto de manos. Pantalla integrada en la mesa, teclado español extendido y primera persona. Las teclas muestran entradas físicas; no son botones táctiles funcionales. Fuentes/licencias/atribuciones: ASSET_MANIFEST.md. Detalles actuales: VISUAL_INTEGRATION.md; la documentación V4 es histórica.
+
+HUD integrado: los cuatro participantes en clasificación en vivo, texto de mecanografía inferior, notificaciones destacadas NULL/ECHO/combo. TAB cambia aceptar/ignorar ECHO; ENTER confirma. Las voces quedan para el final, sin integrar la voz sintética rechazada ni el grito genérico.
 
 Música suministrada con una sola fuente activa, mute persistente y cierre del audio propio; efectos gratuitos. Se verificó señal MASTER sin clipping en ocho clips. La escucha perceptual no se declara completada.
 
@@ -22,10 +24,10 @@ Classic principal; Code/Numbers/Memory/Sudden Death BETA. Code copia texto sin e
 
 ## Build y pruebas
 
-Menú LAST KEY → Prepare Project / Build Windows / Build WebGL. CLI Unity: -batchmode -nographics -quit -projectPath <proyecto> -executeMethod LastKey.Editor.ProjectBuilder.BuildWindows (o BuildWebGL). Prepare ejecuta CoreQa 22 y PolishQa 53. Runtime de audio: MusicRuntimeQa 13.
+CLI Unity: -batchmode -quit -force-d3d11 -projectPath <proyecto> -executeMethod LastKey.Editor.ProductionVisualSetup.BuildWindows (o BuildWebGL). Esto prepara el prefab con los modelos y motions locales antes de compilar. Las fuentes ActorCore/Mixamo son privadas y no se incluyen en Git: reconstruir requiere obtenerlas bajo sus licencias. Prepare ejecuta CoreQa 22 y PolishQa 53. Runtime de audio: MusicRuntimeQa 13.
 
 PlayEvidence --music-evidence --evidence-path <carpeta> registra frames reales y MASTER por AudioRenderer; ClipEncoder.Encode genera MP4 1920×1080/30 fps. --pose-audit y --wardrobe-review son pruebas aisladas identificadas, no gameplay. No se desactiva la seguridad de Windows para generar evidencia.
 
 ## Alcance
 
-Aprobación artística pendiente. Fernando controla Canvas/HUD/menús/TAB/ENTER/volumen de interfaz y networking de salas privadas; no se implementa multijugador aquí. No GDD, Trello, Figma, Canva/PDF ni video académico final. GitHub y Unity Play no publicados. Revisión técnica actual en QA_REPORT_VISUAL_V4.md.
+Esta integración permite revisar el diseño dentro del juego; no declara terminado todo el videojuego. La responsabilidad del HUD fue delegada nuevamente a Codex. No se implementa multijugador aquí: sigue siendo una persona y tres bots. No GDD, Trello, Figma, Canva/PDF ni video académico final. GitHub y Unity Play no publicados. Voces y personalización quedan pendientes.

@@ -35,7 +35,7 @@ namespace LastKey
                     Destroy(key.GetComponent<Collider>());var renderer=key.GetComponent<Renderer>();renderer.sharedMaterial=idle;
                     var text=new GameObject("Printed key",typeof(TextMeshPro));text.transform.SetParent(surface.transform,false);text.transform.localPosition=new Vector3(x+width*.5f,.008f,z);text.transform.localRotation=Quaternion.Euler(90,0,0);
                     var tmp=text.GetComponent<TextMeshPro>();tmp.font=font;tmp.fontSize=.21f;tmp.enableAutoSizing=true;tmp.fontSizeMin=.09f;tmp.fontSizeMax=.21f;tmp.alignment=TextAlignmentOptions.Center;tmp.rectTransform.sizeDelta=new Vector2(width-.008f,.05f);tmp.text=label;tmp.color=new Color(.74f,.9f,.95f);
-                    if(row==0&&col<13||label.Length==1||label.Length==3||row==1&&col>=11||row==4&&col==2||row==4&&col==5)foreach(char c in label)if(!char.IsWhiteSpace(c)&&!keys.ContainsKey(char.ToUpperInvariant(c)))keys[char.ToUpperInvariant(c)]=renderer;
+                    if(row==0&&col<13||label.Length==1||(label.Length==3&&label[1]==' ')||row==1&&col>=11||row==4&&col==2||row==4&&col==5)foreach(char c in label)if(!char.IsWhiteSpace(c)&&!keys.ContainsKey(char.ToUpperInvariant(c)))keys[char.ToUpperInvariant(c)]=renderer;
                     if(label=="ESPACIO")keys[' ']=renderer;
                     x+=width;
                 }

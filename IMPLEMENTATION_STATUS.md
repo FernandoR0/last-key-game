@@ -1,29 +1,25 @@
-# LAST KEY — revisión visual V4
+# LAST KEY — diseño integrado, revisión 19
 
-Actualización sobre el proyecto existente. Costo adicional S/0. La aprobación artística de Fernando sigue pendiente; esta entrega permite revisar cambios reales, no declara terminado el videojuego.
+Se continúa sobre el proyecto existente. Costo adicional S/0. Cuatro copias temporales del ActorCore Party-M-0001 aprobado, manteniendo CIPHER/UPLINK/RELAY/VECTOR. Las revisiones V4 y el piloto aislado son antecedentes, no el estado actual.
 
-## Cambios visuales
+## Integración
 
-- Dirección 3D de historieta: cuatro variantes Humanoid de modelos gratuitos Rain/Snow, prendas existentes recoloreadas y peinados/accesorios reutilizados. CIPHER turquesa, UPLINK azul, RELAY violeta y VECTOR ámbar. Fuente y atribución en ASSET_MANIFEST.md.
-- Mesas/sillas Omie CC0, pantalla horizontal integrada sin monitor ni teclado externo. 61 teclas visuales: A–Z, Ñ, vocales acentuadas, Ü, números, signos, espacio y símbolos de Code. La tecla se ilumina al escribir con el teclado físico. No se implementó teclado por clic/touch.
-- Arena compacta con paneles y suelo Kenney, elementos Quaternius, materiales iluminados, sombras y acentos por estación. Cámara de primera persona estabilizada que permite ver mesa, manos y tres rivales.
-- Intro de 26 segundos solo antes de la primera ronda: despertar, collar, comprobar sujeción, rivales despertando, encendido NULL y reglas. Cuenta atrás posterior; tiempo competitivo separado de la intro.
-- Animaciones sentadas gratuitas retargeteadas y mocap corporal CMU 79/85 para typing. IK para silla, piernas/manos y contactos; el registro CMU no aporta dedos individuales ni una pierna derecha válida. Expresiones y parpadeo con seis morphs de rig fuente. Victoria suavizada; eliminación sin cambiar la cámara de juego.
-- Error rojo / combo con color de participante en la pantalla física; collar y descarga estilizada. SFX gratuitos de teclas, combo, NULL/ECHO, victoria y grito CC0.
-- Una sola fuente musical activa, gain revisado, mute persistente y apagado de fuentes propias al salir. Los WAV originales permanecen sin modificaciones. No se afirma revisión auditiva humana.
+- Mocap Mixamo descargado: idle sentado, despertar, contacto con collar, tecleo, descarga y victoria. Se reutilizan las adaptaciones de alcance del piloto aprobado.
+- Collar metálico importado ligado al cuello, contacto de manos y efectos de Danger. Mesh readable habilitado también en build.
+- Despertar/collar/rivales/NULL antes de la primera ronda; esa introducción no se repite en las siguientes.
+- Descargas débiles/medias a Danger 40/70 y eliminación a 100. El eliminado deja de competir solo en esa ronda y vuelve después. El ganador final reproduce el motion de victoria.
+- Pantalla horizontal integrada y teclado español con signos y tildes. Corregida la asociación A/B/T, antes absorbida por el rótulo TAB.
+- HUD delegado a Codex: clasificación de los cuatro, texto inferior y avisos NULL/ECHO/combo. TAB selecciona respuesta ECHO y ENTER confirma. Tarjetas ocultas cuando el evento no está activo.
+- Menús conservados para probar. Las teclas físicas generan la entrada; no hay teclado táctil por clic.
 
-## Núcleo conservado
+## Núcleo y límites
 
-Una persona y tres bots; cinco rondas, puntos acumulados, WPM/Accuracy/Errors/Score/Combo/Danger. Danger 100% elimina solo de la ronda, permite volver en la siguiente. NULL y ECHO. Classic; Code, Numbers, Memory y Sudden Death BETA. Chaos/Story Mode no implementados.
+Una persona y tres bots. Cinco rondas de 60 segundos; score acumulado, WPM/Accuracy/Errors/Score/Combo/Danger. NULL y ECHO conservados. Classic; Code/Numbers/Memory/Sudden Death BETA. Chaos, campaña, personalización y multijugador de salas no implementados.
 
-## Verificaciones
+Las voces quedan para el final por instrucción de Fernando. No se integra la muestra personal ni el grito sintético rechazado. Se retiró el grito genérico de eliminación. Música y efectos permanecen; no se afirma aprobación auditiva.
 
-CoreQa 22 + PolishQa 53 aprobadas. MusicRuntimeQa 13 comprobaciones de fuentes, volumen/mute, pausa, seek, ducking y cierre. Replay de cinco rondas con entradas reales al núcleo, sin asignar puntuaciones para fabricar resultados. Nueve vistas de cuerpo completo/laterales y 16 diagnósticos de poses revisados; capturas primera persona y estados reales. Los diagnósticos están separados de las capturas de partida.
+No se modifican GDD, Trello, Figma, Canva/PDF ni se produce video académico final. GitHub y Unity Play no se declaran publicados. ActorCore/Mixamo permanecen privados; reconstruir requiere obtener las fuentes bajo sus licencias.
 
-Ocho pistas MASTER capturadas por Unity AudioRenderer durante el replay: ningún sample digital recortado. Esta comprobación de señal no sustituye la escucha de Fernando.
+## Validación
 
-## Límites y reparto
-
-Canvas/HUD/menús, navegación TAB/ENTER, controles de volumen visibles y salas privadas/multijugador corresponden a Fernando. La interfaz anterior queda provisional. La revisión /?visual=1 oculta Canvas en intro/gameplay, por lo que ciertas capturas muestran el entorno de un evento sin panel HUD; no presentarlas como diseño final de NULL/ECHO o métricas completas.
-
-No se modifican GDD/Trello/Figma/Canva/PDF ni se produce video académico final. GitHub/Unity Play no se declaran publicados. Las fuentes privadas Renderpeople históricas no forman parte de los personajes activos ni se redistribuyen en el handoff.
+Build Windows correcto. CoreQa 22 y PolishQa 53 aprobadas. Replay nativo completo de cinco rondas sin excepciones/assertions: NULL/ECHO, Danger, eliminación, retorno y ganador. Entradas pasan por Competition.Input/Tick, sin asignar scores ficticios. Última composición y build WebGL registrados en VISUAL_INTEGRATION.md.
