@@ -4,7 +4,7 @@ using UnityEngine;
 namespace LastKey {
 // Existing CC BY mesh: Infernalight / the space collar. No generated collar geometry.
 public sealed class ImportedSpaceCollar:MonoBehaviour {
- bool bound;Animator rig;Transform station;Renderer padding,statusScreen;MeshCollider[] surfaces;Vector3 paddingLocalCenter;
+ bool bound;Animator rig;Transform station;Renderer padding,statusScreen;MeshCollider[] surfaces;Vector3 paddingLocalCenter,neckUp,neckForward,neckCenter;
  readonly System.Collections.Generic.List<Material> indicators=new System.Collections.Generic.List<Material>();
  public Vector3 StatusCenter => statusScreen.bounds.center;
  public void SetDanger(Color color){foreach(var material in indicators){material.color=color;material.SetColor("_EmissionColor",color*1.3f);}}
@@ -24,7 +24,7 @@ public sealed class ImportedSpaceCollar:MonoBehaviour {
   if(originalBounds.size.z<originalBounds.size.y&&originalBounds.size.z<originalBounds.size.x)imported.transform.localRotation=Quaternion.AngleAxis(-90,Vector3.right)*imported.transform.localRotation;
   
   // The internal cushion defines the ring, so asymmetric control modules do not offset the neck fit.
-  var bounds=fit.padding.bounds;obj.transform.localScale=Vector3.Scale(obj.transform.localScale,new Vector3(.15f/bounds.size.x,.042f/bounds.size.y,.15f/bounds.size.z));
+  var bounds=fit.padding.bounds;obj.transform.localScale=Vector3.Scale(obj.transform.localScale,new Vector3(.18f/bounds.size.x,.052f/bounds.size.y,.18f/bounds.size.z));
   fit.paddingLocalCenter=obj.transform.InverseTransformPoint(fit.padding.bounds.center);
   // Omit the source's rear projecting tag plate, which conflicts with this jacket.
   foreach(var renderer in renderers)if(renderer.name=="Material3.004"||renderer.name=="Material2.010")renderer.gameObject.SetActive(false);
@@ -39,7 +39,10 @@ public sealed class ImportedSpaceCollar:MonoBehaviour {
    materialCache[name]=m;materials[j]=m;
   }renderer.sharedMaterials=materials;}
   if(status==null)throw new InvalidOperationException("New collar has no status screen material");
-  obj.AddComponent<CollarVisual>().Initialize(status);fit.SamplePose();obj.transform.SetParent(rig.GetBoneTransform(HumanBodyBones.Neck),true);fit.bound=true;return fit.Casing;
+  var neck=rig.GetBoneTransform(HumanBodyBones.Neck);var head=rig.GetBoneTransform(HumanBodyBones.Head);
+  fit.neckUp=neck.InverseTransformDirection(station.up);fit.neckForward=neck.InverseTransformDirection(station.forward);
+  fit.neckCenter=neck.InverseTransformPoint(Vector3.Lerp(neck.position,head.position,.46f));
+  obj.AddComponent<CollarVisual>().Initialize(status);fit.SamplePose();obj.transform.SetParent(neck,true);fit.bound=true;return fit.Casing;
  }
  public Vector3 GripContact(bool right){
   Physics.SyncTransforms();var lateral=transform.right*(right?1:-1);var destination=RingCenter+transform.forward*.04f;
@@ -48,11 +51,15 @@ public sealed class ImportedSpaceCollar:MonoBehaviour {
   return contact;
  }
  public void SamplePose(){
-  var neck=rig.GetBoneTransform(HumanBodyBones.Neck);var head=rig.GetBoneTransform(HumanBodyBones.Head);
-  // Follow the anatomical neck axis after the final blended pose, not its initial bone rotation.
-  var up=(head.position-neck.position).normalized;var forward=Vector3.ProjectOnPlane(station.forward,up).normalized;
+  var neck=rig.GetBoneTransform(HumanBodyBones.Neck);
+  // Rigid hardware follows the neck's bind-space socket. Head rotation must not
+  // lift its rear edge into the ear or slide the ring along the jacket.
+  // Humanoid retargeting can rotate this joint much farther than a rigid cuff
+  // can tilt inside the jacket. Keep its socket attached, limiting hardware tilt.
+  var up=Vector3.RotateTowards(station.up,neck.TransformDirection(neckUp),10*Mathf.Deg2Rad,0);
+  var forward=Vector3.ProjectOnPlane(station.forward,up).normalized;
   transform.rotation=Quaternion.LookRotation(forward,up);
-  transform.position=Vector3.Lerp(neck.position,head.position,.32f)-transform.TransformVector(paddingLocalCenter);
+  transform.position=neck.TransformPoint(neckCenter)-transform.TransformVector(paddingLocalCenter);
  }
 }
 }

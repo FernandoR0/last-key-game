@@ -75,6 +75,13 @@ public sealed class ImportedMotionPilot : MonoBehaviour {
   var neck=Rig.GetBoneTransform(HumanBodyBones.Neck);var head=Rig.GetBoneTransform(HumanBodyBones.Head);var hardware=Collar.GetComponentInParent<CollarVisual>().transform;
   // A gentle gaze adaptation over seated idle, rather than the source disbelief's upward gesture.
   if(stage!=1){for(int i=0;i<neckBones.Length;i++){float angle=Quaternion.Angle(neckRest[i],neckBones[i].localRotation);neckBones[i].localRotation=Quaternion.Slerp(neckRest[i],neckBones[i].localRotation,angle>10?10/angle:1);}}
+  if(stage==7||stage==2){
+   // The looking-down mocap includes a sideways lean. Release the struggle into a
+   // neutral neck, then aim down the centre of the keyboard without retaining that roll.
+   for(int i=0;i<neckBones.Length;i++)neckBones[i].localRotation=neckRest[i];
+   var direction=(Station.forward-Station.up*(stage==2?.34f:0)).normalized;
+   head.rotation=Quaternion.LookRotation(direction,Station.up)*Quaternion.Inverse(Quaternion.LookRotation(headForward,headUp));
+  }
   hardware.GetComponent<ImportedSpaceCollar>().SamplePose();
   if(clip==3){ContactHand(false);ContactHand(true);}
   if(stage==0||stage==7&&clip==0||stage==8||stage==9){RestHand(false);RestHand(true);}
