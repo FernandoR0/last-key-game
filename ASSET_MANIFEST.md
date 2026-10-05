@@ -39,6 +39,8 @@ https://creativecommons.org/licenses/by/4.0/
 Downloaded through Sketchfab's official download interface, without payment.
 Adaptations: GLB-to-FBX conversion, graphite/steel materials, emissive Danger display, human-neck scale and bone attachment, removal of projecting rear tracker geometry for jacket clearance. Original geometry is reused; no new collar was modeled. The original author described it as a space dog collar; LAST KEY adapts the existing technological housing as a human competition restraint. This does not imply endorsement by the original author.
 
+Revision 25: runtime mesh copies share the ActorCore skeleton and neck skin weights, sit at the neck base, and omit rear triangles behind the jacket. Front/side hardware is retained with a 19 × 5.2 × 19 cm fitting box. Character face and jacket source meshes are unchanged. The collar struggle preview uses the original downloaded finger animation without the previous relaxed-finger overlay.
+
 Current integration: one-character animation pilot. The previous playable build still uses the previous assets. No claims of final four-character integration.
 
 Original GLB SHA256: 02f939ed883f06209a7c2cd9ae52549b6a1bd9f8b2d6e57dba77d8e4e36e8761

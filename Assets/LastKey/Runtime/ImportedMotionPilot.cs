@@ -68,7 +68,7 @@ public sealed class ImportedMotionPilot : MonoBehaviour {
   bool upperOnly=stage==0||stage==1||stage==6||stage==8||stage==9||clip==8||clip==9;
   float blend=stage==5||upperOnly?0:Mathf.SmoothStep(0,1,Mathf.Clamp01(s/1.8f));bodyMixer.SetInputWeight(0,1-blend);bodyMixer.SetInputWeight(1,blend);layers.SetInputWeight(2,upperOnly?1:0);
   float envelope=Intensity==0?0:Mathf.SmoothStep(0,1,Mathf.Clamp01(s/.18f))*Mathf.SmoothStep(0,1,Mathf.Clamp01(((stage==5?6:3)-s)/.35f));
-  electric.SetTime(Mathf.Min(Intensity==3?2+s:Mathf.Repeat(s*1.25f,2.5f),clips[4].length-.033f));layers.SetInputWeight(1,envelope*new[]{0f,.22f,.52f,1}[Intensity]);relaxedFingers.SetTime(0);layers.SetInputWeight(3,stage==1?.85f:0);if(typingLook.IsValid()){typingLook.SetTime(1.5f+.15f*Mathf.Sin(s*.8f));layers.SetInputWeight(4,stage==2?Mathf.SmoothStep(0,1,Mathf.Clamp01(s/2)):0);}graph.Evaluate(.000001f);
+  electric.SetTime(Mathf.Min(Intensity==3?2+s:Mathf.Repeat(s*1.25f,2.5f),clips[4].length-.033f));layers.SetInputWeight(1,envelope*new[]{0f,.22f,.52f,1}[Intensity]);relaxedFingers.SetTime(0);layers.SetInputWeight(3,0);if(typingLook.IsValid()){typingLook.SetTime(1.5f+.15f*Mathf.Sin(s*.8f));layers.SetInputWeight(4,stage==2?Mathf.SmoothStep(0,1,Mathf.Clamp01(s/2)):0);}graph.Evaluate(.000001f);
   float transition=Mathf.SmoothStep(0,1,Mathf.Clamp01((Time.time-transitionAt)/(Intensity>0?.25f:1.8f)));
   var hips=Rig.GetBoneTransform(HumanBodyBones.Hips);transform.position+=Station.TransformPoint(new Vector3(0,.82f,-.97f))-hips.position;
   if(jaw!=null)jaw.localRotation=jawRest;
