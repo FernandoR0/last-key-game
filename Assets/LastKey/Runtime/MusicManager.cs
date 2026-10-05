@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.Audio;
 namespace LastKey
@@ -8,7 +8,7 @@ namespace LastKey
     public sealed class MusicManager:MonoBehaviour
     {
         public const float GameplayOffset=16f;
-        public const float IntroSeconds=26f;
+        public const float IntroSeconds=46f;
         public MusicState State {get;private set;}
         public float Volume {get;private set;}
         public string TrackName=>sources==null||sources[active].clip==null?"":sources[active].clip.name;

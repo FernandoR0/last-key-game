@@ -8,9 +8,13 @@ public sealed class MatchCharacterVisual:MonoBehaviour {
   var p=game.Players[Identity]; if(round!=game.Round){round=game.Round;level=0;removed=false;eventAt=-100;resultAt=-1;}
   int stage=7;float local=seconds;
   if(flow==ExperienceState.RoundIntro){
-   float wake=Identity==game.HumanIndex?0:7+(Identity+1)*.65f;local=seconds-wake;
-   if(local>=0&&local<5)stage=0;else if(local>=5&&local<10){stage=1;local-=5;}
-   else {stage=7;local=Mathf.Max(0,local);}
+   float wake=Identity==game.HumanIndex?0:4+Identity*.8f;local=seconds-wake;
+   if(local<10){stage=0;local=Mathf.Max(0,local-4)*.55f;}
+   else if(local<18){stage=8;local-=10;}
+   else if(local<23){stage=9;local-=18;}
+   else if(local<32){stage=1;local=(local-23)*.45f;}
+   else if(local<36){stage=7;local-=32;}
+   else {stage=2;local-=36;}
   }else if(flow==ExperienceState.Gameplay||flow==ExperienceState.Countdown||flow==ExperienceState.Paused){
    int next=p.Eliminated?3:p.Danger>=70?2:p.Danger>=40?1:0;
    if(next>level){level=next;eventAt=Time.time;}if(p.Eliminated&&!removed){removed=true;eventAt=Time.time;}

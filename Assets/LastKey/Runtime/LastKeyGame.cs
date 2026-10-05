@@ -24,7 +24,7 @@ namespace LastKey
         Transform menu;GameObject hud,intro,nullBacking,echoBacking;
         TMP_Text top,metrics,typing,rivals,directive,echo,caption,flash,dangerLabel,announcement; CanvasGroup announceGroup; float announceUntil;
         Image danger,loading;CompetitionEffects effects;
-        bool echoChoice=true; bool visualPreview,wide,echoAnnounced,warning;Directive priorDirective;int priorCorrect,priorCombo,priorErrors;float flashUntil;
+        bool echoChoice=true; bool cinematicPreview,visualPreview,wide,echoAnnounced,warning;Directive priorDirective;int priorCorrect,priorCombo,priorErrors;float flashUntil;
         readonly Color ink=new Color(.025f,.04f,.055f,.92f),cyan=new Color(.2f,.86f,.86f),muted=new Color(.65f,.73f,.78f);
         public static readonly string[] Aliases={"CIPHER","UPLINK","RELAY","VECTOR"};
         public static readonly string[] Names={"Valeria Rojas","Ethan Cole","Akira Mori","Noah Bennett"};
@@ -40,6 +40,7 @@ namespace LastKey
             if(Environment.GetCommandLineArgs().Contains("--evidence-v2"))gameObject.AddComponent<PolishEvidence>();
             if(Environment.GetCommandLineArgs().Contains("--wardrobe-review"))gameObject.AddComponent<WardrobeShow>();
             if(Environment.GetCommandLineArgs().Contains("--pose-audit"))gameObject.AddComponent<PoseAudit>();
+            if(Environment.GetCommandLineArgs().Contains("--cinematic-evidence"))gameObject.AddComponent<CinematicEvidence>();
         }
         void Update()
         {
@@ -51,8 +52,8 @@ namespace LastKey
             else if(Flow==ExperienceState.Loading){loading.fillAmount=Mathf.Clamp01(StateTime/2);if(StateTime>2.1f)Switch(ExperienceState.MainMenu);}
             if(Flow==ExperienceState.RoundIntro)
             {
-                float t=Mathf.Clamp01(StateTime/MusicManager.IntroSeconds);Cameras.Intro(t);caption.text=StateTime<4.5f?"DESPIERTA":StateTime<8.5f?"EL COLLAR ESTÁ CERRADO":StateTime<11?"SUJECIÓN ACTIVA / MANOS LIBRES":StateTime<16?"NO ESTÁS SOLO":StateTime<20?"NULL / 4 PARTICIPANTES. ACUMULA PUNTOS EN CADA RONDA.":StateTime<24?"VELOCIDAD + PRECISIÓN + COMBOS. GANA LA MAYOR PUNTUACIÓN TOTAL.":"DANGER 100%: FUERA SOLO DE ESTA RONDA. VOLVERÁS EN LA SIGUIENTE.";
-                if(StateTime>=MusicManager.IntroSeconds||Input.GetKeyDown(KeyCode.Space))Switch(ExperienceState.Countdown);
+                caption.text="";
+                if(StateTime>=MusicManager.IntroSeconds){if(cinematicPreview)StateTime=0;else Switch(ExperienceState.Countdown);}
             }
             if(Flow==ExperienceState.Countdown){caption.text="RONDA "+Game.Round+"\n"+Mathf.Max(1,3-Mathf.FloorToInt(StateTime));Cameras.Gameplay();if(StateTime>=3){echoAnnounced=warning=false;priorCorrect=priorCombo=priorErrors=0;priorDirective=Directive.None;Switch(ExperienceState.Gameplay);}}
             if(Flow==ExperienceState.Gameplay)
@@ -67,6 +68,7 @@ namespace LastKey
             }
             else if(Flow==ExperienceState.Paused&&Input.GetKeyDown(KeyCode.Escape))Switch(ExperienceState.Gameplay);
             Arena.Animate(Time.time,Game);if(Flow==ExperienceState.RoundIntro)Arena.ShowOpening(StateTime);foreach(var c in Arena.Characters)c.GetComponent<MatchCharacterVisual>().Present(Game,Flow,StateTime);Refresh();if(visualPreview)Canvas.enabled=Flow==ExperienceState.RoundResult||Flow==ExperienceState.FinalResult||Flow==ExperienceState.Paused||Flow==ExperienceState.MainMenu;
+            if(Flow==ExperienceState.RoundIntro){Cameras.Intro(Mathf.Clamp01(StateTime/MusicManager.IntroSeconds));intro.SetActive(false);}
         }
         public void StopSessionAudio(){Music.StopSessionAudio();Sound.StopSessionAudio();}
         void Feedback()
@@ -143,12 +145,13 @@ namespace LastKey
             Button(final?"REVANCHA":"SIGUIENTE RONDA",60,930,620,final?Rematch:(Action)BeginIntro,menu);Button("MENÚ PRINCIPAL",730,930,420,MainMenu,menu);
         }
         public void BeginVisualPreview(){visualPreview=true;BeginIntro();}
+        public void BeginCinematicPreview(){cinematicPreview=true;BeginIntro();for(int i=0;i<4;i++)if(i!=HumanIndex)foreach(var renderer in Arena.Stations[i].GetComponentsInChildren<Renderer>())renderer.enabled=false;Canvas.enabled=false;}
         public void EnableBrowserAudio(){Music.EnableBrowserAudio();}
         public void OpenModeSelect(){Switch(ExperienceState.ModeSelect);}
         public void OpenCharacterSelect(){Switch(ExperienceState.CharacterSelect);}
         public void ChooseCharacter(int i){HumanIndex=i;Arena.Arrange(i);Switch(ExperienceState.CharacterSelect);}
         public void ConfirmCharacter(){Switch(ExperienceState.MatchSetup);}
-        public void BeginIntro(){if(Game.Phase==Phase.Ready&&Game.HumanIndex!=HumanIndex)Game=new Competition(rules,content,humanIndex:HumanIndex);Game.StartRound(SelectedMode);Switch(Game.Round==1?ExperienceState.RoundIntro:ExperienceState.Countdown);}
+        public void BeginIntro(){if(Game.Phase==Phase.Ready&&Game.HumanIndex!=HumanIndex)Game=new Competition(rules,content,humanIndex:HumanIndex);Game.StartRound(SelectedMode);Switch(Game.Round==1?ExperienceState.RoundIntro:ExperienceState.Countdown);if(Flow==ExperienceState.RoundIntro){foreach(var c in Arena.Characters)c.GetComponent<MatchCharacterVisual>().Present(Game,Flow,0);Cameras.SnapIntro();}}
         public void Rematch(){Game=new Competition(rules,content,humanIndex:HumanIndex);BeginIntro();}
         public void MainMenu(){Game=new Competition(rules,content,humanIndex:HumanIndex);Switch(ExperienceState.MainMenu);}
         public void StartNext(){if(Game.Phase==Phase.Finished)Rematch();else BeginIntro();}

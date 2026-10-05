@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using TMPro;
 
 namespace LastKey
@@ -113,12 +113,12 @@ namespace LastKey
         }
         public void ShowOpening(float seconds)
         {
-            string text=seconds<16?"":seconds<18?"[ NULL ]\nSISTEMA DE COMPETENCIA":seconds<22?"4 PARTICIPANTES · PUNTOS POR RONDAS\nVELOCIDAD + PRECISIÓN + COMBO":seconds<25?"DANGER 100%: FUERA SOLO DE ESTA RONDA\nGANA LA MAYOR PUNTUACIÓN TOTAL":"[ NULL ]\nINICIANDO COMPETENCIA";
+            string text=seconds<34?"":"[ NULL ]";
             for(int i=0;i<4;i++){
-                TouchKeys[i].Power(seconds>=16);Screens[i].text=text;Screens[i].color=new Color(.72f,.95f,1);
-                Displays[i].material.SetColor("_BaseColor",seconds<16?new Color(.006f,.008f,.012f):new Color(.015f,.06f,.09f));
+                TouchKeys[i].Power(seconds>=36);Screens[i].text=text;Screens[i].color=new Color(.72f,.95f,1);
+                Displays[i].material.SetColor("_BaseColor",seconds<34?new Color(.006f,.008f,.012f):new Color(.015f,.06f,.09f));
             }
-            Board.text=seconds<16?"":"[ NULL ]\nDIRECTIVAS OFICIALES / LAST KEY";
+            Board.text=seconds<34?"":"[ NULL ]";
         }
         public void Animate(float time, LastKey.Core.Competition game)
         {

@@ -5,7 +5,7 @@ public static class ProductionVisualSetup {
   var collarImporter=(ModelImporter)AssetImporter.GetAtPath("Assets/Resources/VisualProps/SpaceCollar/SpaceCollar.fbx");collarImporter.isReadable=true;collarImporter.SaveAndReimport();
   const string source="Assets/PrivateActorCore/Male/Actor/party-m-0001/party-m-0001.fbx";
   var imp=(ModelImporter)AssetImporter.GetAtPath(source);imp.isReadable=true;imp.importBlendShapes=true;imp.animationType=ModelImporterAnimationType.Human;imp.avatarSetup=ModelImporterAvatarSetup.CreateFromThisModel;imp.SaveAndReimport();
-  var names=new[]{"SittingIdleBreathing","WakingSeated","BeingStrangled","Typing","BeingElectrocuted","SittingVictory"};
+  var names=new[]{"SittingIdleBreathing","WakingSeated","BeingStrangled","Typing","BeingElectrocuted","SittingVictory","SittingLookAround","SittingDisbeliefForward"};
   var clips=names.Select(name=>{string path="Assets/PrivateMixamo/"+name+".fbx";var importer=(ModelImporter)AssetImporter.GetAtPath(path);importer.animationType=ModelImporterAnimationType.Human;importer.avatarSetup=ModelImporterAvatarSetup.CreateFromThisModel;importer.SaveAndReimport();return AssetDatabase.LoadAllAssetsAtPath(path).OfType<AnimationClip>().First(c=>c.humanMotion&&!c.name.StartsWith("__preview__")&&c.length>.1f);}).ToArray();
   Directory.CreateDirectory("Assets/Resources/MatchVisuals");var body=UnityEngine.Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(source));
   var skins=body.GetComponentsInChildren<SkinnedMeshRenderer>();var bounds=skins[0].bounds;foreach(var skin in skins)bounds.Encapsulate(skin.bounds);body.transform.localScale*=1.81f/bounds.size.y;
