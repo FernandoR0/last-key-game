@@ -37,9 +37,9 @@ namespace LastKey
             var head=arena.Characters[arena.HumanIndex].GetComponent<ImportedMotionPilot>().Rig.GetBoneTransform(HumanBodyBones.Head);
             float pull=Mathf.SmoothStep(0,1,Mathf.InverseLerp(8,29,seconds));
             var close=head.position+s.TransformVector(new Vector3(.34f,-.14f,.72f));
-            var wide=s.TransformPoint(new Vector3(1.55f,1.72f,.70f));
-            var target=Vector3.Lerp(head.position+s.up*.045f,s.TransformPoint(new Vector3(0,1.13f,-.72f)),pull);
-            Pose(3,Vector3.Lerp(close,wide,pull),target,Mathf.Lerp(31,44,pull));Use(3);
+            var wide=s.TransformPoint(new Vector3(.85f,1.60f,.05f));
+            var target=Vector3.Lerp(head.position+s.up*.045f,s.TransformPoint(new Vector3(0,1.38f,-.80f)),pull);
+            Pose(3,Vector3.Lerp(close,wide,pull),target,Mathf.Lerp(31,42,pull));Use(3);
         }
         public void SnapIntro(){Intro(0);arena.Camera.transform.SetPositionAndRotation(roles[3].transform.position,roles[3].transform.rotation);arena.Camera.fieldOfView=roles[3].fieldOfView;}
         public void Event(int index,bool human)

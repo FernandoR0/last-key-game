@@ -12,11 +12,11 @@ public sealed class ImportedMotionPilot : MonoBehaviour {
  public Transform Station {get;private set;}
  public Vector3 CollarCenter => Collar.GetComponentInParent<ImportedSpaceCollar>().RingCenter;
  PlayableGraph graph; AnimationMixerPlayable bodyMixer; AnimationLayerMixerPlayable layers;
- AnimationClipPlayable idle,action,gesture,electric; AnimationClip[] clips; int prior=-1;
+ AnimationClipPlayable idle,action,gesture,electric,collarArms; AnimationClip[] clips; int prior=-1;
  public float CollarSourceTime=-1;
  public Vector3 GazeTarget {get;private set;}
- readonly Quaternion[] gripRotation=new Quaternion[2];readonly bool[] gripReady=new bool[2];
  Transform[] eyeBones,neckBones;Quaternion[] eyeRest,neckRest;Vector3[] eyeForward;Quaternion headRest;Vector3 headForward,headUp;
+ Transform[] armTwists;Quaternion[] armTwistRest;Vector3[] armTwistPosition;
  Transform[] poseBones;Quaternion[] transitionPose;int previousStage=-1;float transitionAt;
  sealed class HandSurface {public SkinnedMeshRenderer skin;public Vector3[] vertices; public BoneWeight[] weights; public Matrix4x4[] bind,matrices; public int[][] indices;}
  readonly List<HandSurface> handSurfaces=new List<HandSurface>();
@@ -28,12 +28,14 @@ public sealed class ImportedMotionPilot : MonoBehaviour {
   var headBone=rig.GetBoneTransform(HumanBodyBones.Head);headRest=headBone.localRotation;headForward=headBone.InverseTransformDirection(station.forward);headUp=headBone.InverseTransformDirection(station.up);
   eyeBones=new[]{rig.GetBoneTransform(HumanBodyBones.LeftEye),rig.GetBoneTransform(HumanBodyBones.RightEye)};eyeRest=new Quaternion[2];eyeForward=new Vector3[2];for(int i=0;i<2;i++)if(eyeBones[i]!=null){eyeRest[i]=eyeBones[i].localRotation;eyeForward[i]=eyeBones[i].InverseTransformDirection(station.forward);}
   var necks=new List<Transform>();foreach(var bone in rig.GetComponentsInChildren<Transform>())if(bone.name.Contains("NeckTwist"))necks.Add(bone);neckBones=necks.ToArray();neckRest=new Quaternion[neckBones.Length];for(int i=0;i<neckBones.Length;i++)neckRest[i]=neckBones[i].localRotation;
+  var twists=new List<Transform>();foreach(var bone in rig.GetComponentsInChildren<Transform>())if(bone.name.Contains("ForearmTwist")||bone.name.Contains("UpperarmTwist")||bone.name.Contains("ElbowShareBone"))twists.Add(bone);armTwists=twists.ToArray();armTwistRest=new Quaternion[armTwists.Length];armTwistPosition=new Vector3[armTwists.Length];for(int i=0;i<armTwists.Length;i++){armTwistRest[i]=armTwists[i].localRotation;armTwistPosition[i]=armTwists[i].localPosition;}
   var boneList=new List<Transform>();for(int i=0;i<(int)HumanBodyBones.LastBone;i++){var bone=rig.GetBoneTransform((HumanBodyBones)i);if(bone!=null)boneList.Add(bone);}poseBones=boneList.ToArray();transitionPose=new Quaternion[poseBones.Length];
   CacheHandSurfaces();
   Collar=ImportedSpaceCollar.Attach(rig,station);
   graph=PlayableGraph.Create("LAST KEY downloaded motion pilot");graph.SetTimeUpdateMode(DirectorUpdateMode.Manual);
   idle=AnimationClipPlayable.Create(graph,clips[0]);bodyMixer=AnimationMixerPlayable.Create(graph,2);graph.Connect(idle,0,bodyMixer,0);
-  electric=AnimationClipPlayable.Create(graph,clips[4]);layers=AnimationLayerMixerPlayable.Create(graph,3);graph.Connect(bodyMixer,0,layers,0);graph.Connect(electric,0,layers,1);layers.SetInputWeight(0,1);
+  electric=AnimationClipPlayable.Create(graph,clips[4]);layers=AnimationLayerMixerPlayable.Create(graph,4);graph.Connect(bodyMixer,0,layers,0);graph.Connect(electric,0,layers,1);layers.SetInputWeight(0,1);
+  collarArms=AnimationClipPlayable.Create(graph,clips[2]);graph.Connect(collarArms,0,layers,3);var armMask=new AvatarMask();for(int i=0;i<(int)AvatarMaskBodyPart.LastBodyPart;i++)armMask.SetHumanoidBodyPartActive((AvatarMaskBodyPart)i,i==(int)AvatarMaskBodyPart.LeftArm||i==(int)AvatarMaskBodyPart.RightArm);layers.SetLayerMaskFromAvatarMask(3,armMask);
   var mask=new AvatarMask();for(int i=0;i<(int)AvatarMaskBodyPart.LastBodyPart;i++)mask.SetHumanoidBodyPartActive((AvatarMaskBodyPart)i,i!=(int)AvatarMaskBodyPart.Root&&i!=(int)AvatarMaskBodyPart.LeftLeg&&i!=(int)AvatarMaskBodyPart.RightLeg&&i!=(int)AvatarMaskBodyPart.LeftFootIK&&i!=(int)AvatarMaskBodyPart.RightFootIK&&i!=(int)AvatarMaskBodyPart.LeftFingers&&i!=(int)AvatarMaskBodyPart.RightFingers);
   layers.SetLayerMaskFromAvatarMask(1,mask);layers.SetLayerMaskFromAvatarMask(2,mask);AnimationPlayableOutput.Create(graph,"Imported Humanoid",rig).SetSourcePlayable(layers);graph.Play();
   var obj=new GameObject("Collar discharge preview",typeof(LineRenderer));obj.transform.SetParent(station,false);arc=obj.GetComponent<LineRenderer>();arc.positionCount=12;arc.loop=false;arc.useWorldSpace=true;arc.numCornerVertices=2;arc.numCapVertices=2;arc.widthCurve=AnimationCurve.Linear(0,1,1,1);
@@ -52,12 +54,12 @@ public sealed class ImportedMotionPilot : MonoBehaviour {
   // Keep the centered typing passage only; ping-pong with zero speed at both ends.
   float typingTime=1.05f+.65f*(1-Mathf.Cos(s*Mathf.PI/1.4f));
   action.SetTime(stage==2||stage==3||stage==4?typingTime:Mathf.Min(s*(stage==0?.65f:stage==8?.6f:stage==9?.45f:1),clips[clip].length-.033f));
-  if(stage==1)action.SetTime(CollarSourceTime>=0?CollarSourceTime:6.6f+Mathf.Min(s,1.9f));
+  if(stage==1)action.SetTime(CollarSourceTime>=0?CollarSourceTime:6.6f+.85f*(1-Mathf.Cos(s*Mathf.PI/1.25f)));
   gesture.SetTime(action.GetTime());
   bool upperOnly=stage==0||stage==1||stage==6||stage==8||stage==9;
   float blend=stage==5||upperOnly?0:Mathf.SmoothStep(0,1,Mathf.Clamp01(s/1.8f));bodyMixer.SetInputWeight(0,1-blend);bodyMixer.SetInputWeight(1,blend);layers.SetInputWeight(2,upperOnly?1:0);
   float envelope=Intensity==0?0:Mathf.SmoothStep(0,1,Mathf.Clamp01(s/.18f))*Mathf.SmoothStep(0,1,Mathf.Clamp01(((stage==5?6:3)-s)/.35f));
-  electric.SetTime(Mathf.Min(Intensity==3?2+s:Mathf.Repeat(s*1.25f,2.5f),clips[4].length-.033f));layers.SetInputWeight(1,envelope*new[]{0f,.22f,.52f,1}[Intensity]);graph.Evaluate(.000001f);
+  electric.SetTime(Mathf.Min(Intensity==3?2+s:Mathf.Repeat(s*1.25f,2.5f),clips[4].length-.033f));layers.SetInputWeight(1,envelope*new[]{0f,.22f,.52f,1}[Intensity]);collarArms.SetTime(7.8);layers.SetInputWeight(3,stage==1&&CollarSourceTime<0?1:0);graph.Evaluate(.000001f);
   float transition=Mathf.SmoothStep(0,1,Mathf.Clamp01((Time.time-transitionAt)/(Intensity>0?.25f:1.8f)));
   if(stage!=0&&transition<1)for(int i=0;i<poseBones.Length;i++)poseBones[i].localRotation=Quaternion.Slerp(transitionPose[i],poseBones[i].localRotation,transition);
   var hips=Rig.GetBoneTransform(HumanBodyBones.Hips);transform.position+=Station.TransformPoint(new Vector3(0,.82f,-.97f))-hips.position;
@@ -68,15 +70,23 @@ public sealed class ImportedMotionPilot : MonoBehaviour {
   float headAngle=Quaternion.Angle(headRest,head.localRotation);head.localRotation=Quaternion.Slerp(headRest,head.localRotation,headAngle>28?28/headAngle:1);
   if(stage==9||stage==2){float look=Mathf.SmoothStep(0,1,Mathf.Clamp01(s/1.8f));head.rotation=Quaternion.AngleAxis((stage==9?24:18)*look,Station.right)*head.rotation;}
   hardware.GetComponent<ImportedSpaceCollar>().SamplePose();
+  if(stage==1)for(int i=0;i<armTwists.Length;i++){armTwists[i].localRotation=armTwistRest[i];armTwists[i].localPosition=armTwistPosition[i];}
   if(stage==2||stage==3||stage==4){ContactHand(false);ContactHand(true);if(stage==2&&s<2.4f){ApproachKeyboard(false,s);ApproachKeyboard(true,s);}}
   if(stage==0||stage==7||stage==8||stage==9){RestHand(false);RestHand(true);}
   // Preserve the downloaded two-hand grasp, adapting reach to the collar hardware.
   if(stage==1&&CollarSourceTime<0){float w=Mathf.SmoothStep(0,1,Mathf.Clamp01((s-.5f)/.8f));CollarGrip(false,w);CollarGrip(true,w);}
-  else {gripReady[0]=gripReady[1]=false;}
   float gazeX=stage==8?Mathf.Sin(s*Mathf.PI/4)*2.5f:0;
   GazeTarget=stage==2||stage==3||stage==4?Station.Find("Integrated touch terminal").position:stage==9||stage==1?CollarCenter-Station.up*.10f:Station.TransformPoint(new Vector3(gazeX,1.45f,2.7f));
-  for(int i=0;i<eyeBones.Length;i++)if(eyeBones[i]!=null){var eye=eyeBones[i];eye.localRotation=eyeRest[i];var forward=eye.TransformDirection(eyeForward[i]);var direction=(GazeTarget-eye.position).normalized;eye.rotation=Quaternion.RotateTowards(Quaternion.identity,Quaternion.FromToRotation(forward,direction),30)*eye.rotation;}
-  var gazeLocal=Quaternion.Inverse(Quaternion.LookRotation(head.TransformDirection(headForward),head.TransformDirection(headUp)))*(GazeTarget-head.position).normalized;
+  var headBasis=Quaternion.LookRotation(head.TransformDirection(headForward),head.TransformDirection(headUp));
+  Vector3 eyeCenter=head.position;int eyeCount=0;Vector3 sumEyes=Vector3.zero;foreach(var eye in eyeBones)if(eye!=null){sumEyes+=eye.position;eyeCount++;}if(eyeCount>0)eyeCenter=sumEyes/eyeCount;
+  var rawGaze=Quaternion.Inverse(headBasis)*(GazeTarget-eyeCenter).normalized;
+  // Parallel binocular aim: an own-neck target must not make the eyes converge onto the nose.
+  float yaw=Mathf.Clamp(Mathf.Atan2(rawGaze.x,rawGaze.z)*Mathf.Rad2Deg,-18,18);
+  float pitch=Mathf.Clamp(-Mathf.Atan2(rawGaze.y,new Vector2(rawGaze.x,rawGaze.z).magnitude)*Mathf.Rad2Deg,-12,20);
+  if(stage==1||stage==9){yaw=0;pitch=18;}
+  var gazeRotation=headBasis*Quaternion.Euler(pitch,yaw,0)*Quaternion.Inverse(headBasis);
+  foreach(var eye in eyeBones)if(eye!=null){int index=Array.IndexOf(eyeBones,eye);eye.localRotation=eyeRest[index];eye.rotation=gazeRotation*eye.rotation;}
+  var gazeLocal=Quaternion.Euler(pitch,yaw,0)*Vector3.forward;
   foreach(var skin in GetComponentsInChildren<SkinnedMeshRenderer>())for(int i=0;i<skin.sharedMesh.blendShapeCount;i++){
    string n=skin.sharedMesh.GetBlendShapeName(i).ToLowerInvariant();float blink=stage==0?1-Mathf.SmoothStep(0,1,Mathf.Clamp01((s-.7f)/2.2f)):Mathf.Clamp01(1-Mathf.Abs(Mathf.Repeat(t+1.8f,3.7f)-.13f)/.13f);
    float weight=n.EndsWith("a14_eye_blink_left")||n.EndsWith("a15_eye_blink_right")?blink*100:n.EndsWith("mouth_open")?Intensity*envelope*12:0;
@@ -135,17 +145,18 @@ public sealed class ImportedMotionPilot : MonoBehaviour {
  void CollarGrip(bool right,float weight){
   var hand=Rig.GetBoneTransform(right?HumanBodyBones.RightHand:HumanBodyBones.LeftHand);
   var pad=Rig.GetBoneTransform(right?HumanBodyBones.RightMiddleDistal:HumanBodyBones.LeftMiddleDistal);if(pad==null)return;
-  var fitting=Collar.GetComponentInParent<ImportedSpaceCollar>();int side=right?1:0;
-  if(!gripReady[side]){gripRotation[side]=Quaternion.Inverse(fitting.transform.rotation)*hand.rotation;gripReady[side]=true;}
-  hand.rotation=Quaternion.Slerp(hand.rotation,fitting.transform.rotation*gripRotation[side],weight);
-  var anchor=fitting.RingCenter+fitting.transform.right*(right?.078f:-.078f)+fitting.transform.forward*.035f+fitting.transform.up*.027f;
+  var fitting=Collar.GetComponentInParent<ImportedSpaceCollar>();
+  // Preserve the current source wrist, never a rotation cached while the hands were on the lap.
+  var knuckle=Rig.GetBoneTransform(right?HumanBodyBones.RightMiddleProximal:HumanBodyBones.LeftMiddleProximal);
+  if(knuckle!=null){var palm=knuckle.position-hand.position;var aligned=(Station.up+Station.right*(right?-.25f:.25f)).normalized;hand.rotation=Quaternion.Slerp(Quaternion.identity,Quaternion.FromToRotation(palm,aligned),weight)*hand.rotation;}
+  var anchor=fitting.RingCenter+fitting.transform.right*(right?.075f:-.075f)+fitting.transform.forward*.055f+fitting.transform.up*.033f;
   // One stable finger pad supports the upper edge. No per-frame nearest-vertex switching.
-  SolveArm(right,Vector3.Lerp(hand.position,hand.position+anchor-pad.position,weight));
+  SolveArm(right,Vector3.Lerp(hand.position,hand.position+anchor-pad.position,weight),true);
  }
- void SolveArm(bool right,Vector3 target){
+ void SolveArm(bool right,Vector3 target,bool collarReach=false){
   var upper=Rig.GetBoneTransform(right?HumanBodyBones.RightUpperArm:HumanBodyBones.LeftUpperArm);var lower=Rig.GetBoneTransform(right?HumanBodyBones.RightLowerArm:HumanBodyBones.LeftLowerArm);var end=Rig.GetBoneTransform(right?HumanBodyBones.RightHand:HumanBodyBones.LeftHand);var wrist=end.rotation;
   Vector3 a=upper.position;float l1=Vector3.Distance(a,lower.position),l2=Vector3.Distance(lower.position,end.position);Vector3 direction=target-a;float d=Mathf.Clamp(direction.magnitude,Mathf.Abs(l1-l2)+.001f,l1+l2-.001f);direction.Normalize();float along=(l1*l1-l2*l2+d*d)/(2*d);float height=Mathf.Sqrt(Mathf.Max(0,l1*l1-along*along));
-  Vector3 pole=lower.position-(a+end.position)*.5f;Vector3 bend=Vector3.ProjectOnPlane(pole,direction).normalized;if(bend.sqrMagnitude<.01f)bend=Station.right*(right?1:-1);Vector3 elbow=a+direction*along+bend*height;
+  Vector3 pole=(collarReach?Station.TransformPoint(new Vector3(right?.32f:-.32f,1.06f,-.88f)):lower.position)-(a+end.position)*.5f;Vector3 bend=Vector3.ProjectOnPlane(pole,direction).normalized;if(bend.sqrMagnitude<.01f)bend=Station.right*(right?1:-1);Vector3 elbow=a+direction*along+bend*height;
   upper.rotation=Quaternion.FromToRotation(lower.position-upper.position,elbow-upper.position)*upper.rotation;lower.rotation=Quaternion.FromToRotation(end.position-lower.position,target-lower.position)*lower.rotation;end.rotation=wrist;
  }
  void OnDestroy(){if(graph.IsValid())graph.Destroy();if(arcMaterial!=null)Destroy(arcMaterial);if(arc!=null)Destroy(arc.gameObject);}
