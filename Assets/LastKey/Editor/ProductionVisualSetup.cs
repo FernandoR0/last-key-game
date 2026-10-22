@@ -17,5 +17,6 @@ public static class ProductionVisualSetup {
   body.AddComponent<ImportedMotionLibrary>().Clips=clips;PrefabUtility.SaveAsPrefabAsset(body,"Assets/Resources/MatchVisuals/ApprovedCharacter.prefab");UnityEngine.Object.DestroyImmediate(body);AssetDatabase.SaveAssets();for(int i=0;i<clips.Length;i++)Debug.Log("LAST_KEY_SOURCE "+names[i]+" length="+clips[i].length);Debug.Log("LAST_KEY_APPROVED_VISUALS_PREPARED");
  }
  public static void BuildWindows(){Prepare();ProjectBuilder.BuildWindows();}
+ public static void BuildWebGLPreview(){Prepare();UnityEditor.WebGL.UserBuildSettings.codeOptimization=UnityEditor.WebGL.WasmCodeOptimization.BuildTimes;ProjectBuilder.BuildWebGL();}
  public static void BuildWebGL(){Prepare();UnityEditor.WebGL.UserBuildSettings.codeOptimization=UnityEditor.WebGL.WasmCodeOptimization.RuntimeSpeed;ProjectBuilder.BuildWebGL();}
 }}

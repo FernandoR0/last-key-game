@@ -18,7 +18,7 @@ public sealed class MatchCharacterVisual:MonoBehaviour {
   }else if(flow==ExperienceState.Gameplay||flow==ExperienceState.Countdown||flow==ExperienceState.Paused){
    int next=p.Eliminated?3:p.Danger>=70?2:p.Danger>=40?1:0;
    if(next>level){level=next;eventAt=Time.time;}if(p.Eliminated&&!removed){removed=true;eventAt=Time.time;}
-   stage=2;local=game.Elapsed;
+   stage=2;local=(game.Round==1?MusicManager.IntroSeconds-36:0)+(flow==ExperienceState.Countdown?seconds:3+game.Elapsed);
    if(removed){stage=5;local=Mathf.Min(Time.time-eventAt,5.99f);}
    else if(Time.time-eventAt<3&&level>0){stage=level+2;local=Time.time-eventAt;}
   }else if(flow==ExperienceState.FinalResult){

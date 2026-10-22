@@ -14,3 +14,5 @@ The attempted jacket-vertex adjustment was rejected after visual inspection beca
 Verified final review capture: `LAST_KEY_CINEMATIC_25G`, 46 seconds, 1380 real Unity player frames, 1920×1080 / 30 fps, silent. Runtime log records successful neck-skin binding for all four characters and no blocking exceptions. Windows build succeeded (297219071 bytes), competition checks passed (53), and Unity MediaEncoder exported the movie (13168142 bytes). Inspected detailed crops at 18, 20, 22, 24, 26–34, 36, 39 and 43 seconds and full-resolution contact frames. Visual checks concern this cinematic and its camera views, not a physics collision guarantee for every possible future motion.
 
 Published review is `/character-cinematic/?revision=25`. The browser playable WebGL remains revision 21; this page is the actual native Unity character review movie. User review of this correction remains pending.
+
+Integración posterior (2026-10-22): el personaje y esta secuencia ya están incluidos en las builds principales Windows/WebGL de la revisión 30. La indicación histórica de WebGL revisión 21 anterior queda sustituida por UI_INTEGRATION_30.md.

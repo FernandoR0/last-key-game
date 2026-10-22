@@ -19,7 +19,7 @@ Composición: marca y ronda a la izquierda; tiempo centrado; controles y clasifi
 - ECHO se elige con Tab y Enter; al aceptar muestra `NODE-07-RECOVERY`.
 - Volumen con icono alineado y control que actualiza su porcentaje. No reproduce audio: es un control del boceto, no una corrección del mezclador del juego.
 - Opción de reducir movimiento y respeto de `prefers-reduced-motion`.
-- Las cifras y los tiempos son ejemplos, no una partida en ejecución. Los botones de salas representan diseño; no conectan jugadores.
+- Las cifras y los tiempos son ejemplos, no una partida en ejecución. El menú se actualizó a «Modos de juego», sin controles de salas.
 
 ## Evidencia y alcance
 

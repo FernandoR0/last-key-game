@@ -1,25 +1,28 @@
-# LAST KEY — diseño integrado, revisión 19
+# LAST KEY — interfaz integrada, revisión 30
 
-Se continúa sobre el proyecto existente. Costo adicional S/0. Cuatro copias temporales del ActorCore Party-M-0001 aprobado, manteniendo CIPHER/UPLINK/RELAY/VECTOR. Las revisiones V4 y el piloto aislado son antecedentes, no el estado actual.
+Se continúa sobre el proyecto existente. Costo adicional S/0. El juego principal usa cuatro copias temporales del ActorCore Party-M-0001 aprobado y la secuencia cinematográfica 25, con CIPHER/UPLINK/RELAY/VECTOR.
 
-## Integración
+## Integración actual
 
-- Mocap Mixamo descargado: idle sentado, despertar, contacto con collar, tecleo, descarga y victoria. Se reutilizan las adaptaciones de alcance del piloto aprobado.
-- Collar metálico importado ligado al cuello, contacto de manos y efectos de Danger. Mesh readable habilitado también en build.
-- Despertar/collar/rivales/NULL antes de la primera ronda; esa introducción no se repite en las siguientes.
-- Descargas débiles/medias a Danger 40/70 y eliminación a 100. El eliminado deja de competir solo en esa ronda y vuelve después. El ganador final reproduce el motion de victoria.
-- Pantalla horizontal integrada y teclado español con signos y tildes. Corregida la asociación A/B/T, antes absorbida por el rótulo TAB.
-- HUD delegado a Codex: clasificación de los cuatro, texto inferior y avisos NULL/ECHO/combo. TAB selecciona respuesta ECHO y ENTER confirma. Tarjetas ocultas cuando el evento no está activo.
-- Menús conservados para probar. Las teclas físicas generan la entrada; no hay teclado táctil por clic.
+- Interfaz nativa Unity del boceto 26: frase flotante sin recuadro, carácter actual subrayado, puntuación de ronda, WPM, precisión, errores, racha, Danger y clasificación acumulada en vivo.
+- Menú claro con «Modos de juego». Sin botones de crear/unirse a salas. Classic principal; Code, Numbers, Memory y Sudden Death beta; Chaos no seleccionable, próximo.
+- Personaje actual, once clips importados, collar frontal bajo ligado a los pesos del cuello y dedos originales del forcejeo. Esta integración no modifica cara ni ropa.
+- Introducción completa solo en la primera ronda; transición al tecleo sin reiniciar el gesto de sentarse a escribir. En las siguientes rondas comienza la cuenta atrás.
+- Pantalla horizontal y teclado español integrados en la mesa; entrada mediante teclado físico. La UI no presenta el teclado 3D como un teclado táctil por clic.
+- NULL/ECHO con reglas y tiempo visibles. ECHO puede aceptarse/ignorarse con botones o Tab/Enter, sin invadir el área de mecanografía.
+- Volumen general y música conectados al audio real, porcentaje y tiradores circulares. Esc pausa; el temporizador no avanza mientras está en pausa.
+- Resultados de ronda y THE LAST KEY usan los puntos reales del núcleo. Danger 100% elimina solo de la ronda y el jugador vuelve en la siguiente.
 
-## Núcleo y límites
+## Builds y evidencia
 
-Una persona y tres bots. Cinco rondas de 60 segundos; score acumulado, WPM/Accuracy/Errors/Score/Combo/Danger. NULL y ECHO conservados. Classic; Code/Numbers/Memory/Sudden Death BETA. Chaos, campaña, personalización y multijugador de salas no implementados.
+Windows: Builds/Windows/LAST_KEY.exe. WebGL: Builds/WebGL, servido por HTTP en http://127.0.0.1:8765/?revision=30. La plantilla usa el identificador de assets 30minimal para evitar revisiones en caché.
 
-Las voces quedan para el final por instrucción de Fernando. No se integra la muestra personal ni el grito sintético rechazado. Se retiró el grito genérico de eliminación. Música y efectos permanecen; no se afirma aprobación auditiva.
+Pruebas del núcleo: CoreQa y PolishQa (53 comprobaciones adicionales). Replay nativo completo de cinco rondas durante la integración inicial: LAST_KEY_UI_27_REVIEW. Smoke tests de callbacks de interfaz, audio, pausa, entrada y eventos: LAST_KEY_UI_30_QA. Los registros concretos y la comprobación del navegador están en UI_INTEGRATION_30.md.
 
-No se modifican GDD, Trello, Figma, Canva/PDF ni se produce video académico final. GitHub y Unity Play no se declaran publicados. ActorCore/Mixamo permanecen privados; reconstruir requiere obtener las fuentes bajo sus licencias.
+La compilación de producción WebGL mantiene RuntimeSpeed; BuildWebGLPreview usa BuildTimes para la vista previa local con los mismos modelos, materiales, iluminación, reglas y UI.
 
-## Validación
+## Límites
 
-Build Windows correcto. CoreQa 22 y PolishQa 53 aprobadas. Replay nativo completo de cinco rondas sin excepciones/assertions: NULL/ECHO, Danger, eliminación, retorno y ganador. Entradas pasan por Competition.Input/Tick, sin asignar scores ficticios. Última composición y build WebGL registrados en VISUAL_INTEGRATION.md.
+Una persona y tres bots; no multijugador de salas, campaña, Chaos ni personalización. Las voces quedan para el final: no se integra la muestra personal ni el grito sintético rechazado. No se afirma aprobación auditiva de la música.
+
+No se modifican GDD, Trello, Figma, Canva/PDF ni se produce el video académico final. GitHub y Unity Play no se declaran publicados. Las fuentes ActorCore/Mixamo siguen privadas y la reconstrucción requiere sus archivos y licencias.
