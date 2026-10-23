@@ -27,4 +27,4 @@ La compilación de producción WebGL mantiene RuntimeSpeed; BuildWebGLPreview us
 
 Una persona y tres bots; no multijugador de salas, campaña, Chaos ni personalización. Las voces quedan para el final: no se integra la muestra personal ni el grito sintético rechazado. No se afirma aprobación auditiva de la música.
 
-No se modifican GDD, Trello, Figma, Canva/PDF ni se produce el video académico final. GitHub y Unity Play no se declaran publicados. Las fuentes ActorCore/Mixamo siguen privadas y la reconstrucción requiere sus archivos y licencias.
+No se modifican GDD, Trello, Figma, Canva/PDF ni se produce el video académico final. Repositorio de colaboración: https://github.com/FernandoR0/last-key-game. Unity Play sigue pendiente. Las fuentes ActorCore/Mixamo siguen privadas y la reconstrucción requiere sus archivos y licencias.
