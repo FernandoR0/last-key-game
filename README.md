@@ -1,12 +1,14 @@
 # LAST KEY
 
+Actualización 31: tecleo Mixamo 2,6–7,8 s, diez dedos y muñecas originales; contacto con la mesa sin fijar la altura. Evidencia: TYPING_REVIEW_31.md.
+
 Competencia de mecanografía por rondas: cuatro participantes, una persona y tres bots. Gana la mayor puntuación acumulada tras cinco rondas de 60 segundos; Danger 100% elimina únicamente de la ronda actual.
 
 ## Abrir
 
 Unity 6000.6.0f1 / URP 17.6.0. Escena Assets/LastKey/Scenes/LastKey.unity. Builds: Builds/Windows/LAST_KEY.exe y Builds/WebGL/.
 
-Para WebGL: servir Builds/WebGL por HTTP en 127.0.0.1:8765 y abrir http://127.0.0.1:8765/?revision=30. El enlace es local a esta PC. Iniciar desde el menú para conservar el HUD completo. La opción histórica visual=1 oculta parte del HUD y no sirve para revisar esta integración.
+Para WebGL: servir Builds/WebGL por HTTP en 127.0.0.1:8765 y abrir http://127.0.0.1:8765/?revision=31. El enlace es local a esta PC. Iniciar desde el menú para conservar el HUD completo. La opción histórica visual=1 oculta parte del HUD y no sirve para revisar esta integración.
 
 ## Diseño integrado — revisión 30
 

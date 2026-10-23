@@ -41,6 +41,7 @@ namespace LastKey
             if(Environment.GetCommandLineArgs().Contains("--wardrobe-review"))gameObject.AddComponent<WardrobeShow>();
             if(Environment.GetCommandLineArgs().Contains("--pose-audit"))gameObject.AddComponent<PoseAudit>();
             if(Environment.GetCommandLineArgs().Contains("--minimal-ui-qa"))gameObject.AddComponent<MinimalInterfaceQa>();
+            if(Environment.GetCommandLineArgs().Contains("--typing-motion-evidence"))gameObject.AddComponent<TypingMotionEvidence>();
             if(Environment.GetCommandLineArgs().Contains("--cinematic-evidence"))gameObject.AddComponent<CinematicEvidence>();
         }
         void Update()

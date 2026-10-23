@@ -1,8 +1,10 @@
-# LAST KEY — interfaz integrada, revisión 30
+# LAST KEY — interfaz integrada, revisión 31
 
 Se continúa sobre el proyecto existente. Costo adicional S/0. El juego principal usa cuatro copias temporales del ActorCore Party-M-0001 aprobado y la secuencia cinematográfica 25, con CIPHER/UPLINK/RELAY/VECTOR.
 
 ## Integración actual
+
+- Revisión 31: tecleo ampliado al tramo 2,6–7,8 s de Typing.fbx. Se conservan diez dedos activos y las muñecas originales; el contacto solo corrige penetración, sin fijar la mano al cristal. Detalle y pruebas en TYPING_REVIEW_31.md.
 
 - Interfaz nativa Unity del boceto 26: frase flotante sin recuadro, carácter actual subrayado, puntuación de ronda, WPM, precisión, errores, racha, Danger y clasificación acumulada en vivo.
 - Menú claro con «Modos de juego». Sin botones de crear/unirse a salas. Classic principal; Code, Numbers, Memory y Sudden Death beta; Chaos no seleccionable, próximo.
@@ -15,7 +17,7 @@ Se continúa sobre el proyecto existente. Costo adicional S/0. El juego principa
 
 ## Builds y evidencia
 
-Windows: Builds/Windows/LAST_KEY.exe. WebGL: Builds/WebGL, servido por HTTP en http://127.0.0.1:8765/?revision=30. La plantilla usa el identificador de assets 30minimal para evitar revisiones en caché.
+Windows: Builds/Windows/LAST_KEY.exe. WebGL: Builds/WebGL, servido por HTTP en http://127.0.0.1:8765/?revision=31. La plantilla usa el identificador de assets 30minimal para evitar revisiones en caché.
 
 Pruebas del núcleo: CoreQa y PolishQa (53 comprobaciones adicionales). Replay nativo completo de cinco rondas durante la integración inicial: LAST_KEY_UI_27_REVIEW. Smoke tests de callbacks de interfaz, audio, pausa, entrada y eventos: LAST_KEY_UI_30_QA. Los registros concretos y la comprobación del navegador están en UI_INTEGRATION_30.md.
 

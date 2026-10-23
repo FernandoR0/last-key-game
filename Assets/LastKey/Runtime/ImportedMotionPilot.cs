@@ -59,8 +59,10 @@ public sealed class ImportedMotionPilot : MonoBehaviour {
   if(stage==7&&clips.Length>9&&s<clips[9].length)clip=9;
   if(prior!=clip){if(prior>=0){Array.Copy(lastPose,transitionPose,lastPose.Length);Array.Copy(lastPositions,transitionPositions,lastPositions.Length);transitionAt=Time.time;}if(action.IsValid()){graph.Disconnect(bodyMixer,1);graph.Disconnect(layers,2);action.Destroy();gesture.Destroy();}action=AnimationClipPlayable.Create(graph,clips[clip]);gesture=AnimationClipPlayable.Create(graph,clips[clip]);if(!graph.Connect(action,0,bodyMixer,1)||!graph.Connect(gesture,0,layers,2))throw new InvalidOperationException("Downloaded motion graph connection failed");prior=clip;}
   idle.SetTime(Mathf.Repeat(t,clips[0].length));
-  // Keep the centered typing passage only; ping-pong with zero speed at both ends.
-  float typingTime=1.05f+.65f*(1-Mathf.Cos(s*Mathf.PI/1.4f));
+  // The opening 1.05–2.35 s mainly moves the right fingers. The actual two-hand
+  // typing passage is 2.6–7.8 s; retain its original finger and wrist curves.
+  // Ease reversals so the selected centered passage never snaps at a loop seam.
+  float typingTime=TypingSourceTime(s);
   action.SetTime(clip==3?typingTime:Mathf.Min(s*(stage==0?.65f:stage==8?.6f:stage==9?.45f:1),clips[clip].length-.033f));
   // Original downloaded struggle, advancing normally. No held arm layer or custom wrist/arm pose.
   if(stage==1)action.SetTime(CollarSourceTime>=0?CollarSourceTime:Mathf.Min(collarPlayback.Evaluate(s/.8f),clips[2].length-.033f));
@@ -144,11 +146,12 @@ public sealed class ImportedMotionPilot : MonoBehaviour {
  }
  void UpdateMatrices(HandSurface surface){for(int i=0;i<surface.matrices.Length;i++)surface.matrices[i]=surface.skin.bones[i].localToWorldMatrix*surface.bind[i];}
  Vector3 WorldVertex(HandSurface surface,int index){var v=surface.vertices[index];var w=surface.weights[index];return surface.matrices[w.boneIndex0].MultiplyPoint3x4(v)*w.weight0+surface.matrices[w.boneIndex1].MultiplyPoint3x4(v)*w.weight1+surface.matrices[w.boneIndex2].MultiplyPoint3x4(v)*w.weight2+surface.matrices[w.boneIndex3].MultiplyPoint3x4(v)*w.weight3;}
+ internal static float TypingSourceTime(float seconds)=>2.6f+2.6f*(1-Mathf.Cos(seconds*Mathf.PI/5.2f));
  void ContactHand(bool right){
   var hand=Rig.GetBoneTransform(right?HumanBodyBones.RightHand:HumanBodyBones.LeftHand);var finger=Rig.GetBoneTransform(right?HumanBodyBones.RightMiddleDistal:HumanBodyBones.LeftMiddleDistal);
   if(finger==null)return;
-  var knuckle=Rig.GetBoneTransform(right?HumanBodyBones.RightMiddleProximal:HumanBodyBones.LeftMiddleProximal);
-  if(knuckle!=null){var palm=knuckle.position-hand.position;var flat=Vector3.ProjectOnPlane(palm,Station.up);if(flat.sqrMagnitude>.00001f){var desired=flat-Station.up*(flat.magnitude*.12f);hand.rotation=Quaternion.FromToRotation(palm,desired)*hand.rotation;}}
+  // Preserve the source wrist rotation. Flattening the palm erased the visible
+  // hand articulation even though the downloaded finger curves were still active.
   var point=Station.InverseTransformPoint(finger.position);var terminal=Station.Find("Integrated touch terminal");
   // Adapt reach; use the actual lowest skinned hand vertex, not a fingertip bone inside the mesh.
   var correction=Station.TransformVector(new Vector3(0,0,Mathf.Clamp(point.z,terminal.localPosition.z-.27f,terminal.localPosition.z-.17f)-point.z));SolveArm(right,hand.position+correction);
@@ -156,7 +159,8 @@ public sealed class ImportedMotionPilot : MonoBehaviour {
    float lowest=float.PositiveInfinity;
    foreach(var surface in handSurfaces){UpdateMatrices(surface);foreach(int i in surface.indices[right?1:0])lowest=Mathf.Min(lowest,Station.InverseTransformPoint(WorldVertex(surface,i)).y);}
    if(float.IsInfinity(lowest))return;float delta=terminal.localPosition.y+.012f-lowest;
-   if(Mathf.Abs(delta)<.001f)return;SolveArm(right,hand.position+Station.up*delta);
+   // Lift only on penetration; never pin a raised hand back onto the surface.
+   if(delta<.001f)return;SolveArm(right,hand.position+Station.up*delta);
   }
  }
  void CollarGrip(bool right,float weight){
