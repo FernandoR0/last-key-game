@@ -49,5 +49,3 @@ public static class TypingMotionAudit {
   }finally{UnityEngine.Object.DestroyImmediate(station);}
  }
 }}
-
-
